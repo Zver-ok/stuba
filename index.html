@@ -1,1 +1,117 @@
-index.html
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AVECO — Металлические трубы в Алматы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="overlay"></div>
+    <div class="container hero-content">
+      <nav class="top-nav">
+        <div class="logo">AVECO</div>
+        <ul>
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#contacts">Контакты</a></li>
+        </ul>
+        <a class="btn btn-green" href="#form">Написать в WhatsApp</a>
+      </nav>
+
+      <div class="hero-text">
+        <h1>Металлические<br>трубы в Алматы</h1>
+        <p class="subtitle">со склада и под заказ.</p>
+        <p class="description">
+          В наличии и под производство: ВГП, бесшовные, оцинкованные, изоляция ППУ/ВУС.<br>
+          Доставка по Казахстану.
+        </p>
+
+        <div class="cta-row">
+          <a href="#form" class="btn btn-yellow">Получить прайс</a>
+          <a href="#form" class="btn btn-green">Написать в WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="features" id="services">
+        <div class="feature">Свой<br>склад в Алматы</div>
+        <div class="feature">Быстрая отгрузка<br>1–2 дня</div>
+        <div class="feature">ГОСТ и<br>сертификаты</div>
+        <div class="feature">Работаем<br>с юр. лицами</div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="catalog" id="catalog">
+      <div class="container">
+        <h2>Надёжный поставщик трубного проката</h2>
+        <div class="cards">
+          <article class="card">
+            <img src="img/slider.png" alt="ВГП электросварные">
+            <h3>ВГП / электросварные</h3>
+            <ul><li>Лоты 10 т от наличия</li><li>Строительные, по спецификации</li></ul>
+          </article>
+          <article class="card">
+            <img src="img/slider.png" alt="Бесшовные">
+            <h3>Бесшовные</h3>
+            <ul><li>Высокая надёжность</li><li>Прочность и точность</li></ul>
+          </article>
+          <article class="card">
+            <img src="img/slider.png" alt="Оцинкованные">
+            <h3>Оцинкованные</h3>
+            <ul><li>Увеличенный срок службы</li><li>Для наружных работ</li></ul>
+          </article>
+          <article class="card">
+            <img src="img/slider.png" alt="ППУ изоляция">
+            <h3>ППУ изоляция</h3>
+            <ul><li>Для теплосетей</li><li>Снижение теплопотерь</li></ul>
+          </article>
+          <article class="card">
+            <img src="img/slider.png" alt="ВУС изоляция">
+            <h3>ВУС изоляция</h3>
+            <ul><li>Антикоррозийная защита</li><li>Для магистралей</li></ul>
+          </article>
+          <article class="card">
+            <img src="img/slider.png" alt="Магистральные трубы">
+            <h3>Магистральные ГОСТ 20295</h3>
+            <ul><li>Ø325+ для крупных проектов</li></ul>
+          </article>
+          <div class="catalog-download">
+            <button class="download-btn">Скачать полный каталог</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lead-form" id="form">
+      <div class="overlay"></div>
+      <div class="container">
+        <h2>Получите прайс за 5 минут</h2>
+        <form>
+          <div class="form-row two">
+            <input type="text" placeholder="*Имя" required>
+            <input type="tel" placeholder="Телефон" required>
+          </div>
+          <div class="form-row">
+            <input type="text" placeholder="Что нужно (трубы / размеры)">
+          </div>
+          <small>Менеджер свяжется и отправит актуальный прайс + наличие.</small>
+          <div class="cta-row">
+            <button class="btn btn-yellow" type="submit">Получить прайс</button>
+            <a href="#" class="btn btn-green">Написать в WhatsApp</a>
+          </div>
+        </form>
+        <div class="contacts" id="contacts">
+          <span>artyr@aveco.kz.</span>
+          <span>+7 777 355 06-30</span>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
