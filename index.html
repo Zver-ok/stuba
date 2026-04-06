@@ -36,8 +36,8 @@
           <div class="hero-text">
             <h1>ЗАПОРНАЯ АРМАТУРА<br />И ЗАДВИЖКИ</h1>
             <p>НАДЕЖНЫЕ РЕШЕНИЯ<br />ДЛЯ ПРОМЫШЛЕННОСТИ</p>
-            <button>ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
-          </div>
+            <button type="button" data-open-modal="consultation">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
+			</div>
         </div>
       </section>
 		
@@ -125,8 +125,8 @@
                 <li>Среда: вода / газ</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
-            </article>
+              <button type="button" data-open-modal="kp">Получить КП</button>
+			  </article>
             <article class="slider-card">
               <img src="https://nktex.kz/wp-content/uploads/2025/07/krany-sharovye-dlya-holodnogo-klimata1.png" alt="Кран шаровый DN80" />
 				<h4>Кран шаровый DN80</h4>
@@ -137,7 +137,7 @@
                 <li>Тип: фланцевый</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
+              <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
               <img src="https://bb-engineering.kz/images/detailed/429/kran-sharovyi-privarnoi-3pc-dn100-3.png.600x0_q85.png" alt="Кран шаровый DN100" />
@@ -149,7 +149,7 @@
                 <li>Тип: под приварку</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
+              <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
               <img src="https://bb-engineering.kz/images/detailed/425/kran-sharovyi-flantsevyi-3pc-dn50-01_TSesHgh.png.600x0_q85.png" alt="Кран шаровый фланцевый" />
@@ -161,7 +161,7 @@
                 <li>Тип: полнопроходной</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
+              <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
               <img src="https://www.newkey.ru/media/thumb/covers/catalog/obl_2XgJn5l.png.600x0_q85.png" alt="Кран шаровый приварной" />
@@ -173,7 +173,7 @@
                 <li>Тип: под приварку</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
+              <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
               <img src="https://westinvest.kz/upload/iblock/18f/k7n06yfddo20m5uaihlzc1mbfcss2f5a/Alm7014.png" alt="Кран шаровый нержавеющий" />
@@ -185,7 +185,7 @@
                 <li>Тип: резьбовой</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
+              <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
               <img src="https://12.kz/pictures/product/middle/7978_middle.png" alt="Кран шаровый PN40" />
@@ -197,7 +197,7 @@
                 <li>Тип: стандартнопроходной</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
+              <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
               <img src="https://bb-engineering.kz/images/detailed/424/kran-sharovyi-trekhkhodovoi-t-tip-dn10-01.png.600x0_q85.png" alt="Кран шаровый PN64" />
@@ -209,9 +209,31 @@
                 <li>Тип: фланцевый</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button">Получить КП</button>
+              <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
           </div>
+        </div>
+      </section>
+
+      <section class="section container industries-section" id="industries">
+        <h2>КОМУ ПОДОЙДЁТ</h2>
+        <div class="cards industries-cards">
+          <article class="card industry-card">
+            <div class="industry-icon" aria-hidden="true">⛽</div>
+            <h3>Нефтегаз</h3>
+          </article>
+          <article class="card industry-card">
+            <div class="industry-icon" aria-hidden="true">💧</div>
+            <h3>Водоснабжение</h3>
+          </article>
+          <article class="card industry-card">
+            <div class="industry-icon" aria-hidden="true">🏭</div>
+            <h3>Производство</h3>
+          </article>
+          <article class="card industry-card">
+            <div class="industry-icon" aria-hidden="true">🏗️</div>
+            <h3>Строительство</h3>
+          </article>
         </div>
       </section>
 
@@ -299,5 +321,40 @@
 			</section>
     </div>
 	  <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
+	  
+    <div class="modal" id="lead-modal" aria-hidden="true">
+      <div class="modal__backdrop" data-close-modal></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal__close" type="button" aria-label="Закрыть" data-close-modal>×</button>
+
+        <div class="modal-content" data-modal-type="consultation">
+          <h2 id="modal-title">Получить консультацию</h2>
+          <p>Оставьте имя и номер, и мы свяжемся с вами в ближайшее время.</p>
+          <form action="<?php echo get_stylesheet_directory_uri(); ?>/send.php" method="post" class="modal-form">
+            <input type="hidden" name="form_type" value="consultation" />
+            <input type="text" name="name" placeholder="Ваше имя" required />
+            <input type="tel" name="phone" placeholder="Номер телефона" required />
+            <button type="submit">Отправить</button>
+          </form>
+        </div>
+
+        <div class="modal-content" data-modal-type="kp" hidden>
+          <h2>Получить КП</h2>
+          <div class="selected-product">
+            <img src="" alt="Выбранный товар" id="modal-product-image" />
+            <h3 id="modal-product-title"></h3>
+          </div>
+          <form action="<?php echo get_stylesheet_directory_uri(); ?>/send.php" method="post" class="modal-form">
+            <input type="hidden" name="form_type" value="kp" />
+            <input type="hidden" name="product_name" id="modal-product-name" value="" />
+            <input type="text" name="name" placeholder="Ваше имя" required />
+            <input type="tel" name="phone" placeholder="Номер телефона" required />
+            <textarea name="details" rows="4" placeholder="Дополнительная информация / характеристики"></textarea>
+            <button type="submit">Отправить</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </body>
 </html>
