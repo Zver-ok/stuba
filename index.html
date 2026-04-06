@@ -1,1 +1,115 @@
-index.html
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Запорная арматура и задвижки</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
+	</head>
+  <body>
+    <div class="page-bg">
+      <header class="header container">
+        <div class="logo">
+          <span class="logo-icon">⚙</span>
+          <span class="logo-text">ВАШ ЛОГОТИП</span>
+        </div>
+        <nav class="menu">
+          <a href="#about">О КОМПАНИИ</a>
+          <a href="#products">ПРОДУКЦИЯ</a>
+          <a href="#advantages">УСЛУГИ</a>
+          <a href="#contacts">КОНТАКТЫ</a>
+        </nav>
+        <a class="callback" href="tel:+70001234567">
+          <strong>+7 (000) 123-45-67</strong>
+          <span>ЗАКАЗАТЬ ЗВОНОК</span>
+        </a>
+      </header>
+
+      <section class="hero" id="about">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <div class="hero-text">
+            <h1>ЗАПОРНАЯ АРМАТУРА<br />И ЗАДВИЖКИ</h1>
+            <p>НАДЕЖНЫЕ РЕШЕНИЯ<br />ДЛЯ ПРОМЫШЛЕННОСТИ</p>
+            <button>ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section container" id="products">
+        <h2>НАША ПРОДУКЦИЯ</h2>
+        <div class="cards product-cards">
+          <article class="card product-card">
+            <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижки" />
+            <h3>Задвижки</h3>
+          </article>
+          <article class="card product-card">
+            <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровые краны" />
+            <h3>Шаровые<br />краны</h3>
+          </article>
+          <article class="card product-card">
+            <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапаны" />
+            <h3>Клапаны</h3>
+          </article>
+          <article class="card product-card">
+            <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фланцы и фитинги" />
+            <h3>Фланцы и фитинги</h3>
+          </article>
+        </div>
+      </section>
+
+      <section class="section container" id="advantages">
+        <h2>НАШИ ПРЕИМУЩЕСТВА</h2>
+        <div class="cards advantage-cards">
+          <article class="card advantage-card">
+            <div class="icon">✔</div>
+            <h3>Высокое качество</h3>
+            <p>Надежные и достойные изделия.</p>
+          </article>
+          <article class="card advantage-card">
+            <div class="icon">◉</div>
+            <h3>Широкий ассортимент</h3>
+            <p>Большой выбор арматуры.</p>
+          </article>
+          <article class="card advantage-card">
+            <div class="icon">👤</div>
+            <h3>Индивидуальный подход</h3>
+            <p>Решения под ваши задачи.</p>
+          </article>
+          <article class="card advantage-card">
+            <div class="icon">🚚</div>
+            <h3>Оперативная доставка</h3>
+            <p>Быстрая поставка по РФ.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="form-section" id="contacts">
+        <div class="form-overlay"></div>
+        <div class="container form-inner">
+          <div class="form-block">
+            <h2>ОСТАВЬТЕ ЗАЯВКУ</h2>
+            <p>Получите консультацию или расчёт стоимости.</p>
+            <form>
+              <input type="text" placeholder="Ваше имя" />
+              <input type="tel" placeholder="Телефон" />
+              <textarea placeholder="Сообщение"></textarea>
+              <button type="submit">ОТПРАВИТЬ</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer container">
+        <a href="tel:+70001234567">☎ +7 (000) 123-45-67</a>
+        <a href="mailto:info@site.ru">✉ info@site.ru</a>
+      </footer>
+    </div>
+  </body>
+</html>
