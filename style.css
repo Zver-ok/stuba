@@ -17,6 +17,12 @@ body {
   background: #0a1046;
 }
 
+.logo-img {
+  height: 65px;
+  width: auto;
+  display: block;
+}
+
 .page-bg {
   background: none;
 }
@@ -135,6 +141,27 @@ body {
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
 }
+
+.hero-benefits {
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(90deg, rgba(26, 37, 121, 0.86) 0%, rgba(30, 44, 140, 0.7) 100%);
+}
+
+.hero-benefits-inner {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.hero-benefits-inner p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+}
+
 
 .section {
   padding: 40px 0 50px;
@@ -304,28 +331,54 @@ background: linear-gradient(
   background: rgba(32, 45, 130, 0.7);
   border-radius: 12px;
   padding: 14px;
-  min-height: 245px;
+  min-height: 370px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .slider-card img {
-  width: 165px;
-  height: 100px;
+  width: 160px;
+  height: 140px;
   object-fit: contain;
   margin-bottom: 10px;
+filter: 
+  drop-shadow(0 10px 20px rgba(0,0,0,0.4))
+  drop-shadow(0 0 10px rgba(100,140,255,0.3));
 }
 
 .slider-card h4 {
   margin: 0 0 10px;
   font-size: 1rem;
-  min-height: 48px;
+  min-height: 44px;
+}
+
+.slider-specs {
+  margin: 0 0 10px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.86rem;
+  line-height: 1.35;
+  opacity: 0.95;
+}
+
+.slider-stock,
+.slider-price {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.slider-price {
+  margin-top: 4px;
 }
 
 .slider-card button {
   margin-top: auto;
+  width: 100%;
   background: linear-gradient(180deg, #4e66df 0%, #364db8 100%);
   border: 1px solid rgba(255, 255, 255, 0.28);
   color: #fff;
@@ -528,6 +581,15 @@ form button {
   .workflow-cards {
     grid-template-columns: 1fr;
   }
+	
+	  .hero-benefits-inner {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+
+  .hero-benefits-inner p {
+    text-align: left;
+  }
 
   .footer {
     flex-direction: column;
@@ -559,4 +621,9 @@ form button {
 .section-bg > * {
   position: relative;
   z-index: 1;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
 }

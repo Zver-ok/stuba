@@ -16,8 +16,7 @@
     <div class="page-bg">
       <header class="header container">
         <div class="logo">
-          <span class="logo-icon">⚙</span>
-          <span class="logo-text">ВАШ ЛОГОТИП</span>
+          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Логотип" class="logo-img" />
         </div>
         <nav class="menu">
           <a href="#about">О КОМПАНИИ</a>
@@ -25,9 +24,9 @@
           <a href="#advantages">УСЛУГИ</a>
           <a href="#contacts">КОНТАКТЫ</a>
         </nav>
-        <a class="callback" href="tel:+70001234567">
-          <strong>+7 (000) 123-45-67</strong>
-          <span>ЗАКАЗАТЬ ЗВОНОК</span>
+        <a class="callback" href="https://api.whatsapp.com/send?phone=77715056060&text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9+%D0%B4%D0%B5%D0%BD%D1%8C%21+%D0%AF+%D0%BF%D0%B8%D1%88%D1%83+%D0%BF%D0%BE+%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83">
+          <strong>+7 (771) 505 60 60</strong>
+          <span>Написать в WhatsApp</span>
         </a>
       </header>
 
@@ -39,6 +38,14 @@
             <p>НАДЕЖНЫЕ РЕШЕНИЯ<br />ДЛЯ ПРОМЫШЛЕННОСТИ</p>
             <button>ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
           </div>
+        </div>
+      </section>
+		
+		      <section class="hero-benefits">
+        <div class="container hero-benefits-inner">
+          <p>✔ Работаем с юр. лицами</p>
+          <p>✔ Безналичный расчёт</p>
+          <p>✔ Доставка по Казахстану</p>
         </div>
       </section>
 
@@ -110,45 +117,100 @@
           </div>
           <div class="products-slider" id="products-slider">
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 1" />
-              <h4>Кран шаровый DN50</h4>
-              <button type="button">Запросить цену</button>
+              <img src="https://stmgroup.kz/d/966f451daab4454aba9a6b10b44f71f8.png" alt="Кран шаровый DN50" />
+				<h4>Кран шаровый DN50</h4>
+              <ul class="slider-specs">
+                <li>Материал: сталь</li>
+				   <li>PN16–PN40</li>
+                <li>Среда: вода / газ</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
             </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 2" />
-              <h4>Кран шаровый DN80</h4>
-              <button type="button">Запросить цену</button>
-            </article>
+              <img src="https://nktex.kz/wp-content/uploads/2025/07/krany-sharovye-dlya-holodnogo-klimata1.png" alt="Кран шаровый DN80" />
+				<h4>Кран шаровый DN80</h4>
+              <ul class="slider-specs">
+                <li>Материал: сталь</li>
+                <li>PN16–PN40</li>
+                <li>Среда: вода / газ</li>
+                <li>Тип: фланцевый</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
+			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 3" />
-              <h4>Кран шаровый DN100</h4>
-              <button type="button">Запросить цену</button>
-            </article>
+              <img src="https://bb-engineering.kz/images/detailed/429/kran-sharovyi-privarnoi-3pc-dn100-3.png.600x0_q85.png" alt="Кран шаровый DN100" />
+				<h4>Кран шаровый DN100</h4>
+              <ul class="slider-specs">
+                <li>Материал: сталь</li>
+                <li>PN16–PN40</li>
+                <li>Среда: вода / газ</li>
+                <li>Тип: под приварку</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
+			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 4" />
-              <h4>Кран шаровый фланцевый</h4>
-              <button type="button">Запросить цену</button>
-            </article>
+              <img src="https://bb-engineering.kz/images/detailed/425/kran-sharovyi-flantsevyi-3pc-dn50-01_TSesHgh.png.600x0_q85.png" alt="Кран шаровый фланцевый" />
+				<h4>Кран шаровый фланцевый</h4>
+              <ul class="slider-specs">
+                <li>Материал: углеродистая сталь</li>
+                <li>PN16–PN40</li>
+                <li>Среда: вода / пар</li>
+                <li>Тип: полнопроходной</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
+			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 5" />
-              <h4>Кран шаровый приварной</h4>
-              <button type="button">Запросить цену</button>
-            </article>
+              <img src="https://www.newkey.ru/media/thumb/covers/catalog/obl_2XgJn5l.png.600x0_q85.png" alt="Кран шаровый приварной" />
+				<h4>Кран шаровый приварной</h4>
+              <ul class="slider-specs">
+                <li>Материал: сталь</li>
+                <li>PN25–PN40</li>
+                <li>Среда: газ / пар</li>
+                <li>Тип: под приварку</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
+			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 6" />
-              <h4>Кран шаровый нерж.</h4>
-              <button type="button">Запросить цену</button>
-            </article>
+              <img src="https://westinvest.kz/upload/iblock/18f/k7n06yfddo20m5uaihlzc1mbfcss2f5a/Alm7014.png" alt="Кран шаровый нержавеющий" />
+				<h4>Кран шаровый нерж.</h4>
+              <ul class="slider-specs">
+                <li>Материал: нержавеющая сталь</li>
+                <li>PN16–PN40</li>
+                <li>Среда: вода / пар</li>
+                <li>Тип: резьбовой</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
+			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 7" />
-              <h4>Кран шаровый PN40</h4>
-              <button type="button">Запросить цену</button>
-            </article>
+              <img src="https://12.kz/pictures/product/middle/7978_middle.png" alt="Кран шаровый PN40" />
+				<h4>Кран шаровый PN40</h4>
+              <ul class="slider-specs">
+                <li>Материал: сталь</li>
+                <li>PN40</li>
+                <li>Среда: вода / газ</li>
+                <li>Тип: стандартнопроходной</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
+			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Товар 8" />
-              <h4>Кран шаровый PN64</h4>
-              <button type="button">Запросить цену</button>
-            </article>
+              <img src="https://bb-engineering.kz/images/detailed/424/kran-sharovyi-trekhkhodovoi-t-tip-dn10-01.png.600x0_q85.png" alt="Кран шаровый PN64" />
+				<h4>Кран шаровый PN64</h4>
+              <ul class="slider-specs">
+                <li>Материал: сталь</li>
+                <li>PN64</li>
+                <li>Среда: газ / пар</li>
+                <li>Тип: фланцевый</li>
+              </ul>
+              <p class="slider-stock">✔ В наличии на складе</p>
+              <button type="button">Получить КП</button>
+			  </article>
           </div>
         </div>
       </section>
@@ -201,12 +263,12 @@
               </article>
               <article class="card workflow-card">
                 <span>02</span>
-                <h3>Подбираем решение</h3>
+                <h3>Подбираем оборудование</h3>
                 <p>Выбираем оптимальные позиции по срокам и бюджету.</p>
               </article>
               <article class="card workflow-card">
                 <span>03</span>
-                <h3>Согласовываем КП</h3>
+                <h3>Согласовываем коммерческое предложение</h3>
                 <p>Отправляем коммерческое предложение и спецификацию.</p>
               </article>
               <article class="card workflow-card">
@@ -231,8 +293,8 @@
         </div>
       </section>
       <footer class="footer container">
-        <a href="tel:+70001234567">☎ +7 (000) 123-45-67</a>
-        <a href="mailto:info@site.ru">✉ info@site.ru</a>
+        <a href="tel:+77715056060">☎ +7 (771) 505 60 60</a>
+        <a href="mailto:almaty@aveco.kz">✉ almaty@aveco.kz</a>
       </footer>
 			</section>
     </div>
