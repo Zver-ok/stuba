@@ -1,54 +1,63 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8');
 
 $recipient = 'tkatashev@bk.ru';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: index.html');
+    http_response_code(405);
+    echo json_encode([
+        'ok' => false,
+        'message' => 'Метод не поддерживается.',
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$formType = isset($_POST['form_type']) ? trim((string) $_POST['form_type']) : '';
-$name = isset($_POST['name']) ? trim((string) $_POST['name']) : '';
-$phone = isset($_POST['phone']) ? trim((string) $_POST['phone']) : '';
-$productName = isset($_POST['product_name']) ? trim((string) $_POST['product_name']) : '';
-$details = isset($_POST['details']) ? trim((string) $_POST['details']) : '';
+$formType = $_POST['form_type'] ?? '';
+$name = trim($_POST['name'] ?? '');
+$phone = trim($_POST['phone'] ?? '');
+$productName = trim($_POST['product_name'] ?? '');
+$details = trim($_POST['details'] ?? '');
 
 if ($name === '' || $phone === '') {
     http_response_code(400);
-    echo 'Пожалуйста, заполните имя и номер телефона.';
+    echo json_encode([
+        'ok' => false,
+        'message' => 'Заполните имя и телефон',
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 
-$subject = $formType === 'kp' ? 'Новая заявка: Получить КП' : 'Новая заявка: Консультация';
+$subject = $formType === 'kp'
+    ? 'Новая заявка: Получить КП'
+    : 'Новая заявка: Консультация';
 
-$lines = [
-    'Тип формы: ' . ($formType === 'kp' ? 'Получить КП' : 'Консультация'),
-    'Имя: ' . $name,
-    'Телефон: ' . $phone,
-];
+$message = "Тип формы: " . ($formType === 'kp' ? 'Получить КП' : 'Консультация') . "\n";
+$message .= "Имя: $name\n";
+$message .= "Телефон: $phone\n";
 
-if ($productName !== '') {
-    $lines[] = 'Позиция: ' . $productName;
+if ($productName) {
+    $message .= "Позиция: $productName\n";
 }
 
-if ($details !== '') {
-    $lines[] = 'Доп. информация: ' . $details;
+if ($details) {
+    $message .= "Дополнительно: $details\n";
 }
 
-$message = implode("\n", $lines);
-$headers = [
-    'MIME-Version: 1.0',
-    'Content-Type: text/plain; charset=UTF-8',
-    'From: no-reply@' . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
-    'Reply-To: no-reply@' . ($_SERVER['HTTP_HOST'] ?? 'localhost'),
-];
+$headers = "From: info@aveco.kz\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-$sent = mail($recipient, '=?UTF-8?B?' . base64_encode($subject) . '?=', $message, implode("\r\n", $headers));
+$sent = mail($recipient, $subject, $message, $headers);
 
 if ($sent) {
-    echo 'Спасибо! Заявка отправлена.';
-} else {
-    http_response_code(500);
-    echo 'Ошибка отправки. Попробуйте позже.';
+    echo json_encode([
+        'ok' => true,
+        'message' => 'Заявка отправлена',
+    ], JSON_UNESCAPED_UNICODE);
+    exit;
 }
+
+http_response_code(500);
+echo json_encode([
+    'ok' => false,
+    'message' => 'mail() не работает на сервере',
+], JSON_UNESCAPED_UNICODE);

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       });
     });
-	    }
+  }
 
   const modal = document.querySelector('#lead-modal');
   if (!modal) return;
@@ -73,5 +73,46 @@ document.addEventListener('DOMContentLoaded', () => {
     if (event.key === 'Escape' && modal.classList.contains('is-open')) {
       closeModal();
     }
+  });
+
+  modal.querySelectorAll('.modal-form').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const originalButtonText = submitButton?.textContent || '';
+
+      if (submitButton) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Отправка...';
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+          },
+          body: new FormData(form),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+          throw new Error(data.message || 'Ошибка отправки.');
+        }
+
+        alert('Заявка отправлена');
+        form.reset();
+        closeModal();
+      } catch (error) {
+        alert(error.message || 'Ошибка отправки. Попробуйте позже.');
+      } finally {
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = originalButtonText;
+        }
+      }
+    });
   });
 });

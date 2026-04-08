@@ -765,3 +765,69 @@ textarea::placeholder {
   margin: 0;
   font-size: 1.05rem;
 }
+
+.wa-button {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 18px;
+  border-radius: 50px;
+
+  background: linear-gradient(135deg, #2f2f8f, #4b5cff);
+  color: #fff;
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 500;
+
+  box-shadow: 0 8px 25px rgba(75, 92, 255, 0.4);
+  transition: all 0.3s ease;
+}
+
+.wa-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(75, 92, 255, 0.6);
+}
+
+.wa-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+}
+
+/* 📱 Мобилка */
+@media (max-width: 768px) {
+  .wa-button {
+    padding: 12px;
+    border-radius: 50%;
+    gap: 0;
+  }
+
+  .wa-text {
+    display: none;
+  }
+
+  .wa-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(75, 92, 255, 0.6); }
+  70% { box-shadow: 0 0 0 12px rgba(75, 92, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(75, 92, 255, 0); }
+}
+
+.wa-button {
+  animation: pulse 2.5s infinite;
+}

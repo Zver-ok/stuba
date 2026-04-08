@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Запорная арматура и задвижки</title>
+	  <meta name="robots" content="noindex">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,9 +20,8 @@
           <img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Логотип" class="logo-img" />
         </div>
         <nav class="menu">
-          <a href="#about">О КОМПАНИИ</a>
           <a href="#products">ПРОДУКЦИЯ</a>
-          <a href="#advantages">УСЛУГИ</a>
+          <a href="#advantages">ПРЕИМУЩЕСТВА</a>
           <a href="#contacts">КОНТАКТЫ</a>
         </nav>
         <a class="callback" href="https://api.whatsapp.com/send?phone=77715056060&text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9+%D0%B4%D0%B5%D0%BD%D1%8C%21+%D0%AF+%D0%BF%D0%B8%D1%88%D1%83+%D0%BF%D0%BE+%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83">
@@ -117,36 +117,38 @@
           </div>
           <div class="products-slider" id="products-slider">
             <article class="slider-card">
-              <img src="https://stmgroup.kz/d/966f451daab4454aba9a6b10b44f71f8.png" alt="Кран шаровый DN50" />
-				<h4>Кран шаровый DN50</h4>
+              <img src="https://bb-engineering.kz/images/thumbnails/450/450/detailed/442/Alm101_z9yv-82.png.webp" alt="Задвижка DN50" />
+				<h4>Задвижка PN-16</h4>
               <ul class="slider-specs">
-                <li>Материал: сталь</li>
-				   <li>PN16–PN40</li>
-                <li>Среда: вода / газ</li>
+				<li>Тип: клиновый</li>
+				<li>Давление PN: 16</li>
+                <li>Рабочая среда: вода, горячая вода</li>
+				  <li>Рабочая температура: -10 ÷ 90 °C</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
-            <article class="slider-card">
-              <img src="https://nktex.kz/wp-content/uploads/2025/07/krany-sharovye-dlya-holodnogo-klimata1.png" alt="Кран шаровый DN80" />
-				<h4>Кран шаровый DN80</h4>
+			              <article class="slider-card">
+              <img src="https://bb-engineering.kz/images/thumbnails/450/450/detailed/425/rac31_JJ6XHyA.png.600x0_q85.png.webp" alt="Задвижка AISI304 DN50" />
+				<h4>Задвижка AISI304 DN50</h4>
               <ul class="slider-specs">
-                <li>Материал: сталь</li>
-                <li>PN16–PN40</li>
+                <li>Материал: сталь нерж.</li>
                 <li>Среда: вода / газ</li>
                 <li>Тип: фланцевый</li>
+                <li>Рабочая среда: вода, горячая вода</li>
+				   <li>Рабочая температура: -20 ÷ 180 °C</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
-              <img src="https://bb-engineering.kz/images/detailed/429/kran-sharovyi-privarnoi-3pc-dn100-3.png.600x0_q85.png" alt="Кран шаровый DN100" />
-				<h4>Кран шаровый DN100</h4>
+              <img src="https://bb-engineering.kz/images/thumbnails/450/450/detailed/425/rac11.png.600x0_q85.png.webp" alt="Задвижка PN-40" />
+				<h4>Задвижка PN-40</h4>
               <ul class="slider-specs">
-                <li>Материал: сталь</li>
-                <li>PN16–PN40</li>
-                <li>Среда: вода / газ</li>
-                <li>Тип: под приварку</li>
+				<li>Тип: клиновый</li>
+				<li>Давление PN: 40</li>
+                <li>Рабочая среда: вода, горячая вода</li>
+				   <li>Рабочая температура: -20 ÷ 180 °C</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
@@ -267,7 +269,7 @@
 			      <img src="<?php echo get_template_directory_uri(); ?>/img/prem4.webp" alt="">
 				</div>
             <h3>Оперативная доставка</h3>
-            <p>Быстрая поставка по РФ.</p>
+            <p>Быстрая поставка по КЗ.</p>
           </article>
         </div>
       </section>
@@ -303,7 +305,7 @@
           <div class="form-block">
             <h2>ОСТАВЬТЕ ЗАЯВКУ</h2>
             <p>Ответим в течение 15 минут</p>
-            <form>
+            <form action="<?php echo get_stylesheet_directory_uri(); ?>/send.php" method="post" class="modal-form">
               <input type="text" placeholder="Ваше имя" />
 			  <input type="text" placeholder="Что вам нужно? (задвижки / краны / другое)" />
               <input type="text" placeholder="Диаметр / параметры" />
@@ -355,6 +357,13 @@
         </div>
       </div>
     </div>
-
+<a href="https://api.whatsapp.com/send?phone=77715056060&text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9+%D0%B4%D0%B5%D0%BD%D1%8C%21+%D0%AF+%D0%BF%D0%B8%D1%88%D1%83+%D0%BF%D0%BE+%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83" class="wa-button" target="_blank">
+  <span class="wa-icon">
+    <svg viewBox="0 0 32 32" width="20" height="20" fill="white">
+      <path d="M16 .396C7.164.396 0 7.56 0 16.396c0 2.895.757 5.713 2.194 8.196L.183 32l7.598-1.993A15.94 15.94 0 0016 32c8.836 0 16-7.164 16-16S24.836.396 16 .396zm0 29.23c-2.57 0-5.09-.674-7.295-1.95l-.52-.309-4.507 1.182 1.203-4.39-.338-.538A13.56 13.56 0 012.44 16.4c0-7.49 6.07-13.56 13.56-13.56s13.56 6.07 13.56 13.56-6.07 13.56-13.56 13.56zm7.44-10.157c-.406-.203-2.403-1.187-2.775-1.322-.372-.135-.643-.203-.915.203-.27.406-1.05 1.322-1.29 1.593-.237.27-.473.304-.878.102-.406-.203-1.714-.632-3.266-2.015-1.208-1.077-2.022-2.408-2.258-2.814-.237-.406-.025-.626.178-.829.183-.182.406-.473.609-.71.203-.237.27-.406.406-.676.135-.27.068-.507-.034-.71-.102-.203-.915-2.205-1.254-3.017-.33-.793-.667-.686-.915-.698l-.78-.014c-.27 0-.71.102-1.084.507-.372.406-1.422 1.39-1.422 3.39s1.457 3.93 1.66 4.2c.203.27 2.865 4.377 6.947 6.14.972.42 1.73.67 2.32.857.975.31 1.863.267 2.566.162.783-.117 2.403-.982 2.744-1.93.338-.948.338-1.76.237-1.93-.102-.17-.372-.27-.778-.473z"/>
+    </svg>
+  </span>
+  <span class="wa-text">Написать в WhatsApp</span>
+</a>
   </body>
 </html>
