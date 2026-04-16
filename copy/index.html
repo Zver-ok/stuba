@@ -15,26 +15,19 @@
 	</head>
   <body>
     <div class="page-bg">
-      <header class="header-wrap">
-        <div class="header container">
-          <button class="burger-btn" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-          <div class="logo">
-            <img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Логотип" class="logo-img" />
-          </div>
-          <nav class="menu" id="mobile-menu">
+      <header class="header container">
+        <div class="logo">
+          <img src="<?php echo get_template_directory_uri(); ?>/img/logo.png" alt="Логотип" class="logo-img" />
+        </div>
+        <nav class="menu">
           <a href="#products">ПРОДУКЦИЯ</a>
           <a href="#advantages">ПРЕИМУЩЕСТВА</a>
           <a href="#contacts">КОНТАКТЫ</a>
-           </nav>
-          <a class="callback" href="https://api.whatsapp.com/send?phone=77715056060&text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9+%D0%B4%D0%B5%D0%BD%D1%8C%21+%D0%AF+%D0%BF%D0%B8%D1%88%D1%83+%D0%BF%D0%BE+%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83">
-            <strong>+7 (771) 505 60 60</strong>
-            <span>Написать в WhatsApp</span>
-          </a>
-        </div>
+        </nav>
+        <a class="callback" href="https://api.whatsapp.com/send?phone=77715056060&text=%D0%94%D0%BE%D0%B1%D1%80%D1%8B%D0%B9+%D0%B4%D0%B5%D0%BD%D1%8C%21+%D0%AF+%D0%BF%D0%B8%D1%88%D1%83+%D0%BF%D0%BE+%D0%BF%D0%BE%D0%B2%D0%BE%D0%B4%D1%83">
+          <strong>+7 (771) 505 60 60</strong>
+          <span>Написать в WhatsApp</span>
+        </a>
       </header>
 
       <section class="hero" id="about">
@@ -124,145 +117,98 @@
           </div>
           <div class="products-slider" id="products-slider">
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижка PN-16" />
+              <img src="https://bb-engineering.kz/images/thumbnails/450/450/detailed/442/Alm101_z9yv-82.png.webp" alt="Задвижка DN50" />
 				<h4>Задвижка PN-16</h4>
               <ul class="slider-specs">
-                <li>DN: 80</li>
-                <li>Материал: чугун</li>
-                <li>Среда: вода / теплоноситель</li>
-                <li>Температура: до +120°C</li>
+				<li>Тип: клиновый</li>
+				<li>Давление PN: 16</li>
+                <li>Рабочая среда: вода, горячая вода</li>
+				  <li>Рабочая температура: -10 ÷ 90 °C</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровой кран PN-25" />
-				<h4>Шаровой кран PN-25</h4>
+			              <article class="slider-card">
+              <img src="https://bb-engineering.kz/images/thumbnails/450/450/detailed/425/rac31_JJ6XHyA.png.600x0_q85.png.webp" alt="Задвижка AISI304 DN50" />
+				<h4>Задвижка AISI304 DN50</h4>
               <ul class="slider-specs">
-                <li>DN: 50</li>
-                <li>Материал: сталь</li>
-                <li>Тип присоединения: фланцевый</li>
-                <li>Температура: -20...+180°C</li>
+                <li>Материал: сталь нерж.</li>
+                <li>Среда: вода / газ</li>
+                <li>Тип: фланцевый</li>
+                <li>Рабочая среда: вода, горячая вода</li>
+				   <li>Рабочая температура: -20 ÷ 180 °C</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапан обратный PN-16" />
-				<h4>Клапан обратный PN-16</h4>
-              <ul class="slider-specs">
-				<li>DN: 65</li>
-				<li>Материал: чугун</li>
-                <li>Среда: вода / пар</li>
-				<li>Температура: до +200°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фланец плоский PN-16" />
-				<h4>Фланец плоский PN-16</h4>
-              <ul class="slider-specs">
-                <li>DN: 100</li>
-                <li>Материал: сталь 20</li>
-                <li>Тип: приварной</li>
-                <li>Температура: до +300°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижка PN-40" />
+              <img src="https://bb-engineering.kz/images/thumbnails/450/450/detailed/425/rac11.png.600x0_q85.png.webp" alt="Задвижка PN-40" />
 				<h4>Задвижка PN-40</h4>
               <ul class="slider-specs">
-                <li>DN: 100</li>
-                <li>Материал: литая сталь</li>
-                <li>Тип: клиновая</li>
-                <li>Среда: пар / нефть</li>
+				<li>Тип: клиновый</li>
+				<li>Давление PN: 40</li>
+                <li>Рабочая среда: вода, горячая вода</li>
+				   <li>Рабочая температура: -20 ÷ 180 °C</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровой кран PN-40" />
-				<h4>Шаровой кран PN-40</h4>
+              <img src="https://bb-engineering.kz/images/detailed/425/kran-sharovyi-flantsevyi-3pc-dn50-01_TSesHgh.png.600x0_q85.png" alt="Кран шаровый фланцевый" />
+				<h4>Кран шаровый фланцевый</h4>
               <ul class="slider-specs">
-                <li>DN: 80</li>
-                <li>Материал: нержавеющая сталь</li>
-                <li>Тип присоединения: под приварку</li>
-                <li>Среда: газ / пар</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапан запорный PN-25" />
-				<h4>Клапан запорный PN-25</h4>
-              <ul class="slider-specs">
-			    <li>DN: 50</li>
                 <li>Материал: углеродистая сталь</li>
-                <li>Тип: фланцевый</li>
-                <li>Среда: вода / масло</li>
+                <li>PN16–PN40</li>
+                <li>Среда: вода / пар</li>
+                <li>Тип: полнопроходной</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фланец воротниковый PN-40" />
-				<h4>Фланец воротниковый PN-40</h4>
+              <img src="https://www.newkey.ru/media/thumb/covers/catalog/obl_2XgJn5l.png.600x0_q85.png" alt="Кран шаровый приварной" />
+				<h4>Кран шаровый приварной</h4>
               <ul class="slider-specs">
-                <li>DN: 150</li>
-                <li>Материал: сталь 09Г2С</li>
+                <li>Материал: сталь</li>
+                <li>PN25–PN40</li>
+                <li>Среда: газ / пар</li>
                 <li>Тип: под приварку</li>
-				<li>Температура: до +425°C</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровой кран PN-16" />
-				<h4>Шаровой кран PN-16</h4>
+              <img src="https://westinvest.kz/upload/iblock/18f/k7n06yfddo20m5uaihlzc1mbfcss2f5a/Alm7014.png" alt="Кран шаровый нержавеющий" />
+				<h4>Кран шаровый нерж.</h4>
               <ul class="slider-specs">
-                <li>DN: 32</li>
-                <li>Материал: латунь</li>
+                <li>Материал: нержавеющая сталь</li>
+                <li>PN16–PN40</li>
+                <li>Среда: вода / пар</li>
                 <li>Тип: резьбовой</li>
-				<li>Среда: вода / воздух</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапан предохранительный PN-16" />
-				<h4>Клапан предохранительный PN-16</h4>
+              <img src="https://12.kz/pictures/product/middle/7978_middle.png" alt="Кран шаровый PN40" />
+				<h4>Кран шаровый PN40</h4>
               <ul class="slider-specs">
-                <li>DN: 25</li>
-                <li>Материал: латунь</li>
-                <li>Настройка: 6 бар</li>
-                <li>Температура: до +120°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фитинг тройник резьбовой" />
-				<h4>Фитинг тройник резьбовой</h4>
-              <ul class="slider-specs">
-                <li>Размер: 2"</li>
-                <li>Материал: ковкий чугун</li>
-                <li>Тип: внутренняя резьба</li>
+                <li>Материал: сталь</li>
+                <li>PN40</li>
                 <li>Среда: вода / газ</li>
+                <li>Тип: стандартнопроходной</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
 			  </article>
             <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижка шиберная PN-10" />
-				<h4>Задвижка шиберная PN-10</h4>
+              <img src="https://bb-engineering.kz/images/detailed/424/kran-sharovyi-trekhkhodovoi-t-tip-dn10-01.png.600x0_q85.png" alt="Кран шаровый PN64" />
+				<h4>Кран шаровый PN64</h4>
               <ul class="slider-specs">
-                <li>DN: 200</li>
-                <li>Материал: чугун</li>
-                <li>Тип: межфланцевая</li>
-                <li>Среда: сточные воды</li>
+                <li>Материал: сталь</li>
+                <li>PN64</li>
+                <li>Среда: газ / пар</li>
+                <li>Тип: фланцевый</li>
               </ul>
               <p class="slider-stock">✔ В наличии на складе</p>
               <button type="button" data-open-modal="kp">Получить КП</button>
