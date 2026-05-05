@@ -479,8 +479,8 @@ background: linear-gradient(
 }
 
 .slider-card img {
-  width: 160px;
-  height: 140px;
+  width: 260px;
+  height: 170px;
   object-fit: contain;
   margin-bottom: 10px;
 filter: 
@@ -1186,4 +1186,107 @@ textarea::placeholder {
 
 body.modal-open {
   overflow: hidden;
+}
+.catalog-toolbar {
+  margin: 10px 0 20px;
+}
+
+.catalog-note {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-btn {
+  border: 1px solid rgba(255,255,255,0.24);
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.filter-btn.is-active,
+.filter-btn:hover {
+  background: linear-gradient(180deg, #4e66df 0%, #364db8 100%);
+  border-color: transparent;
+}
+
+.product-card-cta {
+  margin-top: auto;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: linear-gradient(180deg, #4e66df 0%, #364db8 100%);
+  color: #fff;
+  padding: 10px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.product-card[hidden] {
+  display: none !important;
+}
+
+.positions-catalog {
+  margin-top: 24px;
+}
+
+.positions-head h3 {
+  margin: 0 0 8px;
+  font-size: 1.4rem;
+}
+
+.positions-head p {
+  margin: 0 0 14px;
+  color: var(--muted);
+}
+
+.position-filter-form {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.position-filter-form select,
+.position-filter-form button {
+  height: 42px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.24);
+  background: rgba(14, 23, 81, 0.9);
+  color: #fff;
+  padding: 0 12px;
+}
+
+.position-filter-form button {
+  background: linear-gradient(180deg, #4e66df 0%, #364db8 100%);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.position-cards {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.fit-form-block {
+  margin-bottom: 16px;
+}
+
+@media (max-width: 980px) {
+  .position-filter-form { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .position-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 620px) {
+  .position-filter-form { grid-template-columns: 1fr; }
+  .position-cards { grid-template-columns: 1fr; }
 }

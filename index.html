@@ -94,10 +94,22 @@
 
       <section class="section container" id="products">
 <h2>НАША ПРОДУКЦИЯ</h2>
+		  <div class="catalog-toolbar">
+  <p class="catalog-note">Подбор по параметрам: выберите тип, давление и материал — покажем подходящие позиции.</p>
+  <div class="catalog-filters" role="group" aria-label="Фильтры продукции">
+    <button type="button" class="filter-btn is-active" data-filter="all">Все</button>
+    <button type="button" class="filter-btn" data-filter="valve">Задвижки</button>
+    <button type="button" class="filter-btn" data-filter="ball">Шаровые краны</button>
+    <button type="button" class="filter-btn" data-filter="control">Клапаны</button>
+    <button type="button" class="filter-btn" data-filter="fitting">Фланцы и фитинги</button>
+    <button type="button" class="filter-btn" data-filter="high-pn">PN 40+</button>
+  </div>
+</div>
+
 <div class="cards product-cards">
 
-  <article class="card product-card">
-    <div class="product-img">
+  <article class="card product-card" data-tags="valve high-pn">
+	  <div class="product-img">
       <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижки" />
     </div>
     <h3>Задвижки</h3>
@@ -109,10 +121,11 @@
       <li>Присоединение: фланцевое / резьбовое / сварное / межфланцевое</li>
       <li>Привод: ручной / электропривод</li>
     </ul>
+	      <button type="button" class="product-card-cta" data-open-modal="kp">Получить КП по категории</button>
   </article>
 
-  <article class="card product-card">
-    <div class="product-img">
+  <article class="card product-card" data-tags="ball high-pn">
+	  <div class="product-img">
       <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровые краны" />
     </div>
     <h3>Шаровые<br />краны</h3>
@@ -124,10 +137,11 @@
       <li>Присоединение: резьбовое / фланцевое / под приварку</li>
       <li>Привод: ручной / электропривод</li>
     </ul>
+	      <button type="button" class="product-card-cta" data-open-modal="kp">Получить КП по категории</button>
   </article>
 
-  <article class="card product-card">
-    <div class="product-img">
+  <article class="card product-card" data-tags="control">
+	  <div class="product-img">
       <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапаны" />
     </div>
     <h3>Клапаны</h3>
@@ -139,10 +153,11 @@
       <li>Рабочая среда: вода / пар / газ</li>
       <li>Температура: до +425°C</li>
     </ul>
+	      <button type="button" class="product-card-cta" data-open-modal="kp">Получить КП по категории</button>
   </article>
 
-  <article class="card product-card">
-    <div class="product-img">
+  <article class="card product-card" data-tags="fitting">
+	  <div class="product-img">
       <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фланцы и фитинги" />
     </div>
     <h3>Фланцы и фитинги</h3>
@@ -153,6 +168,7 @@
       <li>Тип: отводы / тройники / переходы</li>
       <li>Исполнение: сварное / резьбовое</li>
     </ul>
+	      <button type="button" class="product-card-cta" data-open-modal="kp">Получить КП по категории</button>
   </article>
 
 </div>
@@ -179,171 +195,34 @@
         </div>
       </section>
 		  
-        <div class="products-slider-wrap">
-          <div class="slider-head">
-            <h3>Популярные позиции</h3>
-            <div class="slider-controls">
-              <button class="slider-btn" type="button" data-dir="prev" aria-label="Назад">‹</button>
-              <button class="slider-btn" type="button" data-dir="next" aria-label="Вперёд">›</button>
-            </div>
+
+        <div class="positions-catalog" id="positions-catalog">
+          <div class="positions-head">
+            <h3>Позиции в наличии и под заказ</h3>
+            <p>Подбор по техническим параметрам: DN, PN, материал.</p>
           </div>
-          <div class="products-slider" id="products-slider">
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижка PN-16" />
-				<h4>Задвижка PN-16</h4>
-              <ul class="slider-specs">
-				  <li>PN: 16</li>
-                <li>DN: 80</li>
-                <li>Материал: чугун</li>
-                <li>Среда: вода / теплоноситель</li>
-                <li>Температура: до +120°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровой кран PN-25" />
-				<h4>Шаровой кран PN-25</h4>
-              <ul class="slider-specs">
-				  <li>PN: 25</li>
-                <li>DN: 50</li>
-                <li>Материал: сталь</li>
-                <li>Присоединение: фланцевое</li>
-                <li>Температура: -20...+180°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапан обратный PN-16" />
-				<h4>Клапан обратный PN-16</h4>
-              <ul class="slider-specs">
-				   <li>PN: 16</li>
-				<li>DN: 65</li>
-				<li>Материал: чугун</li>
-                <li>Среда: вода / пар</li>
-				<li>Температура: до +200°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фланец плоский PN-16" />
-				<h4>Фланец плоский PN-16</h4>
-              <ul class="slider-specs">
-				   <li>PN: 16</li>
-                <li>DN: 100</li>
-                <li>Материал: сталь 20</li>
-                <li>Присоединение: под приварку</li>
-                <li>Температура: до +300°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижка PN-40" />
-				<h4>Задвижка PN-40</h4>
-              <ul class="slider-specs">
-				   <li>PN: 40</li>
-                <li>DN: 100</li>
-                <li>Материал: литая сталь</li>
-                <li>Тип: клиновая</li>
-                <li>Среда: пар / нефть</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровой кран PN-40" />
-				<h4>Шаровой кран PN-40</h4>
-              <ul class="slider-specs">
-				   <li>PN: 40</li>
-                <li>DN: 80</li>
-                <li>Материал: нержавеющая сталь</li>
-                <li>Присоединение: под приварку</li>
-                <li>Среда: газ / пар</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапан запорный PN-25" />
-				<h4>Клапан запорный PN-25</h4>
-              <ul class="slider-specs">
-				   <li>PN: 25</li>
-			    <li>DN: 50</li>
-                <li>Материал: углеродистая сталь</li>
-                <li>Присоединение: фланцевое</li>
-                <li>Среда: вода / масло</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фланец воротниковый PN-40" />
-				<h4>Фланец воротниковый PN-40</h4>
-              <ul class="slider-specs">
-				   <li>PN: 40</li>
-                <li>DN: 150</li>
-                <li>Материал: сталь 09Г2С</li>
-                <li>Присоединение: под приварку</li>
-				<li>Температура: до +425°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product2.webp" alt="Шаровой кран PN-16" />
-				<h4>Шаровой кран PN-16</h4>
-              <ul class="slider-specs">
-				   <li>PN: 16</li>
-                <li>DN: 32</li>
-                <li>Материал: латунь</li>
-                <li>Присоединение: резьбовое</li>
-				<li>Среда: вода / воздух</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product3.webp" alt="Клапан предохранительный PN-16" />
-				<h4>Клапан предохранительный PN-16</h4>
-              <ul class="slider-specs">
-				   <li>PN: 16</li>
-                <li>DN: 25</li>
-                <li>Материал: латунь</li>
-                <li>Настройка: 6 бар</li>
-                <li>Температура: до +120°C</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product4.webp" alt="Фитинг тройник резьбовой" />
-				<h4>Фитинг тройник резьбовой</h4>
-              <ul class="slider-specs">
-                <li>Размер: 2</li>
-                <li>Материал: ковкий чугун</li>
-                <li>Присоединение: внутренняя резьба</li>
-                <li>Среда: вода / газ</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-            <article class="slider-card">
-              <img src="<?php echo get_template_directory_uri(); ?>/img/product1.webp" alt="Задвижка шиберная PN-10" />
-				<h4>Задвижка шиберная PN-10</h4>
-              <ul class="slider-specs">
-				   <li>PN: 10</li>
-                <li>DN: 200</li>
-                <li>Материал: чугун</li>
-                <li>Присоединение: межфланцевое</li>
-                <li>Среда: сточные воды</li>
-              </ul>
-              <p class="slider-stock">✔ В наличии на складе</p>
-              <button type="button" data-open-modal="kp">Получить КП</button>
-			  </article>
-          </div>
+
+          <form class="position-filter-form" id="position-filter-form">
+            <select id="filter-category" name="category">
+              <option value="all">Все категории</option>
+              <option value="Задвижки">Задвижки</option>
+              <option value="Шаровые краны">Шаровые краны</option>
+              <option value="Клапаны">Клапаны</option>
+              <option value="Фланцы и фитинги">Фланцы и фитинги</option>
+            </select>
+            <select id="filter-dn" name="dn">
+              <option value="all">Любой DN</option>
+            </select>
+            <select id="filter-pn" name="pn">
+              <option value="all">Любой PN</option>
+            </select>
+            <select id="filter-material" name="material">
+              <option value="all">Любой материал</option>
+            </select>
+            <button type="button" id="filter-reset">Сбросить</button>
+          </form>
+
+          <div class="position-cards" id="position-cards"></div>
         </div>
       </section>
 
@@ -462,17 +341,18 @@
               </article>
             </div>
           </div>
-          <div class="form-block">
-            <h2>ОСТАВЬТЕ ЗАЯВКУ</h2>
-            <p>Ответим в течение 15 минут</p>
+			
+          <div class="form-block fit-form-block">
+            <h2>ПОДБОР ПО ПАРАМЕТРАМ</h2>
+            <p>Отправим подходящие позиции и КП в течение 15 минут</p>
             <form action="<?php echo get_stylesheet_directory_uri(); ?>/send.php" method="post" class="modal-form">
-              <input type="text" name="name" placeholder="Ваше имя" />
-			  <input type="text" name="product_name" placeholder="Что вам нужно? (задвижки / краны / другое)" />
-              <input type="text" name="details" placeholder="Диаметр / параметры" />
-              <input type="text" name="quantity" placeholder="Количество" />
+              <input type="hidden" name="form_type" value="selection" />
+              <input type="text" name="name" placeholder="Ваше имя" required />
               <input type="tel" name="phone" placeholder="Телефон" required/>
-				  <input type="hidden" name="form_type" value="consultation" />
-              <button type="submit">ОТПРАВИТЬ</button>
+              <input type="text" name="product_name" placeholder="Категория (напр. задвижки)" />
+              <input type="text" name="details" placeholder="DN / PN / среда / температура" />
+              <input type="text" name="quantity" placeholder="Количество" />
+              <button type="submit">ПОДОБРАТЬ И ОТПРАВИТЬ КП</button>
             </form>
           </div>
         </div>

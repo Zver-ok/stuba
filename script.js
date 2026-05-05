@@ -45,6 +45,115 @@ const trackEvent = (eventName, params = {}) => {
     });
   }
 
+	
+
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const productCards = document.querySelectorAll('.product-card');
+
+  if (filterButtons.length && productCards.length) {
+    filterButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter;
+
+        filterButtons.forEach((item) => item.classList.remove('is-active'));
+        button.classList.add('is-active');
+
+        productCards.forEach((card) => {
+          const tags = card.dataset.tags || '';
+          const show = filter === 'all' || tags.includes(filter);
+          card.hidden = !show;
+        });
+
+        trackEvent('catalog_filter_click', {
+          filter_type: filter || 'unknown'
+        });
+      });
+    });
+  }
+	
+  const positionsData = [
+    { category: 'Задвижки', name: 'Задвижка клиновая 30с41нж', dn: '50', pn: '16', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка клиновая 30с64нж', dn: '100', pn: '25', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка шиберная', dn: '200', pn: '10', material: 'Чугун', connection: 'Межфланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка стальная 30лс15нж', dn: '150', pn: '40', material: 'Литая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой цельносварной', dn: '50', pn: '25', material: 'Сталь', connection: 'Под приварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой фланцевый', dn: '80', pn: '40', material: 'Нержавеющая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой резьбовой', dn: '25', pn: '16', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой трехсоставной', dn: '32', pn: '40', material: 'Нержавеющая сталь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Клапаны', name: 'Клапан обратный поворотный', dn: '65', pn: '16', material: 'Чугун', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан запорный сильфонный', dn: '50', pn: '25', material: 'Углеродистая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан предохранительный', dn: '25', pn: '16', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан регулирующий', dn: '100', pn: '40', material: 'Сталь', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Фланцы и фитинги', name: 'Фланец плоский ГОСТ 33259', dn: '100', pn: '16', material: 'Сталь 20', connection: 'Под приварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Фланец воротниковый', dn: '150', pn: '40', material: '09Г2С', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Отвод крутоизогнутый 90°', dn: '80', pn: '16', material: 'Нержавеющая сталь', connection: 'Под сварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Тройник равнопроходный', dn: '50', pn: '25', material: 'Сталь', connection: 'Под сварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' }
+  ];
+
+  const positionCards = document.querySelector('#position-cards');
+  const categoryFilter = document.querySelector('#filter-category');
+  const dnFilter = document.querySelector('#filter-dn');
+  const pnFilter = document.querySelector('#filter-pn');
+  const materialFilter = document.querySelector('#filter-material');
+  const resetFilter = document.querySelector('#filter-reset');
+
+  const fillSelect = (el, values) => {
+    if (!el) return;
+    values.forEach((value) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = el.name === 'material' ? value : `${el.name.toUpperCase()} ${value}`;
+      el.appendChild(option);
+    });
+  };
+
+  if (positionCards && categoryFilter && dnFilter && pnFilter && materialFilter) {
+    fillSelect(dnFilter, [...new Set(positionsData.map((item) => item.dn))].sort((a, b) => Number(a) - Number(b)));
+    fillSelect(pnFilter, [...new Set(positionsData.map((item) => item.pn))].sort((a, b) => Number(a) - Number(b)));
+    fillSelect(materialFilter, [...new Set(positionsData.map((item) => item.material))].sort());
+
+    const renderCards = () => {
+      const current = positionsData.filter((item) => {
+        const byCategory = categoryFilter.value === 'all' || item.category === categoryFilter.value;
+        const byDn = dnFilter.value === 'all' || item.dn === dnFilter.value;
+        const byPn = pnFilter.value === 'all' || item.pn === pnFilter.value;
+        const byMaterial = materialFilter.value === 'all' || item.material === materialFilter.value;
+        return byCategory && byDn && byPn && byMaterial;
+      });
+
+      positionCards.innerHTML = current.map((item) => `
+        <article class="card position-card slider-card">
+          <img src="${item.image}" alt="${item.name}" />
+          <h4>${item.name}</h4>
+          <ul class="slider-specs">
+            <li>Категория: ${item.category}</li>
+            <li>DN: ${item.dn}</li>
+            <li>PN: ${item.pn}</li>
+            <li>Материал: ${item.material}</li>
+            <li>Присоединение: ${item.connection}</li>
+          </ul>
+          <p class="slider-stock">✔ ${item.stock}</p>
+          <button type="button" data-open-modal="kp">Получить КП</button>
+        </article>
+      `).join('');
+
+    };
+
+
+    [categoryFilter, dnFilter, pnFilter, materialFilter].forEach((el) => {
+      el.addEventListener('change', renderCards);
+    });
+
+    if (resetFilter) {
+      resetFilter.addEventListener('click', () => {
+        categoryFilter.value = 'all'; dnFilter.value = 'all'; pnFilter.value = 'all'; materialFilter.value = 'all';
+        renderCards();
+      });
+    }
+
+    renderCards();
+  }
+
   const modal = document.querySelector('#lead-modal');
 
   let consultationContent = null;
@@ -67,8 +176,8 @@ const trackEvent = (eventName, params = {}) => {
         if (consultationContent) consultationContent.hidden = true;
         if (kpContent) kpContent.hidden = false;
 
-        const name = card?.querySelector('h4')?.textContent?.trim() || 'Выбранная позиция';
-        const imgEl = card?.querySelector('img');
+        const name = card?.querySelector('h4, h3')?.textContent?.replace(/\s+/g, ' ')?.trim() || 'Выбранная позиция';
+		const imgEl = card?.querySelector('img');
         const src = imgEl?.getAttribute('src') || '';
         const alt = imgEl?.getAttribute('alt') || name;
 
@@ -99,12 +208,12 @@ const trackEvent = (eventName, params = {}) => {
       document.body.classList.remove('modal-open');
     };
 
-    document.querySelectorAll('[data-open-modal]').forEach((trigger) => {
-      trigger.addEventListener('click', () => {
-        const type = trigger.dataset.openModal;
-        const card = trigger.closest('.slider-card');
-        openModal(type, card);
-      });
+    document.addEventListener('click', (event) => {
+      const trigger = event.target.closest('[data-open-modal]');
+      if (!trigger) return;
+      const type = trigger.dataset.openModal;
+      const card = trigger.closest('.slider-card, .product-card');
+      openModal(type, card);
     });
 
     modal.querySelectorAll('[data-close-modal]').forEach((closeBtn) => {
