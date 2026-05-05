@@ -12,7 +12,7 @@
 </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Запорная арматура и задвижки</title>
+    <title>Запорная арматура и фитинги</title>
 	  <meta name="robots" content="noindex">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -66,9 +66,18 @@
         <div class="hero-overlay"></div>
         <div class="container hero-content">
           <div class="hero-text">
-            <h1>ЗАПОРНАЯ АРМАТУРА<br />И ЗАДВИЖКИ</h1>
+            <h1>ЗАПОРНАЯ АРМАТУРА<br />И ФИТИНГИ</h1>
             <p>НАДЕЖНЫЕ РЕШЕНИЯ<br />ДЛЯ ПРОМЫШЛЕННОСТИ</p>
-            <button type="button" data-open-modal="consultation">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
+                        <div class="hero-cta-row">
+              <a class="hero-phone" href="tel:+77715056060">
+                <span class="hero-phone-icon" aria-hidden="true">☎</span>
+                <span class="hero-phone-text">
+                  <strong>+7 (771) 505 60 60</strong>
+                  <small>Звоните с 9:00 до 18:00</small>
+                </span>
+              </a>
+              <button type="button" data-open-modal="consultation">ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
+            </div>
 			</div>
         </div>
       </section>
@@ -469,13 +478,16 @@
         </div>
       </section>
       <footer class="footer container">
+		  <div class="footer-links">
+  <a href="#" data-policy="cookie">Политика cookie</a>
+			  <br>
+  <a href="#" data-policy="privacy">Политика конфиденциальности</a>
+</div>
         <a href="tel:+77715056060">☎ +7 (771) 505 60 60</a>
         <a href="mailto:almaty@aveco.kz">✉ almaty@aveco.kz</a>
       </footer>
 			</section>
-    </div>
-	  <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
-	  
+    </div>	  
     <div class="modal" id="lead-modal" aria-hidden="true">
       <div class="modal__backdrop" data-close-modal></div>
       <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -517,5 +529,12 @@
   </span>
   <span class="wa-text">Написать в WhatsApp</span>
 </a>
+<div class="policy-modal" id="policy-modal">
+  <div class="policy-content">
+    <button class="policy-close" type="button" data-close-policy>×</button>
+    <div id="policy-body"></div>
+  </div>
+</div>
+	  <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
   </body>
 </html>
