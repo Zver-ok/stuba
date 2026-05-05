@@ -72,22 +72,61 @@ const trackEvent = (eventName, params = {}) => {
   }
 	
   const positionsData = [
+	      // Задвижки (12)
     { category: 'Задвижки', name: 'Задвижка клиновая 30с41нж', dn: '50', pn: '16', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
     { category: 'Задвижки', name: 'Задвижка клиновая 30с64нж', dn: '100', pn: '25', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
-    { category: 'Задвижки', name: 'Задвижка шиберная', dn: '200', pn: '10', material: 'Чугун', connection: 'Межфланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка шиберная ножевая', dn: '80', pn: '10', material: 'Чугун', connection: 'Межфланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
     { category: 'Задвижки', name: 'Задвижка стальная 30лс15нж', dn: '150', pn: '40', material: 'Литая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+	      { category: 'Задвижки', name: 'Задвижка чугунная 30ч39р', dn: '200', pn: '16', material: 'Чугун', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка параллельная 30с915нж', dn: '250', pn: '25', material: 'Сталь', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка клиновая 31с45нж', dn: '300', pn: '16', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка нержавеющая 30нж41нж', dn: '65', pn: '40', material: 'Нержавеющая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка 30с76нж', dn: '125', pn: '63', material: 'Сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка обрезиненная', dn: '100', pn: '10', material: 'Высокопрочный чугун', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка литая 30с527нж', dn: '400', pn: '25', material: 'Литая сталь', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Задвижки', name: 'Задвижка клиновая 30с15нж', dn: '40', pn: '16', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+
+    // Шаровые краны (12)
     { category: 'Шаровые краны', name: 'Кран шаровой цельносварной', dn: '50', pn: '25', material: 'Сталь', connection: 'Под приварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
     { category: 'Шаровые краны', name: 'Кран шаровой фланцевый', dn: '80', pn: '40', material: 'Нержавеющая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
     { category: 'Шаровые краны', name: 'Кран шаровой резьбовой', dn: '25', pn: '16', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
     { category: 'Шаровые краны', name: 'Кран шаровой трехсоставной', dn: '32', pn: '40', material: 'Нержавеющая сталь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+	      { category: 'Шаровые краны', name: 'Кран шаровой под привод', dn: '100', pn: '16', material: 'Сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой полнопроходной', dn: '65', pn: '25', material: 'Сталь', connection: 'Под приварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой муфтовый', dn: '20', pn: '40', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой нержавеющий AISI 304', dn: '40', pn: '63', material: 'Нержавеющая сталь', connection: 'Резьбовое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой для газа', dn: '15', pn: '16', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой высокого давления', dn: '25', pn: '100', material: 'Сталь', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой Ду 150', dn: '150', pn: '25', material: 'Сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой Ду 200', dn: '200', pn: '16', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+
+    // Клапаны (12)
     { category: 'Клапаны', name: 'Клапан обратный поворотный', dn: '65', pn: '16', material: 'Чугун', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
     { category: 'Клапаны', name: 'Клапан запорный сильфонный', dn: '50', pn: '25', material: 'Углеродистая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
     { category: 'Клапаны', name: 'Клапан предохранительный', dn: '25', pn: '16', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
     { category: 'Клапаны', name: 'Клапан регулирующий', dn: '100', pn: '40', material: 'Сталь', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
     { category: 'Фланцы и фитинги', name: 'Фланец плоский ГОСТ 33259', dn: '100', pn: '16', material: 'Сталь 20', connection: 'Под приварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+	      { category: 'Клапаны', name: 'Клапан отсечной', dn: '80', pn: '25', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан обратный межфланцевый', dn: '125', pn: '16', material: 'Чугун', connection: 'Межфланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан дроссельный', dn: '150', pn: '63', material: 'Нержавеющая сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан импульсный', dn: '20', pn: '40', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан редукционный', dn: '40', pn: '25', material: 'Бронза', connection: 'Резьбовое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан соленоидный', dn: '15', pn: '16', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан угловой', dn: '32', pn: '40', material: 'Нержавеющая сталь', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Клапаны', name: 'Клапан тарельчатый', dn: '200', pn: '10', material: 'Чугун', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+
+    // Фланцы и фитинги (12)
     { category: 'Фланцы и фитинги', name: 'Фланец воротниковый', dn: '150', pn: '40', material: '09Г2С', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
     { category: 'Фланцы и фитинги', name: 'Отвод крутоизогнутый 90°', dn: '80', pn: '16', material: 'Нержавеющая сталь', connection: 'Под сварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
-    { category: 'Фланцы и фитинги', name: 'Тройник равнопроходный', dn: '50', pn: '25', material: 'Сталь', connection: 'Под сварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' }
+    { category: 'Фланцы и фитинги', name: 'Тройник равнопроходный', dn: '50', pn: '25', material: 'Сталь', connection: 'Под сварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Переход концентрический', dn: '65', pn: '16', material: 'Сталь 20', connection: 'Под сварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Переход эксцентрический', dn: '125', pn: '25', material: '09Г2С', connection: 'Под сварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Заглушка эллиптическая', dn: '200', pn: '16', material: 'Сталь', connection: 'Под сварку', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Муфта стальная', dn: '32', pn: '40', material: 'Сталь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Штуцер приварной', dn: '25', pn: '63', material: 'Нержавеющая сталь', connection: 'Под сварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Хомут ремонтный', dn: '100', pn: '10', material: 'Нержавеющая сталь', connection: 'Обжимное', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Крестовина сварная', dn: '40', pn: '16', material: 'Сталь 20', connection: 'Под сварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Фланцы и фитинги', name: 'Ниппель резьбовой', dn: '15', pn: '25', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' }
   ];
 
   const positionCards = document.querySelector('#position-cards');
