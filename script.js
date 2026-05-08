@@ -3,8 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.querySelector('.menu');
 
 const trackEvent = (eventName, params = {}) => {
-  if (typeof gtag === 'function') {
-    gtag('event', eventName, params);
+  console.log('GA EVENT:', eventName, params);
+
+  if (typeof window.gtag === 'function') {
+    window.gtag('event', eventName, {
+      ...params,
+      debug_mode: true
+    });
   }
 
   window.dataLayer = window.dataLayer || [];
@@ -126,8 +131,17 @@ const trackEvent = (eventName, params = {}) => {
     { category: 'Фланцы и фитинги', name: 'Штуцер приварной', dn: '25', pn: '63', material: 'Нержавеющая сталь', connection: 'Под сварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
     { category: 'Фланцы и фитинги', name: 'Хомут ремонтный', dn: '100', pn: '10', material: 'Нержавеющая сталь', connection: 'Обжимное', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
     { category: 'Фланцы и фитинги', name: 'Крестовина сварная', dn: '40', pn: '16', material: 'Сталь 20', connection: 'Под сварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
-    { category: 'Фланцы и фитинги', name: 'Ниппель резьбовой', dn: '15', pn: '25', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' }
+    { category: 'Фланцы и фитинги', name: 'Ниппель резьбовой', dn: '15', pn: '25', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Клапаны', name: 'Клапан игольчатый', dn: '10', pn: '160', material: 'Нержавеющая сталь', connection: 'Резьбовое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' },
+    { category: 'Шаровые краны', name: 'Кран шаровой латунный усиленный', dn: '12', pn: '40', material: 'Латунь', connection: 'Резьбовое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product2.webp' },
+    { category: 'Задвижки', name: 'Задвижка стальная 30с41нж Ду500', dn: '500', pn: '25', material: 'Сталь', connection: 'Фланцевое', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product1.webp' },
+    { category: 'Фланцы и фитинги', name: 'Фланец нержавеющий воротниковый', dn: '250', pn: '63', material: 'Нержавеющая сталь', connection: 'Под приварку', stock: 'Под заказ', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product4.webp' },
+    { category: 'Клапаны', name: 'Клапан обратный стальной Ду300', dn: '300', pn: '40', material: 'Сталь', connection: 'Фланцевое', stock: 'В наличии', image: 'https://avecometal.kz/wp-content/themes/armatura/img/product3.webp' }  
   ];
+	
+	positionsData.forEach(item => {
+  item.randomOrder = Math.random();
+});
 
   const positionCards = document.querySelector('#position-cards');
   const categoryFilter = document.querySelector('#filter-category');
@@ -135,6 +149,7 @@ const trackEvent = (eventName, params = {}) => {
   const pnFilter = document.querySelector('#filter-pn');
   const materialFilter = document.querySelector('#filter-material');
   const resetFilter = document.querySelector('#filter-reset');
+  const showMoreButton = document.querySelector('#positions-show-more');
 
   const fillSelect = (el, values) => {
     if (!el) return;
@@ -147,21 +162,41 @@ const trackEvent = (eventName, params = {}) => {
   };
 
   if (positionCards && categoryFilter && dnFilter && pnFilter && materialFilter) {
+	      const INITIAL_VISIBLE = 16;
+    const LOAD_STEP = 16;
+    let visibleCount = INITIAL_VISIBLE;
+
     fillSelect(dnFilter, [...new Set(positionsData.map((item) => item.dn))].sort((a, b) => Number(a) - Number(b)));
     fillSelect(pnFilter, [...new Set(positionsData.map((item) => item.pn))].sort((a, b) => Number(a) - Number(b)));
     fillSelect(materialFilter, [...new Set(positionsData.map((item) => item.material))].sort());
 
+	  const shuffleArray = (array) => {
+  return [...array].sort(() => Math.random() - 0.5);
+};
+	  
     const renderCards = () => {
-      const current = positionsData.filter((item) => {
-        const byCategory = categoryFilter.value === 'all' || item.category === categoryFilter.value;
-        const byDn = dnFilter.value === 'all' || item.dn === dnFilter.value;
-        const byPn = pnFilter.value === 'all' || item.pn === pnFilter.value;
-        const byMaterial = materialFilter.value === 'all' || item.material === materialFilter.value;
-        return byCategory && byDn && byPn && byMaterial;
-      });
+const filtered = positionsData.filter((item) => {
+  const byCategory = categoryFilter.value === 'all' || item.category === categoryFilter.value;
+  const byDn = dnFilter.value === 'all' || item.dn === dnFilter.value;
+  const byPn = pnFilter.value === 'all' || item.pn === pnFilter.value;
+  const byMaterial = materialFilter.value === 'all' || item.material === materialFilter.value;
+  return byCategory && byDn && byPn && byMaterial;
+});
 
-      positionCards.innerHTML = current.map((item) => `
-        <article class="card position-card slider-card">
+const noFiltersActive =
+  categoryFilter.value === 'all' &&
+  dnFilter.value === 'all' &&
+  pnFilter.value === 'all' &&
+  materialFilter.value === 'all';
+
+const current = noFiltersActive
+  ? [...filtered].sort((a, b) => a.randomOrder - b.randomOrder)
+  : filtered;
+
+      const visibleItems = current.slice(0, visibleCount);
+
+      positionCards.innerHTML = visibleItems.map((item) => `        
+          <article class="card position-card slider-card">
           <img src="${item.image}" alt="${item.name}" />
           <h4>${item.name}</h4>
           <ul class="slider-specs">
@@ -176,16 +211,31 @@ const trackEvent = (eventName, params = {}) => {
         </article>
       `).join('');
 
+		      if (showMoreButton) {
+        showMoreButton.hidden = current.length <= visibleCount;
+      }
+
     };
 
 
     [categoryFilter, dnFilter, pnFilter, materialFilter].forEach((el) => {
-      el.addEventListener('change', renderCards);
-    });
+      el.addEventListener('change', () => {
+        visibleCount = INITIAL_VISIBLE;
+        renderCards();
+      });
+	});
+
+	      if (showMoreButton) {
+      showMoreButton.addEventListener('click', () => {
+        visibleCount += LOAD_STEP;
+        renderCards();
+      });
+    }
 
     if (resetFilter) {
       resetFilter.addEventListener('click', () => {
         categoryFilter.value = 'all'; dnFilter.value = 'all'; pnFilter.value = 'all'; materialFilter.value = 'all';
+	    visibleCount = INITIAL_VISIBLE;
         renderCards();
       });
     }
@@ -210,36 +260,39 @@ const trackEvent = (eventName, params = {}) => {
     productTitle = modal.querySelector('#modal-product-title');
     productImage = modal.querySelector('#modal-product-image');
 
-    const openModal = (type, card = null) => {
-      if (type === 'kp') {
-        if (consultationContent) consultationContent.hidden = true;
-        if (kpContent) kpContent.hidden = false;
+const openModal = (type, card = null) => {
+  if (type === 'kp') {
+    trackEvent('kp_modal_open');
 
-        const name = card?.querySelector('h4, h3')?.textContent?.replace(/\s+/g, ' ')?.trim() || 'Выбранная позиция';
-		const imgEl = card?.querySelector('img');
-        const src = imgEl?.getAttribute('src') || '';
-        const alt = imgEl?.getAttribute('alt') || name;
+    if (consultationContent) consultationContent.hidden = true;
+    if (kpContent) kpContent.hidden = false;
 
-        if (productTitle) productTitle.textContent = name;
-        if (productNameField) productNameField.value = name;
-        if (productImage) {
-          productImage.src = src;
-          productImage.alt = alt;
-        }
-      } else {
-        if (consultationContent) consultationContent.hidden = false;
-        if (kpContent) kpContent.hidden = true;
-        if (modalTitle) modalTitle.textContent = 'Получить консультацию';
-      }
+    const name = card?.querySelector('h4, h3')?.textContent?.replace(/\s+/g, ' ')?.trim() || 'Выбранная позиция';
+    const imgEl = card?.querySelector('img');
+    const src = imgEl?.getAttribute('src') || '';
+    const alt = imgEl?.getAttribute('alt') || name;
 
-      modal.classList.add('is-open');
-      modal.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('modal-open');
+    if (productTitle) productTitle.textContent = name;
+    if (productNameField) productNameField.value = name;
 
-      trackEvent('modal_open', {
-        modal_type: type || 'unknown'
-      });
-    };
+    if (productImage) {
+      productImage.src = src;
+      productImage.alt = alt;
+    }
+  } else {
+    if (consultationContent) consultationContent.hidden = false;
+    if (kpContent) kpContent.hidden = true;
+    if (modalTitle) modalTitle.textContent = 'Получить консультацию';
+  }
+
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+
+  trackEvent('modal_open', {
+    modal_type: type || 'unknown'
+  });
+};
 
     const closeModal = () => {
       modal.classList.remove('is-open');
@@ -266,8 +319,8 @@ const trackEvent = (eventName, params = {}) => {
     });
   }
 
-  document.querySelectorAll('form').forEach((form) => {
-    form.addEventListener('submit', async (event) => {
+document.querySelectorAll('form.modal-form').forEach((form) => {
+	form.addEventListener('submit', async (event) => {
       event.preventDefault();
 
       const formType = form.querySelector('[name="form_type"]')?.value || 'unknown';
