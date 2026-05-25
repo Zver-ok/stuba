@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Каталог промышленного оборудования</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <title>PROTECH — промышленное пищевое оборудование</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
+	  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
 </head>
 <body>
   <header class="topbar">
@@ -17,53 +17,70 @@
         <span class="brand-sub">пищевое оборудование</span>
       </div>
       <nav class="menu">
-        <a href="#catalog">КАТАЛОГ</a>
-        <a href="#about">О КОМПАНИИ</a>
+        <a href="/catalog">КАТАЛОГ</a>
+		  <a href="#about">О КОМПАНИИ</a>
         <a href="#advantages">ПРЕИМУЩЕСТВА</a>
         <a href="#contacts">КОНТАКТЫ</a>
       </nav>
       <div class="top-actions">
         <a class="phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
-        <button class="btn">Оставить заявку</button>
-      </div>
+        <a class="btn" href="#contacts">Оставить заявку</a>
+		</div>
     </div>
   </header>
 
   <section class="hero" id="about">
-    <div class="overlay"></div>
     <div class="container hero-content">
       <div class="hero-left">
-        <h1>ПРОМЫШЛЕННОЕ<br>ОБОРУДОВАНИЕ<br>ДЛЯ ПРОИЗВОДСТВА</h1>
-        <p>Профессиональные решения для цехов, пекарен и пищевых производств.</p>
-        <a class="btn" href="#catalog">Перейти в каталог</a>
+        <h1>ФУНКЦИОНАЛЬНОЕ<br>ОБОРУДОВАНИЕ<br>ДЛЯ ПРОИЗВОДСТВА</h1>
+        <p>Качество в каждой детали для пищевого бизнеса.</p>
+        <a class="btn" href="catalog.html">Перейти в каталог</a>
       </div>
     </div>
   </section>
 
   <section class="features" id="advantages">
     <div class="container features-grid">
-      <article><h3>60+</h3><p>моделей оборудования в каталоге</p></article>
-      <article><h3>20 лет</h3><p>опыта в оснащении производств</p></article>
-      <article><h3>Надёжность</h3><p>проверенные промышленные решения</p></article>
-      <article><h3>Подбор</h3><p>индивидуальная комплектация под задачи</p></article>
+      <article><h3>60+</h3><p>наименований оборудования</p></article>
+      <article><h3>20 лет</h3><p>экспертизы в индустрии</p></article>
+      <article><h3>EU quality</h3><p>стандарты качества и безопасности</p></article>
+      <article><h3>Подбор</h3><p>решения под ваш формат производства</p></article>
       <article><h3>Доставка</h3><p>по всей России и СНГ</p></article>
     </div>
   </section>
 
+  <section class="categories">
+	  <div class="container">
+      <div class="catalog-head"><h2>ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2><a href="/catalog">Смотреть весь каталог →</a></div>
+      <div class="category-grid">
+        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Тестомесы"><h3>Тестомесы</h3></article>
+        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Тестораскатка"><h3>Тестораскатка</h3></article>
+        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Печи"><h3>Печи и расстойка</h3></article>
+        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Мясопереработка"><h3>Мясопереработка</h3></article>
+        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Холод"><h3>Холодильное оборудование</h3></article>
+      </div>
+		      </div>
+  </section>
+
   <main class="catalog" id="catalog">
     <div class="container">
-      <div class="catalog-head">
-        <h2>ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2>
-        <span>Смотреть все категории →</span>
-      </div>
+      <div class="catalog-head"><h2>ХИТЫ ПРОДАЖ</h2><a href="catalog.html">Все товары →</a></div>
       <div class="cards" id="productCards"></div>
     </div>
   </main>
 
-  <footer class="footer" id="contacts">
-    <div class="container">© 2026 PROTECH. Поставки промышленного оборудования.</div>
-  </footer>
+	  <section class="cta">
+    <div class="container cta-box">
+      <h2>Оснастим ваш цех под ключ за 7 дней</h2>
+      <p>Подбор оборудования, расчет производительности, поставка и запуск.</p>
+      <a class="btn" href="tel:+74951234567">Получить консультацию</a>
+    </div>
+  </section>
 
+  <footer class="footer" id="contacts">
+    <div class="container">© 2026 PROTECH. Поставки промышленного оборудования. Тел: +7 (495) 123-45-67</div>
+	</footer>
+  <a class="whatsapp-float" href="https://wa.me/74951234567" target="_blank" rel="noopener">Написать в WhatsApp</a>
   <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
 </body>
 </html>
