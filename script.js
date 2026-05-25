@@ -1,68 +1,65 @@
-const products = [
-  'Тестомес с энергосберегающим редуктором класса Люкс (кольцевого и ножевого типа)',
-  'Вакуумный тестомес',
-  'Автоматическая тестораскаточная машина (нерж. сталь 304)',
-  'Высокоскоростная тестораскаточная машина с ЧП (частотным преобразователем)',
-  'Промышленная лапшерезка повышенной прочности',
-  'Напольная тестораскаточная машина для слоеного теста (Круассаномат)',
-  'Настольная тестораскаточная машина для слоеного теста',
-  'Двухскоростной тестомес спиральный с компьютерным управлением и инвертором',
-  'Двухскоростной спиральный тестомес с компьютерным управлением и инвертором',
-  'Миксер планетарный вариаторный',
-  'Миксер планетарный вариаторный с автоматическим подъемом дежи',
-  'Овощерезка многофункциональная инверторная (с электронной панелью)',
-  'Овощерезка промышленная с двумя инверторами (двухчастотная)',
-  'Фаршемешалка премиум-класса (люкс-сегмент)',
-  'Слайсер промышленный для вареного мяса',
-  'Плита 6-конфорочная с электрическим духовым шкафом TL-RS-6E',
-  'Плита 6-конфорочная промышленная с квадратными конфорками и электрическим духовым шкафом',
-  'Плита 4-конфорочная промышленная с квадратными конфорками и электрическим духовым шкафом',
-  'Плита 6-конфорочная промышленная с круглыми конфорками и электрическим духовым шкафом',
-  'Плита 4-конфорочная промышленная с круглыми конфорками и электрическим духовым шкафом',
-  'Сковорода опрокидываемая электрическая промышленная (120 л)',
-  'Сковорода опрокидываемая электрическая промышленная',
-  'Вакуумный массажер для мяса (маринатор) с компьютерным управлением и манометром на 85 литров',
-  'Вакуумный массажер для мяса (маринатор) с компьютерным управлением и манометром на 100 литров',
-  'Вакуумный маринатор для мяса (мясомассажер) на 160 литров с манометром',
-  'Котёл пищеварочный электрический (котел-супница) с водяной рубашкой (100–150 л)',
-  'Котёл пищеварочный электрический (котел-супница) с водяной рубашкой (60 л)',
-  'Фритюрница электрическая промышленная двухсекционная на закрытой подставке (с нейтральным шкафом)',
-  'Мармит электрический двухсекционный на 6 гастроемкостей на закрытой подставке',
-  'Конвейерная печь для пиццы электрическая конвекционная (туннельная печь) 18 дюймов',
-  'Конвейерная печь для пиццы электрическая конвекционная (туннельная печь) 32 дюйма',
-  'Промышленный многофункциональный конвейерный нарезчик с ЧПУ',
-  'Промышленный волчок-мясорубка для замороженного и свежего мяса',
-  'Промышленная универсальная термодымовая камера',
-  'Профессиональная настольная ленточная пила для резки костей и замороженного мяса',
-  'Промышленная ротационная конвекционная печь на 64 противня',
-  'Промышленная ротационная конвекционная печь на 32 противня',
-  'Промышленный шкаф расстоечный на 64 противня модель ZY-F64',
-  'Профессиональный шкаф расстоечный инжекционного типа на 32 противня',
-  'Профессиональный шкаф расстоечный инжекционного типа на 16 противней',
-  'Профессиональный аппарат шоковой заморозки тележечного типа',
-  'Промышленный аппарат шоковой заморозки тележечного типа модель GDBY40-30PCT',
-  'Профессиональный аппарат шоковой заморозки полочного типа',
-  'Профессиональный четырехдверный морозильный шкаф коммерческого класса',
-  'Профессиональный двухдверный морозильный шкаф коммерческого класса',
-  'Профессиональный двухдверный холодильный шкаф коммерческого класса',
-  'Профессиональный двухдверный комбинированный шкаф модель BGF-1.0L2CD',
-  'Профессиональный четырехдверный комбинированный шкаф модель BGF-1.0L4CD',
-  'Промышленный трехдверный комбинированный шкаф модель BGF-1.6L3CD',
-  'Профессиональный вибрационный просеиватель муки модель 500-VS',
-  'Профессиональный автоматический аппарат для выпекания блинных листов модель DG-230',
-  'Профессиональная конвейерная тестораскаточная машина промышленного класса'
-];
+function getTemplateUri() {
+  return document.body.dataset.templateUri || '';
+}
+
+function normalizeProducts(data) {
+  const base = getTemplateUri();
+  return data.map((item) => ({
+    ...item,
+    image: item.image.startsWith('http') ? item.image : `${base}/${item.image.replace(/^\//, '')}`
+  }));
+}
+
+function productCard(product) {
+  return `
+    <article class="card product-card" data-category="${product.category}">
+      <img class="product-image" src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p class="article">Артикул: ${product.article}</p>
+      <p class="price">${product.price ? `Цена: ${product.price}` : 'Цена: по запросу'}</p>
+      <p class="desc">${product.description || 'Описание уточняйте у менеджера.'}</p>
+      <ul class="specs">
+        <li><strong>Модель:</strong> ${product.model || '—'}</li>
+        <li><strong>Мощность:</strong> ${product.power || '—'}</li>
+        <li><strong>Производительность:</strong> ${product.capacity || '—'}</li>
+        <li><strong>Размер:</strong> ${product.size || '—'}</li>
+        <li><strong>Вес:</strong> ${product.weight ? `${product.weight} кг` : '—'}</li>
+      </ul>
+      <button class="btn product-btn" type="button">Подробнее</button>
+    </article>`;
+}
 
 function renderCards(targetId, data) {
   const cards = document.getElementById(targetId);
   if (!cards) return;
-  data.forEach((name, i) => {
-    const card = document.createElement('article');
-    card.className = 'card';
-    card.innerHTML = `<h3>${name}</h3><p>Артикул: PT-${String(i + 1).padStart(3, '0')}</p>`;
-    cards.appendChild(card);
-  });
+  cards.innerHTML = data.map(productCard).join('');
 }
 
-renderCards('productCards', products.slice(0, 9));
-renderCards('allProductCards', products);
+function setupCatalogFilter(productsData) {
+  const cards = document.getElementById('allProductCards');
+  const category = document.getElementById('catalogCategoryFilter');
+  const search = document.getElementById('catalogSearch');
+  if (!cards || !category || !search) return;
+
+  const categories = [...new Set(productsData.map((item) => item.category))];
+  category.innerHTML = `<option value="all">Все категории</option>` + categories.map((c) => `<option value="${c}">${c}</option>`).join('');
+
+  const applyFilter = () => {
+    const selected = category.value;
+    const q = search.value.trim().toLowerCase();
+    const filtered = productsData.filter((item) => {
+      const byCategory = selected === 'all' || item.category === selected;
+      const byText = !q || `${item.name} ${item.model} ${item.article}`.toLowerCase().includes(q);
+      return byCategory && byText;
+    });
+    renderCards('allProductCards', filtered);
+  };
+
+  category.addEventListener('change', applyFilter);
+  search.addEventListener('input', applyFilter);
+}
+
+const normalizedProducts = normalizeProducts(products);
+renderCards('productCards', normalizedProducts.slice(0, 9));
+renderCards('allProductCards', normalizedProducts);
+setupCatalogFilter(normalizedProducts);

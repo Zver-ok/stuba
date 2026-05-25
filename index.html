@@ -9,8 +9,8 @@
 	  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
 </head>
-<body>
-  <header class="topbar">
+<body data-template-uri="<?php echo get_template_directory_uri(); ?>">
+	<header class="topbar">
     <div class="container nav-wrap">
       <div class="brand">
         <span class="brand-main">PROTECH</span>
@@ -81,6 +81,7 @@
     <div class="container">© 2026 PROTECH. Поставки промышленного оборудования. Тел: +7 (495) 123-45-67</div>
 	</footer>
   <a class="whatsapp-float" href="https://wa.me/74951234567" target="_blank" rel="noopener">Написать в WhatsApp</a>
-  <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
-</body>
+  <script src="<?php echo get_template_directory_uri(); ?>/products-data.js"></script>
+<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
+	</body>
 </html>
