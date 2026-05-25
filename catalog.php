@@ -30,6 +30,12 @@
     <div class="cards catalog-cards" id="allProductCards"></div>
   </div>
 </main>
+	<div class="product-modal" id="productModal" aria-hidden="true">
+  <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-label="Карточка товара">
+    <button class="product-modal-close" type="button" aria-label="Закрыть">×</button>
+    <div class="product-modal-content"></div>
+  </div>
+</div>
 <a class="whatsapp-float" href="https://wa.me/74951234567" target="_blank" rel="noopener">Написать в WhatsApp</a>
 	<script src="<?php echo get_template_directory_uri(); ?>/products-data.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>

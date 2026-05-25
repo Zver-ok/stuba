@@ -34,7 +34,7 @@
       <div class="hero-left">
         <h1>ФУНКЦИОНАЛЬНОЕ<br>ОБОРУДОВАНИЕ<br>ДЛЯ ПРОИЗВОДСТВА</h1>
         <p>Качество в каждой детали для пищевого бизнеса.</p>
-        <a class="btn" href="catalog.html">Перейти в каталог</a>
+        <a class="btn" href="/catalog">Перейти в каталог</a>
       </div>
     </div>
   </section>
@@ -52,8 +52,8 @@
   <section class="categories">
 	  <div class="container">
       <div class="catalog-head"><h2>ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2><a href="/catalog">Смотреть весь каталог →</a></div>
-      <div class="category-grid">
-        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Тестомесы"><h3>Тестомесы</h3></article>
+      <div class="category-grid" id="homeCategoryGrid">
+		  <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Тестомесы"><h3>Тестомесы</h3></article>
         <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Тестораскатка"><h3>Тестораскатка</h3></article>
         <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Печи"><h3>Печи и расстойка</h3></article>
         <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/slider.webp" alt="Мясопереработка"><h3>Мясопереработка</h3></article>
@@ -64,7 +64,7 @@
 
   <main class="catalog" id="catalog">
     <div class="container">
-      <div class="catalog-head"><h2>ХИТЫ ПРОДАЖ</h2><a href="catalog.html">Все товары →</a></div>
+      <div class="catalog-head"><h2>ХИТЫ ПРОДАЖ</h2><a href="/catalog">Все товары →</a></div>
       <div class="cards" id="productCards"></div>
     </div>
   </main>
@@ -80,6 +80,13 @@
   <footer class="footer" id="contacts">
     <div class="container">© 2026 PROTECH. Поставки промышленного оборудования. Тел: +7 (495) 123-45-67</div>
 	</footer>
+	  
+<div class="product-modal" id="productModal" aria-hidden="true">
+  <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-label="Карточка товара">
+    <button class="product-modal-close" type="button" aria-label="Закрыть">×</button>
+    <div class="product-modal-content"></div>
+  </div>
+</div>
   <a class="whatsapp-float" href="https://wa.me/74951234567" target="_blank" rel="noopener">Написать в WhatsApp</a>
   <script src="<?php echo get_template_directory_uri(); ?>/products-data.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>

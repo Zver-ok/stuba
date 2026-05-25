@@ -48,3 +48,14 @@
 .catalog-filters select{min-width:280px}
 .catalog-filters input{flex:1}
 @media (max-width:760px){.catalog-filters{flex-direction:column}.catalog-filters select{min-width:unset}}
+.desc{display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.modal-open{overflow:hidden}
+.product-modal{position:fixed;inset:0;background:rgba(17,17,17,.55);display:none;align-items:center;justify-content:center;padding:20px;z-index:1000}
+.product-modal.is-open{display:flex}
+.product-modal-dialog{width:min(980px,100%);background:#fff;border-radius:14px;padding:24px;position:relative;max-height:90vh;overflow:auto}
+.product-modal-close{position:absolute;right:14px;top:10px;border:0;background:transparent;font-size:34px;line-height:1;cursor:pointer;color:#666}
+.product-modal-grid{display:grid;grid-template-columns:minmax(280px,360px) 1fr;gap:22px}
+.product-modal-image{width:100%;border-radius:10px;border:1px solid var(--line);object-fit:cover}
+.modal-loading,.modal-empty{color:#666;margin:10px 0}
+.modal-specs{margin-top:12px}
+@media (max-width:760px){.product-modal-grid{grid-template-columns:1fr}}
