@@ -1,1 +1,69 @@
-index.html
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Каталог промышленного оборудования</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav-wrap">
+      <div class="brand">
+        <span class="brand-main">PROTECH</span>
+        <span class="brand-sub">пищевое оборудование</span>
+      </div>
+      <nav class="menu">
+        <a href="#catalog">КАТАЛОГ</a>
+        <a href="#about">О КОМПАНИИ</a>
+        <a href="#advantages">ПРЕИМУЩЕСТВА</a>
+        <a href="#contacts">КОНТАКТЫ</a>
+      </nav>
+      <div class="top-actions">
+        <a class="phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
+        <button class="btn">Оставить заявку</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="about">
+    <div class="overlay"></div>
+    <div class="container hero-content">
+      <div class="hero-left">
+        <h1>ПРОМЫШЛЕННОЕ<br>ОБОРУДОВАНИЕ<br>ДЛЯ ПРОИЗВОДСТВА</h1>
+        <p>Профессиональные решения для цехов, пекарен и пищевых производств.</p>
+        <a class="btn" href="#catalog">Перейти в каталог</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="advantages">
+    <div class="container features-grid">
+      <article><h3>60+</h3><p>моделей оборудования в каталоге</p></article>
+      <article><h3>20 лет</h3><p>опыта в оснащении производств</p></article>
+      <article><h3>Надёжность</h3><p>проверенные промышленные решения</p></article>
+      <article><h3>Подбор</h3><p>индивидуальная комплектация под задачи</p></article>
+      <article><h3>Доставка</h3><p>по всей России и СНГ</p></article>
+    </div>
+  </section>
+
+  <main class="catalog" id="catalog">
+    <div class="container">
+      <div class="catalog-head">
+        <h2>ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2>
+        <span>Смотреть все категории →</span>
+      </div>
+      <div class="cards" id="productCards"></div>
+    </div>
+  </main>
+
+  <footer class="footer" id="contacts">
+    <div class="container">© 2026 PROTECH. Поставки промышленного оборудования.</div>
+  </footer>
+
+  <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
+</body>
+</html>
