@@ -30,8 +30,8 @@ function productCard(product) {
       <img class="product-image" src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p class="article">Артикул: ${product.article}</p>
-      <p class="price">${product.price ? `Цена: ${product.price}` : 'Цена: по запросу'}</p>
-      <p class="desc">${shortText(product.description)}</p>
+      <p class="price">Цена: уточняйте у менеджера</p>
+	  <p class="desc">${shortText(product.description)}</p>
       <button class="btn product-btn" type="button" data-article="${product.article}">Подробнее</button>
     </article>`;
 }
@@ -58,17 +58,8 @@ function renderCards(targetId, data) {
   cards.innerHTML = data.map(productCard).join('');
 }
 
-function renderHomeCategories(productsData) {
-  const categoryGrid = document.getElementById('homeCategoryGrid');
-  if (!categoryGrid) return;
-
-  const uniqueCategories = [...new Set(productsData.map((item) => item.category))];
-  categoryGrid.innerHTML = uniqueCategories
-    .map(
-      (category) =>
-        `<article class="category-card"><img src="${getTemplateUri()}/img/slider.webp" alt="${category}"><h3>${category}</h3></article>`
-    )
-    .join('');
+function renderHomeCategories() {
+  // отключено чтобы использовать HTML из index.php
 }
 
 function setupCatalogFilter(productsData) {
@@ -136,9 +127,11 @@ function setupProductModal(productsData) {
           <div>
             <h3>${product.name}</h3>
             <p class="article">Артикул: ${product.article}</p>
-            <p class="price">${product.price ? `Цена: ${product.price}` : 'Цена: по запросу'}</p>
-            <p class="desc">${product.description}</p>
+            <p class="price">Цена: уточняйте у менеджера</p>
+			<p class="desc">${product.description}</p>
             ${buildSpecs(product)}
+			            <a class="btn modal-order-btn" href="https://wa.me/74951234567" target="_blank" rel="noopener">Заказать</a>
+            <p class="modal-whatsapp-note">в WhatsApp</p>
           </div>
         </div>`;
     }, 220);
