@@ -60,3 +60,22 @@
 .modal-specs{margin-top:12px}
 @media (max-width:760px){.product-modal-grid{grid-template-columns:1fr}}
 .modal-order-btn{margin-top:16px}.modal-whatsapp-note{margin-top:8px;font-size:14px;color:#444}
+.menu-toggle{display:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 12px;font-size:24px;line-height:1;cursor:pointer}
+.mobile-menu{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;padding:14px;border-radius:0 0 10px 10px;border-top:1px solid var(--line);box-shadow:0 14px 24px rgba(0,0,0,.08)}
+.mobile-menu a{display:block;padding:10px 6px;color:#222;text-decoration:none;font-weight:500}
+.mobile-menu .btn{margin-top:8px;text-align:center}
+.mobile-menu.is-open{display:block}
+.features article{display:flex;align-items:flex-start;gap:12px}
+.features h3{font-size:22px}
+.features p{font-size:14px;margin:4px 0 0}
+.feature-icon{flex-shrink:0}
+.category-card{cursor:pointer;transition:transform .2s ease,box-shadow .2s ease}
+.category-card:hover{transform:translateY(-4px);box-shadow:0 8px 18px rgba(0,0,0,.08)}
+.about-company{padding:20px 0 50px}
+.about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:30px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:28px}
+.about-company h2,.about-company h3{margin:0 0 12px}
+.about-company p{margin:0;color:#444;line-height:1.55}
+.about-company ul{margin:0;padding-left:20px;color:#444;line-height:1.6}
+
+@media (max-width:1280px){.menu-toggle{display:block}.top-actions{display:none}}
+@media (max-width:760px){.about-grid{grid-template-columns:1fr}}

@@ -22,11 +22,20 @@
         <a href="#advantages">ПРЕИМУЩЕСТВА</a>
         <a href="#contacts">КОНТАКТЫ</a>
       </nav>
+		      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">☰</button>
       <div class="top-actions">
         <a class="phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
         <a class="btn" href="#contacts">Оставить заявку</a>
 		</div>
     </div>
+			<div class="mobile-menu" id="mobileMenu">
+		<a href="/catalog">Каталог</a>
+		<a href="#about">О компании</a>
+		<a href="#advantages">Преимущества</a>
+		<a href="#contacts">Контакты</a>
+		<a href="tel:+74951234567">+7 (495) 123-45-67</a>
+		<a class="btn" href="#contacts">Оставить заявку</a>
+	</div>
   </header>
 
   <section class="hero" id="about">
@@ -53,13 +62,31 @@
 	  <div class="container">
       <div class="catalog-head"><h2>ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2><a href="/catalog">Смотреть весь каталог →</a></div>
       <div class="category-grid" id="homeCategoryGrid">
-		  <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/1.webp" alt="Тестомесы"><h3>Тестомесы</h3></article>
-        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/2.webp" alt="Тестораскатка"><h3>Тестораскатка</h3></article>
-        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/3.webp" alt="Печи"><h3>Печи и расстойка</h3></article>
-        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/4.webp" alt="Мясопереработка"><h3>Мясопереработка</h3></article>
-        <article class="category-card"><img src="<?php echo get_template_directory_uri(); ?>/img/5.webp" alt="Холод"><h3>Холодильное оборудование</h3></article>
+		  <article class="category-card" data-category="Другое"><img src="<?php echo get_template_directory_uri(); ?>/img/1.webp" alt="Тестомесы"><h3>Тестомесы</h3></article>
+        <article class="category-card" data-category="Другое"><img src="<?php echo get_template_directory_uri(); ?>/img/2.webp" alt="Тестораскатка"><h3>Тестораскатка</h3></article>
+        <article class="category-card" data-category="Другое"><img src="<?php echo get_template_directory_uri(); ?>/img/3.webp" alt="Печи"><h3>Печи и расстойка</h3></article>
+        <article class="category-card" data-category="Мясопереработка"><img src="<?php echo get_template_directory_uri(); ?>/img/4.webp" alt="Мясопереработка"><h3>Мясопереработка</h3></article>
+        <article class="category-card" data-category="Холодильное оборудование"><img src="<?php echo get_template_directory_uri(); ?>/img/5.webp" alt="Холод"><h3>Холодильное оборудование</h3></article>
       </div>
 		      </div>
+  </section>
+
+	  <section class="about-company" id="company-info">
+    <div class="container about-grid">
+      <div>
+        <h2>О НАС</h2>
+        <p>TOR GROUP — поставщик профессионального пищевого оборудования для кафе, пекарен, фабрик-кухонь и производственных цехов. Мы подбираем решения под ваш формат бизнеса и сопровождаем проект от консультации до запуска.</p>
+      </div>
+      <div>
+        <h3>Почему нас выбирают</h3>
+        <ul>
+          <li>Более 12 лет опыта в оснащении производств</li>
+          <li>Собственный отдел проектирования и подбора оборудования</li>
+          <li>Тестовые пуско-наладочные работы и обучение персонала</li>
+          <li>Сервис и поддержка 7 дней в неделю</li>
+        </ul>
+      </div>
+    </div>
   </section>
 
   <main class="catalog" id="catalog">

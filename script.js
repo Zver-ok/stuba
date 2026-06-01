@@ -26,8 +26,8 @@ function shortText(text, maxLength = 180) {
 
 function productCard(product) {
   return `
-    <article class="card product-card" data-category="${product.category}">
-      <img class="product-image" src="${product.image}" alt="${product.name}">
+    <article class="card product-card" data-category="${product.category}" data-article="${product.article}" role="button" tabindex="0">
+	<img class="product-image" src="${product.image}" alt="${product.name}">
       <h3>${product.name}</h3>
       <p class="article">Артикул: ${product.article}</p>
       <p class="price">Цена: уточняйте у менеджера</p>
@@ -62,14 +62,52 @@ function renderHomeCategories() {
   // отключено чтобы использовать HTML из index.php
 }
 
+
+function setupMobileMenu() {
+  const toggle = document.querySelector('.menu-toggle');
+  const menu = document.getElementById('mobileMenu');
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener('click', () => {
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
+    menu.classList.toggle('is-open');
+  });
+
+  menu.addEventListener('click', (event) => {
+    if (event.target.closest('a')) {
+      menu.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+function setupHomeCategoryLinks() {
+  const categoryGrid = document.getElementById('homeCategoryGrid');
+  if (!categoryGrid) return;
+
+  categoryGrid.addEventListener('click', (event) => {
+    const card = event.target.closest('.category-card[data-category]');
+    if (!card) return;
+    const category = encodeURIComponent(card.dataset.category);
+    window.location.href = `/catalog?category=${category}`;
+  });
+}
+
 function setupCatalogFilter(productsData) {
   const cards = document.getElementById('allProductCards');
+	  const params = new URLSearchParams(window.location.search);
+  const preselectedCategory = params.get('category');
   const category = document.getElementById('catalogCategoryFilter');
   const search = document.getElementById('catalogSearch');
   if (!cards || !category || !search) return;
 
   const categories = [...new Set(productsData.map((item) => item.category))];
   category.innerHTML = `<option value="all">Все категории</option>` + categories.map((c) => `<option value="${c}">${c}</option>`).join('');
+
+	  if (preselectedCategory && categories.includes(preselectedCategory)) {
+    category.value = preselectedCategory;
+  }
 
   const applyFilter = () => {
     const selected = category.value;
@@ -84,6 +122,7 @@ function setupCatalogFilter(productsData) {
 
   category.addEventListener('change', applyFilter);
   search.addEventListener('input', applyFilter);
+	  applyFilter();
 }
 
 function setupProductModal(productsData) {
@@ -105,12 +144,21 @@ function setupProductModal(productsData) {
     if (event.target === modal) close();
   });
 
-  document.addEventListener('click', (event) => {
-    const btn = event.target.closest('.product-btn[data-article]');
-    if (!btn) return;
+	  document.addEventListener('keydown', (event) => {
+    const card = event.target.closest('.product-card[data-article]');
+    if (!card || (event.key !== 'Enter' && event.key !== ' ')) return;
+    event.preventDefault();
+    card.querySelector('.product-btn')?.click();
+  });
 
-    const article = btn.dataset.article;
-    modal.classList.add('is-open');
+  document.addEventListener('click', (event) => {
+    const trigger = event.target.closest('[data-article]');
+    if (!trigger) return;
+
+    if (event.target.closest('a, button') && !event.target.closest('.product-btn[data-article]')) return;
+
+    const article = trigger.dataset.article;
+	  modal.classList.add('is-open');
     body.classList.add('modal-open');
     content.innerHTML = '<p class="modal-loading">Загружаем карточку…</p>';
 
@@ -144,3 +192,5 @@ renderCards('allProductCards', normalizedProducts);
 renderHomeCategories(normalizedProducts);
 setupCatalogFilter(normalizedProducts);
 setupProductModal(normalizedProducts);
+setupMobileMenu();
+setupHomeCategoryLinks();
