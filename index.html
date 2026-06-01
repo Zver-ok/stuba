@@ -4,118 +4,151 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TOR GROUP — промышленное пищевое оборудование</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/style.css">
 </head>
 <body data-template-uri="<?php echo get_template_directory_uri(); ?>">
-	<header class="topbar">
+  <header class="topbar">
     <div class="container nav-wrap">
-      <div class="brand">
-        <span class="brand-main">TOR GROUP</span>
-        <span class="brand-sub">пищевое оборудование</span>
-      </div>
-      <nav class="menu">
-        <a href="/catalog">КАТАЛОГ</a>
-		  <a href="#about">О КОМПАНИИ</a>
-        <a href="#advantages">ПРЕИМУЩЕСТВА</a>
-        <a href="#contacts">КОНТАКТЫ</a>
+      <a class="brand" href="/" aria-label="TOR GROUP — на главную">
+        <span class="brand-mark">TOR</span>
+        <span><span class="brand-main">TOR GROUP</span><span class="brand-sub">пищевое оборудование</span></span>
+      </a>
+      <nav class="menu" aria-label="Основная навигация">
+        <a href="/catalog">Каталог</a>
+        <a href="#company-info">О компании</a>
+        <a href="#advantages">Преимущества</a>
+        <a href="#contacts">Контакты</a>
       </nav>
-		      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">☰</button>
       <div class="top-actions">
         <a class="phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
-        <a class="btn" href="#contacts">Оставить заявку</a>
-		</div>
+		          <a class="btn btn-dark" href="#contacts">Оставить заявку</a>
+      </div>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
-			<div class="mobile-menu" id="mobileMenu">
-		<a href="/catalog">Каталог</a>
-		<a href="#about">О компании</a>
-		<a href="#advantages">Преимущества</a>
-		<a href="#contacts">Контакты</a>
-		<a href="tel:+74951234567">+7 (495) 123-45-67</a>
-		<a class="btn" href="#contacts">Оставить заявку</a>
-	</div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/catalog">Каталог</a>
+      <a href="#company-info">О компании</a>
+      <a href="#advantages">Преимущества</a>
+      <a href="#contacts">Контакты</a>
+      <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+      <a class="btn btn-accent" href="#contacts">Оставить заявку</a>
+    </div>
   </header>
 
-  <section class="hero" id="about">
-    <div class="container hero-content">
-      <div class="hero-left">
-        <h1>ФУНКЦИОНАЛЬНОЕ<br>ОБОРУДОВАНИЕ<br>ДЛЯ ПРОИЗВОДСТВА</h1>
-        <p>Качество в каждой детали для пищевого бизнеса.</p>
-        <a class="btn" href="/catalog">Перейти в каталог</a>
+  <main>
+    <section class="hero" id="about">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Профессиональное оснащение HoReCa и производств</span>
+          <h1>Оборудование для пищевого бизнеса под ключ</h1>
+          <p>Подбираем тестомесы, печи, холодильные линии и мясопереработку под ваш формат, бюджет и ежедневную нагрузку.</p>
+          <div class="hero-actions">
+            <a class="btn btn-accent" href="/catalog">Смотреть каталог</a>
+            <a class="btn btn-light" href="tel:+74951234567">Получить подбор</a>
+          </div>
+          <div class="hero-stats" aria-label="Ключевые показатели">
+            <div><strong>60+</strong><span>позиций в каталоге</span></div>
+            <div><strong>12 лет</strong><span>опыта оснащения</span></div>
+            <div><strong>7 дней</strong><span>до запуска проекта</span></div>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Подбор оборудования">
+          <div class="hero-card-top"><span>Проект цеха</span><b>01</b></div>
+          <div class="hero-card-image"></div>
+          <div class="hero-card-bottom">
+            <span>Тестомесы · печи · холод · мясопереработка</span>
+            <a href="/catalog">Перейти →</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
+    <section class="features" id="advantages">
+      <div class="container features-grid">
+        <article><span class="feature-icon">↗</span><h3>Под ключ</h3><p>Оснащаем цеха под задачи пекарен, HoReCa и пищевых производств.</p></article>
+        <article><span class="feature-icon">✓</span><h3>Гарантия качества</h3><p>Проверенные модели и техническая поддержка на каждом этапе.</p></article>
+        <article><span class="feature-icon">₸</span><h3>Условия оплаты</h3><p>Готовим КП и согласовываем удобный формат оплаты с менеджером.</p></article>
+        <article><span class="feature-icon">▣</span><h3>Доставка по Казахстану</h3><p>Организуем бережную доставку оборудования в любой регион РК.</p></article>
+        <article><span class="feature-icon">24</span><h3>Сервис рядом</h3><p>Менеджер на связи в WhatsApp и по телефону до и после покупки.</p></article>
+      </div>
+    </section>
+
+    <section class="categories section-pad">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Категории</span><h2>Популярные направления</h2></div>
+          <a class="link-arrow" href="/catalog">Смотреть весь каталог →</a>
+        </div>
+        <div class="category-grid" id="homeCategoryGrid">
+          <article class="category-card" data-category="Тестомесы"><img src="<?php echo get_template_directory_uri(); ?>/img/1.webp" alt="Тестомесы"><div><span>01</span><h3>Тестомесы</h3><p>Для пекарен, столовых и производственных линий</p></div></article>
+          <article class="category-card" data-category="Тестораскатка"><img src="<?php echo get_template_directory_uri(); ?>/img/2.webp" alt="Тестораскатка"><div><span>02</span><h3>Тестораскатка</h3><p>Стабильная толщина и высокая скорость подготовки</p></div></article>
+          <article class="category-card" data-category="Печи и расстойка"><img src="<?php echo get_template_directory_uri(); ?>/img/3.webp" alt="Печи и расстойка"><div><span>03</span><h3>Печи и расстойка</h3><p>Решения для выпечки и тепловой обработки</p></div></article>
+          <article class="category-card" data-category="Мясопереработка"><img src="<?php echo get_template_directory_uri(); ?>/img/4.webp" alt="Мясопереработка"><div><span>04</span><h3>Мясопереработка</h3><p>Оборудование для фарша, нарезки и подготовки сырья</p></div></article>
+          <article class="category-card" data-category="Холодильное оборудование"><img src="<?php echo get_template_directory_uri(); ?>/img/5.webp" alt="Холодильное оборудование"><div><span>05</span><h3>Холодильное оборудование</h3><p>Хранение, витрины и рабочий холод для кухни</p></div></article>
+        </div>
+      </div>
   </section>
 
-  <section class="features" id="advantages">
-    <div class="container features-grid">
-      <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18M12 3v18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><h3>Под ключ</h3><p>Оснащаем цеха под задачи пекарен, HoReCa и пищевых производств.</p></article>
-      <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12l5 5L20 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span><h3>Гарантия качества</h3><p>Проверенные модели и техническая поддержка на каждом этапе.</p></article>
-      <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M7 9h10M7 13h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><h3>Условия оплаты</h3><p>Готовим КП и согласовываем удобный формат оплаты с менеджером.</p></article>
-      <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h13l3 4v6H3z" stroke="currentColor" stroke-width="1.8"/><circle cx="8" cy="17" r="2" stroke="currentColor" stroke-width="1.8"/><circle cx="17" cy="17" r="2" stroke="currentColor" stroke-width="1.8"/></svg></span><h3>Доставка по Казахстану</h3><p>Организуем бережную доставку оборудования в любой регион РК.</p></article>
-      <article><span class="feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3a7 7 0 0 0-7 7c0 5.2 7 11 7 11s7-5.8 7-11a7 7 0 0 0-7-7Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg></span><h3>Сервис рядом</h3><p>Менеджер на связи в WhatsApp и по телефону до и после покупки.</p></article>
-    </div>
+    <section class="about-company section-pad" id="company-info">
+      <div class="container about-grid">
+        <div class="about-media"><span>TOR GROUP</span></div>
+        <div class="about-copy">
+          <span class="eyebrow">О компании</span>
+          <h2>Проектируем оснащение так, чтобы кухня работала быстрее</h2>
+          <p>TOR GROUP — поставщик профессионального пищевого оборудования для кафе, пекарен, фабрик-кухонь и производственных цехов. Мы подбираем решения под ваш формат бизнеса и сопровождаем проект от консультации до запуска.</p>
+          <ul>
+            <li>Более 12 лет опыта в оснащении производств</li>
+            <li>Собственный отдел проектирования и подбора оборудования</li>
+            <li>Тестовые пуско-наладочные работы и обучение персонала</li>
+            <li>Сервис и поддержка 7 дней в неделю</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog section-pad" id="catalog">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">Хиты продаж</span><h2>Популярное оборудование</h2></div>
+          <a class="link-arrow" href="/catalog">Все товары →</a>
+        </div>
+        <div class="cards" id="productCards"></div>
+      </div>
   </section>
 
-  <section class="categories">
-	  <div class="container">
-      <div class="catalog-head"><h2>ПОПУЛЯРНЫЕ КАТЕГОРИИ</h2><a href="/catalog">Смотреть весь каталог →</a></div>
-      <div class="category-grid" id="homeCategoryGrid">
-		  <article class="category-card" data-category="Другое"><img src="<?php echo get_template_directory_uri(); ?>/img/1.webp" alt="Тестомесы"><h3>Тестомесы</h3></article>
-        <article class="category-card" data-category="Другое"><img src="<?php echo get_template_directory_uri(); ?>/img/2.webp" alt="Тестораскатка"><h3>Тестораскатка</h3></article>
-        <article class="category-card" data-category="Другое"><img src="<?php echo get_template_directory_uri(); ?>/img/3.webp" alt="Печи"><h3>Печи и расстойка</h3></article>
-        <article class="category-card" data-category="Мясопереработка"><img src="<?php echo get_template_directory_uri(); ?>/img/4.webp" alt="Мясопереработка"><h3>Мясопереработка</h3></article>
-        <article class="category-card" data-category="Холодильное оборудование"><img src="<?php echo get_template_directory_uri(); ?>/img/5.webp" alt="Холод"><h3>Холодильное оборудование</h3></article>
+    <section class="cta section-pad" id="contacts">
+      <div class="container cta-box">
+        <div>
+          <span class="eyebrow">Бесплатная консультация</span>
+          <h2>Оснастим ваш цех под ключ за 7 дней</h2>
+          <p>Подбор оборудования, расчет производительности, поставка и запуск.</p>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-accent" href="tel:+74951234567">Позвонить менеджеру</a>
+          <a class="btn btn-outline" href="https://wa.me/74951234567" target="_blank" rel="noopener">Написать в WhatsApp</a>
+        </div>
       </div>
-		      </div>
-  </section>
-
-	  <section class="about-company" id="company-info">
-    <div class="container about-grid">
-      <div>
-        <h2>О НАС</h2>
-        <p>TOR GROUP — поставщик профессионального пищевого оборудования для кафе, пекарен, фабрик-кухонь и производственных цехов. Мы подбираем решения под ваш формат бизнеса и сопровождаем проект от консультации до запуска.</p>
-      </div>
-      <div>
-        <h3>Почему нас выбирают</h3>
-        <ul>
-          <li>Более 12 лет опыта в оснащении производств</li>
-          <li>Собственный отдел проектирования и подбора оборудования</li>
-          <li>Тестовые пуско-наладочные работы и обучение персонала</li>
-          <li>Сервис и поддержка 7 дней в неделю</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <main class="catalog" id="catalog">
-    <div class="container">
-      <div class="catalog-head"><h2>ХИТЫ ПРОДАЖ</h2><a href="/catalog">Все товары →</a></div>
-      <div class="cards" id="productCards"></div>
-    </div>
+    </section>
   </main>
 
-	  <section class="cta">
-    <div class="container cta-box">
-      <h2>Оснастим ваш цех под ключ за 7 дней</h2>
-      <p>Подбор оборудования, расчет производительности, поставка и запуск.</p>
-      <a class="btn" href="tel:+74951234567">Получить консультацию</a>
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><strong>TOR GROUP</strong><span>Поставки промышленного оборудования</span></div>
+      <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+      <span>© 2026</span>
     </div>
-  </section>
+  </footer>
 
-  <footer class="footer" id="contacts">
-    <div class="container">© 2026 TOR GROUP. Поставки промышленного оборудования. Тел: +7 (495) 123-45-67</div>
-	</footer>
-	  
-<div class="product-modal" id="productModal" aria-hidden="true">
-  <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-label="Карточка товара">
-    <button class="product-modal-close" type="button" aria-label="Закрыть">×</button>
-    <div class="product-modal-content"></div>
+  <div class="product-modal" id="productModal" aria-hidden="true">
+    <div class="product-modal-dialog" role="dialog" aria-modal="true" aria-label="Карточка товара">
+      <button class="product-modal-close" type="button" aria-label="Закрыть">×</button>
+      <div class="product-modal-content"></div>
+    </div>
   </div>
-</div>
-  <a class="whatsapp-float" href="https://wa.me/74951234567" target="_blank" rel="noopener">Написать в WhatsApp</a>
-  <script src="<?php echo get_template_directory_uri(); ?>/products-data.js"></script>
-<script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
-	</body>
+  <a class="whatsapp-float" href="https://wa.me/74951234567" target="_blank" rel="noopener">WhatsApp</a>
+	<script src="<?php echo get_template_directory_uri(); ?>/products-data.js"></script>
+  <script src="<?php echo get_template_directory_uri(); ?>/script.js"></script>
+</body>
 </html>

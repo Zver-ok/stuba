@@ -24,15 +24,36 @@ function shortText(text, maxLength = 180) {
   return `${text.slice(0, maxLength).trimEnd()}…`;
 }
 
+function escapeHtml(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function formatPrice(product) {
+  const price = String(product.price || '').trim();
+  return price ? `Цена: ${price}` : 'Цена: уточняйте у менеджера';
+}
+
+function placeholderImage(label = 'TOR GROUP') {
+  const safeLabel = escapeHtml(label).slice(0, 42);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="760" viewBox="0 0 900 760"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#f4efe6"/><stop offset="1" stop-color="#d8cec0"/></linearGradient><linearGradient id="o" x1="0" x2="1"><stop stop-color="#f36b13"/><stop offset="1" stop-color="#ff9b33"/></linearGradient></defs><rect width="900" height="760" rx="44" fill="url(#g)"/><circle cx="700" cy="115" r="120" fill="#fff" opacity=".38"/><rect x="120" y="180" width="660" height="330" rx="34" fill="#171717"/><rect x="170" y="230" width="430" height="28" rx="14" fill="#ffffff" opacity=".16"/><rect x="170" y="290" width="560" height="142" rx="28" fill="#ffffff" opacity=".08"/><rect x="170" y="560" width="180" height="18" rx="9" fill="url(#o)"/><text x="120" y="640" font-family="Inter,Arial,sans-serif" font-size="38" font-weight="900" fill="#171717">${safeLabel}</text><text x="120" y="688" font-family="Inter,Arial,sans-serif" font-size="23" font-weight="700" fill="#6f6b64">пищевое оборудование</text></svg>`;
+  return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+}
+
 function productCard(product) {
+	  const name = escapeHtml(product.name);
   return `
-    <article class="card product-card" data-category="${product.category}" data-article="${product.article}" role="button" tabindex="0">
-	<img class="product-image" src="${product.image}" alt="${product.name}">
-      <h3>${product.name}</h3>
-      <p class="article">Артикул: ${product.article}</p>
-      <p class="price">Цена: уточняйте у менеджера</p>
-	  <p class="desc">${shortText(product.description)}</p>
-      <button class="btn product-btn" type="button" data-article="${product.article}">Подробнее</button>
+    <article class="card product-card" data-category="${escapeHtml(product.category)}" data-article="${escapeHtml(product.article)}" role="button" tabindex="0">
+      <img class="product-image" src="${product.image}" alt="${name}" data-fallback-label="${name}">
+      <p class="article">${escapeHtml(product.category)} · ${escapeHtml(product.article)}</p>
+      <h3>${name}</h3>
+      <p class="price">${escapeHtml(formatPrice(product))}</p>
+      <p class="desc">${escapeHtml(shortText(product.description))}</p>
+      <button class="btn btn-dark product-btn" type="button" data-article="${escapeHtml(product.article)}">Подробнее</button>
     </article>`;
 }
 
@@ -55,11 +76,26 @@ function buildSpecs(product) {
 function renderCards(targetId, data) {
   const cards = document.getElementById(targetId);
   if (!cards) return;
-  cards.innerHTML = data.map(productCard).join('');
-}
+  cards.innerHTML = data.length ? data.map(productCard).join('') : '<p class="modal-empty">По вашему запросу товары не найдены.</p>';
+  setupImageFallbacks(cards);}
 
 function renderHomeCategories() {
-  // отключено чтобы использовать HTML из index.php
+  setupImageFallbacks(document.getElementById('homeCategoryGrid'));
+}
+
+function setupImageFallbacks(scope = document) {
+  if (!scope) return;
+  scope.querySelectorAll('img').forEach((image) => {
+    if (image.dataset.fallbackReady === 'true') return;
+    image.dataset.fallbackReady = 'true';
+    const replaceWithFallback = () => {
+      image.src = placeholderImage(image.dataset.fallbackLabel || image.alt || 'TOR GROUP');
+    };
+    image.addEventListener('error', replaceWithFallback, { once: true });
+    if (image.complete && image.naturalWidth === 0) {
+      replaceWithFallback();
+    }
+  });
 }
 
 
@@ -171,17 +207,18 @@ function setupProductModal(productsData) {
 
       content.innerHTML = `
         <div class="product-modal-grid">
-          <img class="product-modal-image" src="${product.image}" alt="${product.name}">
-          <div>
-            <h3>${product.name}</h3>
-            <p class="article">Артикул: ${product.article}</p>
-            <p class="price">Цена: уточняйте у менеджера</p>
-			<p class="desc">${product.description}</p>
+          <img class="product-modal-image" src="${product.image}" alt="${escapeHtml(product.name)}" data-fallback-label="${escapeHtml(product.name)}">
+		  <div>
+            <h3>${escapeHtml(product.name)}</h3>
+            <p class="article">Артикул: ${escapeHtml(product.article)}</p>
+            <p class="price">${escapeHtml(formatPrice(product))}</p>
+            <p class="desc">${escapeHtml(product.description)}</p>
             ${buildSpecs(product)}
-			            <a class="btn modal-order-btn" href="https://wa.me/74951234567" target="_blank" rel="noopener">Заказать</a>
-            <p class="modal-whatsapp-note">в WhatsApp</p>
+            <a class="btn btn-accent modal-order-btn" href="https://wa.me/74951234567" target="_blank" rel="noopener">Заказать</a>
+			<p class="modal-whatsapp-note">в WhatsApp</p>
           </div>
         </div>`;
+		      setupImageFallbacks(content);
     }, 220);
   });
 }
@@ -194,3 +231,4 @@ setupCatalogFilter(normalizedProducts);
 setupProductModal(normalizedProducts);
 setupMobileMenu();
 setupHomeCategoryLinks();
+setupImageFallbacks();
