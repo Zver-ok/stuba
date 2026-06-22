@@ -957,3 +957,26 @@ h2 {
   .product-hero .btn--ghost { margin: 12px 0 0; }
   .product-cable .cable { transform: scale(1.2); }
 }
+.product-card__image {
+  display: block;
+  height: 150px;
+  margin: -6px -6px 16px;
+  border-radius: 5px;
+  background: #eef4fb;
+  overflow: hidden;
+}
+.product-card__image img,
+.product-cable__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.product-cable--image {
+  height: 360px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(7, 23, 47, .18);
+  background: #eef4fb;
+  filter: none;
+}

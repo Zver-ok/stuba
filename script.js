@@ -16,16 +16,26 @@ if (toggle && menu) {
 }
 
 function productCard(product) {
-  const coreCount = Number(product.cores) || 3;
-  const cores = Array.from({ length: Math.min(coreCount, 5) }, () => '<i></i>').join('');
+
   const href = `product/?product=${product.slug}`;
-  return `<article class="product-card product-card--${coreCount}">
+  return `<article class="product-card">
+    <a class="product-card__image" href="${href}" aria-label="Открыть ${product.title}">
+      <img src="${product.images.card}" alt="${product.title}" loading="lazy">
+    </a>
     <h3>${product.title}</h3>
-    <div class="cable cable--${coreCount}" aria-hidden="true">${cores}</div>
     <p>Количество жил: ${product.cores}<br>Сечение: ${product.section} мм²<br>Номинальное напряжение: ${product.voltage}</p>
     <a href="${href}">Подробнее →</a>
   </article>`;
 }
+
+function renderProductHeroImage(product) {
+  const heroMedia = document.querySelector('[data-product-hero-media]');
+  if (!heroMedia) return;
+
+  heroMedia.classList.add('product-cable--image');
+  heroMedia.innerHTML = `<img class="product-cable__image" src="${product.images.banner}" alt="${product.title}">`;
+}
+
 
 function initCatalogTabs() {
   const tabs = document.querySelectorAll('[data-catalog-tab]');
@@ -58,6 +68,7 @@ function initProductPage() {
   document.title = `${product.title} — купить кабель ВВГ`;
   document.querySelectorAll('[data-product-title]').forEach((item) => { item.textContent = product.title; });
   document.querySelectorAll('[data-product-purpose]').forEach((item) => { item.textContent = product.purpose; });
+	  renderProductHeroImage(product);
   document.querySelector('[data-product-specs]').innerHTML = [
     ['Марка кабеля', product.category], ['Количество жил', product.cores], ['Сечение', `${product.section} мм²`],
     ['Материал жилы', product.conductor], ['Изоляция жил', product.insulation], ['Оболочка', product.shell],
