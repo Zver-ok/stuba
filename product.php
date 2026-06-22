@@ -14,7 +14,11 @@
 </head>
 <body data-product-page>
   <header class="product-hero">
-    <nav class="nav container"><a class="brand" href=""><span class="brand__mark">⚡</span><span class="brand__text"><strong style="color: white;">AVECO ENERGY</strong><em>НАДЕЖНАЯ ЭНЕРГИЯ</em></span></a><button class="nav__toggle" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav__menu"><a href="">Главная</a><a href="catalog.html">Каталог</a><a href="#about">О компании</a><a href="#delivery">Доставка и оплата</a><a href="#contacts">Контакты</a></div><div class="nav__phone"><span>☎</span><span><b style="color: white;">8 (771) 999-69-69</b><small>Звонок по Казахстану бесплатный</small></span><a class="btn btn--small" href="#request">Получить консультацию</a></div></nav>
+    <nav class="nav container"><a class="brand" href=""><span class="brand__mark">⚡</span><span class="brand__text"><strong style="color: white;">AVECO ENERGY</strong><em>НАДЕЖНАЯ ЭНЕРГИЯ</em></span></a><button class="nav__toggle" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button><div class="nav__menu"><a href="">Главная</a><a href="catalog.html">Каталог</a><a href="#about">О компании</a><a href="#delivery">Доставка и оплата</a><a href="#contacts">Контакты</a></div><div class="nav__phone"><span>          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path
+              d="M6.6 10.8c1.5 3 3.9 5.4 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.4 2.6.6 4 .6.7 0 1.2.5 1.2 1.2v3.5c0 .7-.5 1.2-1.2 1.2C10.8 22 2 13.2 2 2.4 2 1.7 2.5 1.2 3.2 1.2h3.6c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.8.6 4 .1.4 0 .9-.3 1.2l-1.7 3.2Z"
+            />
+          </svg></span><span><b style="color: white;">8 (771) 999-69-69</b><small>Звонок по Казахстану бесплатный</small></span><a class="btn btn--small" href="#request">Получить консультацию</a></div></nav>
     <section class="container product-hero__body"><div><h1 data-product-title>ВВГ 3x2,5</h1><h2>в наличии на складе</h2><p>Медный силовой кабель для внутренней проводки. Доставка по Казахстану. Сертификаты ГОСТ.</p><ul class="check-list"><li>Отгрузка сегодня</li><li>От 1 метра до оптовых партий</li><li>Цена за 15 минут</li></ul><a class="btn" href="#request">Получить цену</a><a class="btn btn--ghost" href="https://wa.me/77719996969">Написать в WhatsApp</a></div><div class="product-cable"><div class="cable cable--5"><i></i><i></i><i></i><i></i><i></i></div></div></section>
   </header>
   <main>
