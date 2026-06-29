@@ -174,18 +174,15 @@ a {
   min-width: 205px;
 }
 .brand__mark {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #58b7ff;
-  background: linear-gradient(135deg, #eef8ff, #0a5da5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.brand__mark svg {
-  width: 34px;
-  height: 34px;
-  fill: currentColor;
+
+.brand__mark img {
+  height: 50px;   /* подбери нужный размер */
+  width: auto;
+  display: block;
 }
 .brand__text strong {
   display: block;
@@ -207,7 +204,7 @@ a {
   flex: 1;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 15px;
   font-weight: 600;
   font-size: 13px;
 }
@@ -774,9 +771,11 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 .product-hero {
+  --product-hero-bg-image: url(https://vvg.avecoenergy.pro/wp-content/themes/test/img/slide.webp);
   min-height: 650px;
-  background: radial-gradient(circle at 80% 40%, rgba(255,255,255,.92), rgba(238,246,255,.68) 34%, transparent 58%), linear-gradient(90deg, #f7fbff 0 52%, #e6edf6 100%);
-  color: #07172f;
+  background:
+    var(--product-hero-bg-image) center right / cover no-repeat;
+	color: #07172f;
 }
 .product-hero .nav {
   background: linear-gradient(90deg, #001b32, #073456);
@@ -785,7 +784,7 @@ h2 {
 }
 .product-hero__body {
   display: grid;
-  grid-template-columns: .95fr 1.05fr;
+	  grid-template-columns: minmax(0, 560px);
   gap: 30px;
   align-items: center;
   padding: 66px 0 72px;
@@ -866,12 +865,13 @@ h2 {
 .usage-photo {
   min-height: 210px;
   border-radius: 6px;
-  background: linear-gradient(135deg, #8e969c, #eceff2);
+  background: url(https://vvg.avecoenergy.pro/wp-content/themes/test/img/prokladka.webp);
   display: grid;
   place-items: center;
   color: #263445;
   font-weight: 800;
   margin: 20px 0;
+	background-size: cover;
 }
 .note,
 .quote-card {
@@ -979,4 +979,33 @@ h2 {
   box-shadow: 0 24px 60px rgba(7, 23, 47, .18);
   background: #eef4fb;
   filter: none;
+}
+.why-grid article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #dbe5ef;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.why-grid article img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 14px;
+}
+
+.why-grid b {
+  color: #101827;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.why-grid span {
+  color: #4b5563;
+  font-size: 13px;
+  line-height: 1.5;
 }

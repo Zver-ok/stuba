@@ -28,12 +28,11 @@ function productCard(product) {
   </article>`;
 }
 
-function renderProductHeroImage(product) {
-  const heroMedia = document.querySelector('[data-product-hero-media]');
-  if (!heroMedia) return;
+function applyProductHeroBackground(product) {
+  const hero = document.querySelector('.product-hero');
+  if (!hero || !product.images.background) return;
 
-  heroMedia.classList.add('product-cable--image');
-  heroMedia.innerHTML = `<img class="product-cable__image" src="${product.images.banner}" alt="${product.title}">`;
+  hero.style.setProperty('--product-hero-bg-image', `url("${product.images.background}")`);
 }
 
 
@@ -68,8 +67,8 @@ function initProductPage() {
   document.title = `${product.title} — купить кабель ВВГ`;
   document.querySelectorAll('[data-product-title]').forEach((item) => { item.textContent = product.title; });
   document.querySelectorAll('[data-product-purpose]').forEach((item) => { item.textContent = product.purpose; });
-	  renderProductHeroImage(product);
-  document.querySelector('[data-product-specs]').innerHTML = [
+	  applyProductHeroBackground(product);
+	document.querySelector('[data-product-specs]').innerHTML = [
     ['Марка кабеля', product.category], ['Количество жил', product.cores], ['Сечение', `${product.section} мм²`],
     ['Материал жилы', product.conductor], ['Изоляция жил', product.insulation], ['Оболочка', product.shell],
     ['Номинальное напряжение', product.voltage], ['Температура эксплуатации', product.temperature], ['Стандарт', product.standard],
