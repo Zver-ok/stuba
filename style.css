@@ -1009,3 +1009,120 @@ h2 {
   font-size: 13px;
   line-height: 1.5;
 }
+.lead-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lead-modal.is-open {
+  display: flex;
+}
+.lead-modal__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 23, 42, 0.72);
+  backdrop-filter: blur(4px);
+}
+.lead-modal__dialog {
+  position: relative;
+  width: min(100%, 460px);
+  background: #fff;
+  border-radius: 14px;
+  padding: 30px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+.lead-modal__dialog h2 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-size: 28px;
+}
+.lead-modal__dialog p {
+  margin: 0 0 22px;
+  color: var(--muted);
+}
+.lead-modal__close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: #eef4fb;
+  color: var(--navy);
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+.lead-modal__form {
+  display: grid;
+  gap: 14px;
+}
+.lead-modal__form label {
+  display: grid;
+  gap: 6px;
+  color: #263445;
+  font-weight: 700;
+  font-size: 14px;
+}
+.lead-modal__form input,
+.lead-modal__form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 14px;
+  color: var(--text);
+  font: inherit;
+}
+.lead-modal__form textarea {
+  resize: vertical;
+}
+.lead-modal__form small.is-success {
+  color: #15934b;
+  font-weight: 700;
+}
+.lead-modal__form small.is-error {
+  color: #dc2626;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .product-hero {
+    min-height: auto;
+    background:
+      linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 54%, rgba(255, 255, 255, 0.38) 100%),
+      var(--product-hero-bg-image) 58% top / auto 100% no-repeat;
+  }
+  .product-hero .nav {
+    padding-inline: 24px;
+  }
+  .product-hero__body {
+    min-height: 486px;
+    padding: 44px 0 52px;
+    align-items: end;
+  }
+  .product-hero h1 {
+    font-size: clamp(36px, 14vw, 54px);
+  }
+  .product-hero h2 {
+    font-size: clamp(28px, 10vw, 38px);
+  }
+  .product-hero p {
+    font-size: 16px;
+  }
+  .product-hero .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .lead-modal {
+    padding: 16px;
+  }
+  .lead-modal__dialog {
+    padding: 26px 20px;
+  }
+}

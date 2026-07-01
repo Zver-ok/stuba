@@ -8,15 +8,14 @@ if (toggle && menu) {
   });
 
   menu.addEventListener('click', (event) => {
-	  if (event.target instanceof HTMLAnchorElement) {
-      menu.classList.remove('is-open');
+    if (event.target instanceof HTMLAnchorElement) {
+		menu.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
     }
   });
 }
 
 function productCard(product) {
-
   const href = `product/?product=${product.slug}`;
   return `<article class="product-card">
     <a class="product-card__image" href="${href}" aria-label="Открыть ${product.title}">
@@ -35,6 +34,103 @@ function applyProductHeroBackground(product) {
   hero.style.setProperty('--product-hero-bg-image', `url("${product.images.background}")`);
 }
 
+function getCurrentProductName() {
+  return document.querySelector('[data-product-title]')?.textContent?.trim() || '';
+}
+
+function initLeadModal() {
+  const modal = document.createElement('div');
+  modal.className = 'lead-modal';
+  modal.setAttribute('aria-hidden', 'true');
+  modal.innerHTML = `
+    <div class="lead-modal__overlay" data-modal-close></div>
+    <div class="lead-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title">
+      <button class="lead-modal__close" type="button" aria-label="Закрыть" data-modal-close>×</button>
+      <h2 id="lead-modal-title">Оставьте заявку</h2>
+      <p data-modal-subtitle>Менеджер свяжется с вами в ближайшее время.</p>
+      <form class="lead-modal__form" data-lead-form>
+        <input type="hidden" name="form_type" value="consultation">
+        <input type="hidden" name="product_name" value="">
+        <label>Ваше имя<input name="name" type="text" autocomplete="name" required></label>
+        <label>Телефон<input name="phone" type="tel" autocomplete="tel" required></label>
+        <label>Комментарий<textarea name="details" rows="3" placeholder="Например: нужный метраж или город доставки"></textarea></label>
+        <button class="btn" type="submit">Отправить заявку</button>
+        <small data-form-status>Мы гарантируем конфиденциальность ваших данных</small>
+      </form>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const form = modal.querySelector('[data-lead-form]');
+  const status = modal.querySelector('[data-form-status]');
+  const title = modal.querySelector('#lead-modal-title');
+  const subtitle = modal.querySelector('[data-modal-subtitle]');
+
+  const openModal = (trigger) => {
+    const productName = getCurrentProductName();
+    const isPrice = trigger.textContent.toLowerCase().includes('цен');
+    form.form_type.value = isPrice ? 'kp' : 'consultation';
+    form.product_name.value = productName;
+    title.textContent = isPrice ? 'Получить цену' : 'Получить консультацию';
+    subtitle.textContent = productName
+      ? `Оставьте контакты — подготовим ответ по позиции ${productName}.`
+      : 'Оставьте контакты — менеджер свяжется с вами в ближайшее время.';
+    status.textContent = 'Мы гарантируем конфиденциальность ваших данных';
+    status.className = '';
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    form.name.focus();
+  };
+
+  const closeModal = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+  };
+
+  document.querySelectorAll('a, button').forEach((item) => {
+    const text = item.textContent.trim();
+    if (['Заказать звонок', 'Получить цену', 'Получить консультацию'].includes(text)) {
+      item.addEventListener('click', (event) => {
+        event.preventDefault();
+        openModal(item);
+      });
+    }
+  });
+
+  modal.addEventListener('click', (event) => {
+    if (event.target.closest('[data-modal-close]')) closeModal();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    status.textContent = 'Отправляем заявку...';
+    status.className = '';
+
+    const response = await fetch('/wp-content/themes/test/send-mail.php', {
+      method: 'POST',
+      body: new FormData(form),
+    });
+    const result = await response.json();
+
+    status.textContent = result.message || (response.ok ? 'Заявка отправлена' : 'Не удалось отправить заявку');
+    status.className = response.ok && result.ok ? 'is-success' : 'is-error';
+    if (response.ok && result.ok) form.reset();
+  });
+}
+
+function initWhatsAppLinks() {
+  document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const productName = getCurrentProductName();
+      if (!productName) return;
+      const message = `Здравствуйте, я пишу по поводу ${productName}`;
+      link.href = `https://wa.me/77719996969?text=${encodeURIComponent(message)}`;
+    });
+  });
+}
 
 function initCatalogTabs() {
   const tabs = document.querySelectorAll('[data-catalog-tab]');
@@ -67,8 +163,8 @@ function initProductPage() {
   document.title = `${product.title} — купить кабель ВВГ`;
   document.querySelectorAll('[data-product-title]').forEach((item) => { item.textContent = product.title; });
   document.querySelectorAll('[data-product-purpose]').forEach((item) => { item.textContent = product.purpose; });
-	  applyProductHeroBackground(product);
-	document.querySelector('[data-product-specs]').innerHTML = [
+  applyProductHeroBackground(product);
+  document.querySelector('[data-product-specs]').innerHTML = [
     ['Марка кабеля', product.category], ['Количество жил', product.cores], ['Сечение', `${product.section} мм²`],
     ['Материал жилы', product.conductor], ['Изоляция жил', product.insulation], ['Оболочка', product.shell],
     ['Номинальное напряжение', product.voltage], ['Температура эксплуатации', product.temperature], ['Стандарт', product.standard],
@@ -79,3 +175,5 @@ function initProductPage() {
 
 initCatalogTabs();
 initProductPage();
+initLeadModal();
+initWhatsAppLinks();
