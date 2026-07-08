@@ -1,5 +1,12 @@
 const toggle = document.querySelector('.nav__toggle');
 const menu = document.querySelector('.nav__menu');
+const WHATSAPP_PHONE = '77719996969';
+
+function sendAnalyticsEvent(eventName, parameters = {}) {
+  if (typeof window.gtag !== 'function') return;
+
+  window.gtag('event', eventName, parameters);
+}
 
 if (toggle && menu) {
   toggle.addEventListener('click', () => {
@@ -88,8 +95,8 @@ function initLeadModal() {
 
   document.querySelectorAll('a, button').forEach((item) => {
     const text = item.textContent.trim();
-    if (['Заказать звонок', 'Получить цену', 'Получить консультацию'].includes(text)) {
-      item.addEventListener('click', (event) => {
+    if (['Заказать звонок', 'Получить цену', 'Получить консультацию', 'Получить предложение'].includes(text)) {
+		item.addEventListener('click', (event) => {
         event.preventDefault();
         openModal(item);
       });
@@ -117,17 +124,51 @@ function initLeadModal() {
 
     status.textContent = result.message || (response.ok ? 'Заявка отправлена' : 'Не удалось отправить заявку');
     status.className = response.ok && result.ok ? 'is-success' : 'is-error';
-    if (response.ok && result.ok) form.reset();
+    if (response.ok && result.ok) {
+      sendAnalyticsEvent('lead_form_submit', {
+        event_category: 'lead',
+        event_label: form.product_name.value || 'general',
+        form_type: form.form_type.value,
+        product_name: form.product_name.value || undefined,
+      });
+      form.reset();
+    }
   });
+}
+
+function getWhatsAppMessage() {
+  const productName = getCurrentProductName();
+  return productName
+    ? `Здравствуйте, я пишу по поводу ${productName}`
+    : 'Здравствуйте, хочу получить консультацию по кабельной продукции';
+}
+
+function initFloatingWhatsAppButton() {
+  if (document.querySelector('[data-floating-whatsapp]')) return;
+
+  const button = document.createElement('a');
+  button.className = 'floating-whatsapp';
+  button.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(getWhatsAppMessage())}`;
+  button.target = '_blank';
+  button.rel = 'noopener';
+  button.setAttribute('aria-label', 'Написать в WhatsApp');
+  button.setAttribute('data-floating-whatsapp', '');
+  button.innerHTML = '<span class="floating-whatsapp__icon" aria-hidden="true">✆</span><span class="floating-whatsapp__text">WhatsApp</span>';
+  document.body.appendChild(button);
 }
 
 function initWhatsAppLinks() {
   document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]').forEach((link) => {
     link.addEventListener('click', () => {
       const productName = getCurrentProductName();
-      if (!productName) return;
-      const message = `Здравствуйте, я пишу по поводу ${productName}`;
-      link.href = `https://wa.me/77719996969?text=${encodeURIComponent(message)}`;
+      const message = getWhatsAppMessage();
+      link.href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+      sendAnalyticsEvent('whatsapp_click', {
+        event_category: 'contact',
+        event_label: productName || 'general',
+        product_name: productName || undefined,
+        link_location: link.dataset.floatingWhatsapp !== undefined ? 'floating_button' : 'page_link',
+      });
     });
   });
 }
@@ -176,4 +217,5 @@ function initProductPage() {
 initCatalogTabs();
 initProductPage();
 initLeadModal();
+initFloatingWhatsAppButton();
 initWhatsAppLinks();

@@ -43,7 +43,11 @@ if ($details) {
     $message .= "Дополнительно: $details\n";
 }
 
-$headers = "From: info@aveco.kz\r\n";
+$leadId = date('YmdHis') . rand(100, 999);
+$fromEmail = "info{$leadId}@aveco.kz";
+
+$headers = "From: AVECO <{$fromEmail}>\r\n";
+$headers .= "Reply-To: info@aveco.kz\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 $sent = mail($recipient, $subject, $message, $headers);
