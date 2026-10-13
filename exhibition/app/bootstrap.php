@@ -14,11 +14,26 @@ function private_dir(): string {
     if (!is_dir($path) && !mkdir($path, 0700, true) && !is_dir($path)) throw new RuntimeException('Cannot create private storage');
     return $path;
 }
-function db(): PDO {
-    static $pdo = null;
-    if ($pdo) return $pdo;
+function database_config(): array {
+    $file=private_dir().'/database.php';
+    return is_file($file) ? require $file : ['driver'=>'sqlite'];
+}
+function connect_database(array $config): PDO {
+    $options=[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE=>PDO::FETCH_ASSOC, PDO::ATTR_EMULATE_PREPARES=>false];
+    if (($config['driver']??'sqlite')==='mysql') {
+        if (!extension_loaded('pdo_mysql')) throw new RuntimeException('PHP extension pdo_mysql is required');
+        $dsn='mysql:host='.$config['host'].';port='.$config['port'].';dbname='.$config['database'].';charset=utf8mb4';
+        $pdo=new PDO($dsn,$config['username'],$config['password'],$options);
+        foreach ([
+            "CREATE TABLE IF NOT EXISTS visitors (visitor CHAR(32) NOT NULL, day DATE NOT NULL, views INT NOT NULL DEFAULT 1, started INT NOT NULL DEFAULT 0, source VARCHAR(120) NOT NULL DEFAULT '', medium VARCHAR(120) NOT NULL DEFAULT '', campaign VARCHAR(120) NOT NULL DEFAULT '', PRIMARY KEY(visitor,day)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+            "CREATE TABLE IF NOT EXISTS leads (id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, created_at VARCHAR(40) NOT NULL, day DATE NOT NULL, visitor CHAR(32) NOT NULL, first_name VARCHAR(60) NOT NULL, last_name VARCHAR(60) NOT NULL, phone VARCHAR(20) NOT NULL UNIQUE, person_type VARCHAR(20) NOT NULL, company VARCHAR(150) NOT NULL DEFAULT '', interest VARCHAR(80) NOT NULL DEFAULT '', source VARCHAR(120) NOT NULL DEFAULT '', medium VARCHAR(120) NOT NULL DEFAULT '', campaign VARCHAR(120) NOT NULL DEFAULT '', consent_version VARCHAR(20) NOT NULL, status VARCHAR(20) NOT NULL DEFAULT 'new', INDEX leads_day(day)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+            "CREATE TABLE IF NOT EXISTS login_attempts (address CHAR(64) NOT NULL, created_at BIGINT NOT NULL, INDEX attempts_address(address,created_at)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4",
+            "CREATE TABLE IF NOT EXISTS submit_attempts (address CHAR(64) NOT NULL, created_at BIGINT NOT NULL, INDEX submits_address(address,created_at)) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4"
+        ] as $sql) $pdo->exec($sql);
+        return $pdo;
+    }
     if (!extension_loaded('pdo_sqlite')) throw new RuntimeException('PHP extension pdo_sqlite is required');
-    $pdo = new PDO('sqlite:' . private_dir() . '/exhibition.sqlite', null, null, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+    $pdo=new PDO('sqlite:'.private_dir().'/exhibition.sqlite',null,null,$options);
     $pdo->exec('PRAGMA busy_timeout=5000; PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;');
     $pdo->exec('CREATE TABLE IF NOT EXISTS visitors (visitor TEXT NOT NULL, day TEXT NOT NULL, views INTEGER NOT NULL DEFAULT 1, started INTEGER NOT NULL DEFAULT 0, source TEXT NOT NULL DEFAULT "", medium TEXT NOT NULL DEFAULT "", campaign TEXT NOT NULL DEFAULT "", PRIMARY KEY(visitor,day));
     CREATE TABLE IF NOT EXISTS leads (id INTEGER PRIMARY KEY AUTOINCREMENT, created_at TEXT NOT NULL, day TEXT NOT NULL, visitor TEXT NOT NULL, first_name TEXT NOT NULL, last_name TEXT NOT NULL, phone TEXT NOT NULL UNIQUE, person_type TEXT NOT NULL, company TEXT NOT NULL DEFAULT "", interest TEXT NOT NULL DEFAULT "", source TEXT NOT NULL DEFAULT "", medium TEXT NOT NULL DEFAULT "", campaign TEXT NOT NULL DEFAULT "", consent_version TEXT NOT NULL, status TEXT NOT NULL DEFAULT "new");
@@ -27,8 +42,19 @@ function db(): PDO {
     CREATE INDEX IF NOT EXISTS attempts_address ON login_attempts(address,created_at);
     CREATE TABLE IF NOT EXISTS submit_attempts (address TEXT NOT NULL, created_at INTEGER NOT NULL);
     CREATE INDEX IF NOT EXISTS submits_address ON submit_attempts(address,created_at);');
-    @chmod(private_dir() . '/exhibition.sqlite', 0600);
+    @chmod(private_dir().'/exhibition.sqlite',0600);
     return $pdo;
+}
+function db(): PDO {
+    static $pdo=null;
+    return $pdo ??= connect_database(database_config());
+}
+function save_private_php(string $file, array $config): void {
+    $temp=tempnam(private_dir(),'config-');
+    chmod($temp,0600);
+    if (file_put_contents($temp,"<?php\nreturn ".var_export($config,true).";\n",LOCK_EX)===false || !rename($temp,$file)) {
+        @unlink($temp); throw new RuntimeException('Cannot save configuration');
+    }
 }
 function session_start_safe(): void {
     if (session_status() === PHP_SESSION_ACTIVE) return;
@@ -62,7 +88,9 @@ function record_visit(): void {
     $utm=['source'=>text_input($_GET,'utm_source'),'medium'=>text_input($_GET,'utm_medium'),'campaign'=>text_input($_GET,'utm_campaign')];
     if ($utm['source']!=='' || $utm['campaign']!=='') $_SESSION['utm']=$utm;
     $utm=$_SESSION['utm']??$utm;
-    $stmt=db()->prepare('INSERT INTO visitors(visitor,day,source,medium,campaign) VALUES(?,?,?,?,?) ON CONFLICT(visitor,day) DO UPDATE SET views=views+1');
+    $pdo=db();
+    $upsert=$pdo->getAttribute(PDO::ATTR_DRIVER_NAME)==='mysql' ? ' ON DUPLICATE KEY UPDATE views=views+1' : ' ON CONFLICT(visitor,day) DO UPDATE SET views=views+1';
+    $stmt=$pdo->prepare('INSERT INTO visitors(visitor,day,source,medium,campaign) VALUES(?,?,?,?,?)'.$upsert);
     $stmt->execute([$id,$day,$utm['source'],$utm['medium'],$utm['campaign']]);
 }
 function address_key(): string {
