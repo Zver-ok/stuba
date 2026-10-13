@@ -45,6 +45,7 @@ assert.ok(/^http:\/\/127\.0\.0\.1:\d+$/.test(base),'Run only against an isolated
  assert.equal(csv.status(),200); assert.ok((await csv.text()).includes("'=TEST COMPANY"));
  await page.screenshot({path:'/tmp/exhibition-admin-desktop.png',fullPage:true});
  const privateFile=await context.request.get(base+'/../private/admin.json');assert.equal(privateFile.status(),404);
+ const loader=await context.request.get(base+'/bootstrap-loader.php'); assert.equal(loader.status(),404);
  for(const size of [390,320]){
   await page.setViewportSize({width:size,height:844});
   for(const path of ['admin.php','./','privacy.php']){

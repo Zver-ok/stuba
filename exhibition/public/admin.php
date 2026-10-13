@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../app/bootstrap.php';
+require __DIR__.'/bootstrap-loader.php';
 $login_error=''; $config=admin_config();
 if ($_SERVER['REQUEST_METHOD']==='POST') {
     if (!valid_csrf()) { http_response_code(403); exit('Обновите страницу: срок действия формы истёк.'); }

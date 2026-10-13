@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../app/bootstrap.php';
+require __DIR__.'/bootstrap-loader.php';
 $message=''; $finished=admin_config()!==null;
 $key_file=private_dir().'/setup-key.php';
 $key=is_file($key_file)?require $key_file:null;

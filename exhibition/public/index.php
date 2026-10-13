@@ -1,5 +1,5 @@
 <?php
-require __DIR__.'/../app/bootstrap.php';
+require __DIR__.'/bootstrap-loader.php';
 $base_path=rtrim(str_replace('\\','/',dirname($_SERVER['SCRIPT_NAME'])), '/');
 $request_path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
 if (!in_array($request_path,[$base_path.'/', $base_path.'/index.php'],true)) { http_response_code(404); exit('Страница не найдена.'); }

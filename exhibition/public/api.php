@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require __DIR__.'/../app/bootstrap.php';
+require __DIR__.'/bootstrap-loader.php';
 header('Content-Type: application/json; charset=utf-8');
 function reply(int $status,array $body): never { http_response_code($status); echo json_encode($body,JSON_UNESCAPED_UNICODE|JSON_THROW_ON_ERROR); exit; }
 if ($_SERVER['REQUEST_METHOD']!=='POST') reply(405,['ok'=>false,'message'=>'Используйте POST.']);
