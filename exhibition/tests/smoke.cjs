@@ -7,6 +7,9 @@ assert.ok(/^http:\/\/127\.0\.0\.1:\d+$/.test(base),'Run only against an isolated
  const context=await browser.newContext({viewport:{width:1440,height:1000},userAgent:'Mozilla/5.0 TestVisitor Chrome/130.0'});
  const page=await context.newPage(); const errors=[]; page.on('pageerror',e=>errors.push(e.message));
  await page.goto(base+'/?utm_source=instagram&utm_medium=paid&utm_campaign=expo-test');
+ assert.equal(await page.locator('.route-button').getAttribute('href'),'https://go.2gis.com/TC3u8');
+ assert.equal(await page.locator('.contact-phone').getAttribute('href'),'tel:+77775550665');
+ assert.ok((await page.locator('.contact-whatsapp').getAttribute('href')).startsWith('https://wa.me/77775550665'));
  await page.screenshot({path:'/tmp/exhibition-desktop.png',fullPage:true});
  assert.equal(await page.locator('.company-field').isVisible(),false);
  await page.locator('[name=person_type][value=legal]').check();
