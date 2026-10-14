@@ -47,6 +47,6 @@ form.addEventListener('submit', async event => {
   } catch {
     status.textContent = 'Нет связи с сервером. Проверьте интернет и попробуйте снова. Если запись уже сохранилась, повторная отправка не создаст дубликат.';
   } finally {
-    button.disabled = false; button.innerHTML = 'Отправить заявку <span>→</span>';
+    button.disabled = false; button.innerHTML = 'Отправить <span>→</span>';
   }
 });

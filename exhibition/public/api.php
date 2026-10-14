@@ -24,7 +24,6 @@ try {
     if (!in_array($type,['individual','legal'],true)) $errors['person_type']='Выберите физическое или юридическое лицо.';
     if ($type==='legal' && strlen($company)<2) $errors['company']='Укажите название компании.';
     if ($interest!=='' && !in_array($interest,$allowed,true)) $errors['interest']='Выберите интересующее направление.';
-    if (($_POST['consent']??'')!=='1') $errors['consent']='Для записи необходимо согласие на обработку данных.';
     if ($errors) reply(422,['ok'=>false,'message'=>'Проверьте поля формы.','errors'=>$errors]);
     $address=address_key();
     db()->prepare('DELETE FROM submit_attempts WHERE created_at<?')->execute([time()-3600]);
@@ -34,7 +33,7 @@ try {
     $utm=$_SESSION['utm']??['source'=>'','medium'=>'','campaign'=>''];
     try {
         $stmt=db()->prepare('INSERT INTO leads(created_at,day,visitor,first_name,last_name,phone,person_type,company,interest,source,medium,campaign,consent_version) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)');
-        $stmt->execute([date('c'),$day,$visitor,$first,$last,'+'.$phone,$type,$company,$interest,$utm['source'],$utm['medium'],$utm['campaign'],'2026-10-13']);
+        $stmt->execute([date('c'),$day,$visitor,$first,$last,'+'.$phone,$type,$company,$interest,$utm['source'],$utm['medium'],$utm['campaign'],'2026-10-14-submit']);
     } catch (PDOException $error) {
         if ($error->getCode()==='23000') reply(200,['ok'=>true,'duplicate'=>true,'message'=>'Этот номер уже записан. Будем рады видеть вас на стенде '.EVENT_STAND.'!']);
         throw $error;
