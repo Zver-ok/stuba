@@ -50,3 +50,22 @@ form.addEventListener('submit', async event => {
     button.disabled = false; button.innerHTML = 'Отправить <span>→</span>';
   }
 });
+
+// Analytics must not delay or cancel navigation to 2GIS.
+document.querySelectorAll('[data-route-placement]').forEach(link => {
+  function trackRouteClick(event) {
+    if (event.type === 'auxclick' && event.button !== 1) return;
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    const eventId = Array.from(bytes, byte => byte.toString(16).padStart(2, '0')).join('');
+    const data = new FormData();
+    data.set('action', 'route_click');
+    data.set('csrf', form.elements.csrf.value);
+    data.set('event_id', eventId);
+    data.set('placement', link.dataset.routePlacement);
+    let queued = false;
+    try { queued = Boolean(navigator.sendBeacon?.('api.php', data)); } catch { /* Use fetch fallback. */ }
+    if (!queued) fetch('api.php', {method:'POST', body:data, credentials:'same-origin', keepalive:true}).catch(() => {});
+  }
+  link.addEventListener('click', trackRouteClick);
+  link.addEventListener('auxclick', trackRouteClick);
+});

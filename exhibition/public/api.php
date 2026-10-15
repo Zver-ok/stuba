@@ -7,6 +7,17 @@ if ($_SERVER['REQUEST_METHOD']!=='POST') reply(405,['ok'=>false,'message'=>'Ис
 if (!valid_csrf()) reply(403,['ok'=>false,'message'=>'Обновите страницу и попробуйте ещё раз.']);
 try {
     $action=text_input($_POST,'action',20); $visitor=visitor_id(); $day=date('Y-m-d');
+    if ($action==='route_click') {
+        $event_id=text_input($_POST,'event_id',32);
+        $placement=text_input($_POST,'placement',20);
+        if (!preg_match('/^[a-f0-9]{32}$/',$event_id) || !in_array($placement,['contacts','success'],true)) reply(422,['ok'=>false,'message'=>'Некорректное событие.']);
+        if (!isset($_SESSION['form_issued'])) reply(403,['ok'=>false,'message'=>'Сначала откройте страницу сайта.']);
+        if (preg_match('/bot|crawler|spider|headless|preview/i',$_SERVER['HTTP_USER_AGENT']??'')) reply(200,['ok'=>true]);
+        $pdo=db();
+        $upsert=$pdo->getAttribute(PDO::ATTR_DRIVER_NAME)==='mysql' ? ' ON DUPLICATE KEY UPDATE event_id=event_id' : ' ON CONFLICT(event_id) DO NOTHING';
+        $pdo->prepare('INSERT INTO route_clicks(event_id,created_at,day,visitor,placement) VALUES(?,?,?,?,?)'.$upsert)->execute([$event_id,date('c'),$day,$visitor,$placement]);
+        reply(200,['ok'=>true]);
+    }
     if ($action==='start') {
         db()->prepare('UPDATE visitors SET started=1 WHERE visitor=? AND day=?')->execute([$visitor,$day]);
         reply(200,['ok'=>true]);

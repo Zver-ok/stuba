@@ -11,6 +11,18 @@ assert.ok(/^http:\/\/127\.0\.0\.1:\d+$/.test(base),'Run only against an isolated
  assert.equal(await page.locator('.contact-phone').getAttribute('href'),'tel:+77775550665');
  assert.ok((await page.locator('.contact-whatsapp').getAttribute('href')).startsWith('https://wa.me/77775550665'));
  await page.screenshot({path:'/tmp/exhibition-desktop.png',fullPage:true});
+ await context.route('https://go.2gis.com/**', route => route.fulfill({status:200,body:'2GIS test destination'}));
+ async function routeClick(selector) {
+  const saved=page.waitForResponse(response => response.url().endsWith('/api.php') && response.request().postData()?.includes('route_click'));
+  const popupPromise=page.waitForEvent('popup');
+  await page.locator(selector).click();
+  const popup=await popupPromise; await popup.close();
+  assert.equal((await saved).status(),200);
+ }
+ await routeClick('.route-button');
+ await routeClick('.route-button');
+ await page.evaluate(() => Object.defineProperty(navigator,'sendBeacon',{value:()=>false,configurable:true}));
+ await routeClick('.route-button');
  assert.equal(await page.locator('.company-field').isVisible(),false);
  await page.locator('[name=person_type][value=legal]').check();
  assert.equal(await page.locator('.company-field input').getAttribute('required'),'');
@@ -33,6 +45,13 @@ assert.ok(/^http:\/\/127\.0\.0\.1:\d+$/.test(base),'Run only against an isolated
  await page.locator('.submit-button').click(); assert.equal((await response).status(),201);
  await page.locator('.success-state').waitFor({state:'visible'});
  assert.ok((await page.locator('#success-message').textContent()).includes('Вы записаны'));
+ await routeClick('[data-route-placement=success]');
+ const routeEvent={action:'route_click',csrf,event_id:'abcdef0123456789abcdef0123456789',placement:'contacts'};
+ assert.equal((await context.request.post(base+'/api.php',{form:routeEvent})).status(),200);
+ assert.equal((await context.request.post(base+'/api.php',{form:routeEvent})).status(),200);
+ assert.equal((await context.request.post(base+'/api.php',{form:{...routeEvent,csrf:'invalid'}})).status(),403);
+ assert.equal((await context.request.post(base+'/api.php',{form:{...routeEvent,event_id:'invalid'}})).status(),422);
+
  const duplicate=await context.request.post(base+'/api.php',{form:{action:'register',csrf,first_name:'Иван',last_name:'Тестов',person_type:'individual',phone:'87771234567'}});
  assert.equal((await duplicate.json()).duplicate,true);
  await page.goto(base+'/admin.php');
@@ -42,6 +61,14 @@ assert.ok(/^http:\/\/127\.0\.0\.1:\d+$/.test(base),'Run only against an isolated
  await page.locator('.metric-grid').waitFor();
  assert.equal((await page.locator('.metric-grid article').nth(2).locator('strong').textContent()).trim(),'1');
  assert.equal(await page.locator('.leads-table tbody tr').count(),1);
+ assert.equal(await page.locator('.metric-grid article').filter({hasText:'Проложить маршрут'}).locator('strong').textContent(),'5');
+ assert.ok((await page.locator('.route-period').textContent()).includes('5'));
+ await page.locator('.daily-details summary').click();
+ assert.equal(await page.locator('.daily-route-clicks').first().textContent(),'5');
+ await page.locator('.daily-details summary').click();
+ await page.goto(base+'/admin.php?period=7');
+ assert.ok((await page.locator('.route-period').textContent()).includes('5'));
+
  assert.ok((await page.locator('.leads-table').textContent()).includes('expo-test'));
  assert.ok((await page.locator('.period-summary').textContent()).includes('1 начали форму'));
  await page.locator('.status-form select').selectOption('contacted');await page.locator('.status-form button').click();
@@ -61,6 +88,6 @@ assert.ok(/^http:\/\/127\.0\.0\.1:\d+$/.test(base),'Run only against an isolated
   }
  }
  assert.deepEqual(errors,[]);
- console.log('PASS: real persistence, legal company validation, CSRF, duplicate phone, consent flow, UTM attribution, start tracking, admin auth, lead status, safe CSV, private files inaccessible; 320/390 mobile overflow checks; no browser errors.');
+ console.log('PASS: real persistence, legal company validation, CSRF, duplicate phone, consent flow, UTM attribution, start tracking, both route buttons, repeated clicks, beacon fallback, idempotent events, daily/period route counts, admin auth, lead status, safe CSV, private files inaccessible; 320/390 mobile overflow checks; no browser errors.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
