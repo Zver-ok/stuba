@@ -13,12 +13,12 @@ function atm_sampo_model(): ?array {
 function atm_sampo_whatsapp(?array $model=null,string $purpose='цена, наличие и комплектация'): string {
     return 'https://wa.me/77775550665?text='.rawurlencode('Здравствуйте! Интересует '.($model['name']??'комбайн Sampo-Rosenlew').'. Подскажите: '.$purpose.'.');
 }
-function atm_sampo_card(array $model,bool $compare=false): void {
+function atm_sampo_card(array $model,bool $compare=false,bool $compact=false): void {
     $url=atm_yto_url('/sampo-product/?model='.$model['id']);
     ?>
     <article class="product catalog-product sampo-card" data-id="<?= atm_yto_escape($model['id']) ?>" data-name="<?= atm_yto_escape($model['name']) ?>" data-kind="<?= $model['kind'] ?>" data-power="<?= $model['power']??0 ?>">
         <a class="product-photo" href="<?= atm_yto_escape($url) ?>"><img src="<?= atm_yto_escape(atm_yto_asset($model['image'])) ?>" alt="<?= atm_yto_escape($model['name']) ?>" loading="lazy"></a>
-        <div class="product-body"><span class="sampo-card-type"><?= ['production'=>'Зерноуборочный комбайн','research'=>'Селекционный комбайн','request'=>'Комплектация по запросу'][$model['kind']] ?></span><h3><a href="<?= atm_yto_escape($url) ?>"><?= atm_yto_escape($model['name']) ?></a></h3><p class="product-caption"><?= atm_yto_escape($model['lead']) ?></p><div class="compact-specs"><span><b><?= $model['power']?$model['power'].' л.с.':'По запросу' ?></b>Мощность</span><span><b><?= atm_yto_escape($model['tank']) ?></b>Бункер</span></div><div class="product-actions"><a class="button small" href="<?= atm_yto_escape($url) ?>">Подробнее →</a><a class="button outline small" href="<?= atm_yto_escape(atm_sampo_whatsapp($model)) ?>" target="_blank" rel="noopener">Получить КП</a></div><?php if($compare && $model['power']): ?><label class="compare-choice"><input type="checkbox" data-sampo-compare="<?= $model['id'] ?>"> Сравнить модель</label><?php endif ?></div>
+        <div class="product-body"><span class="sampo-card-type"><?= ['production'=>'Зерноуборочный комбайн','research'=>'Селекционный комбайн','request'=>'Комплектация по запросу'][$model['kind']] ?></span><h3><a href="<?= atm_yto_escape($url) ?>"><?= atm_yto_escape($model['name']) ?></a></h3><?php if(!$compact): ?><p class="product-caption"><?= atm_yto_escape($model['lead']) ?></p><?php endif ?><div class="compact-specs"><span><b><?= $model['power']?$model['power'].' л.с.':'По запросу' ?></b>Мощность</span><span><b><?= atm_yto_escape($model['tank']) ?></b>Бункер</span></div><div class="product-actions"><a class="button small" href="<?= atm_yto_escape($url) ?>">Подробнее →</a><a class="button outline small" href="<?= atm_yto_escape(atm_sampo_whatsapp($model)) ?>" target="_blank" rel="noopener">Получить КП</a></div><?php if($compare && $model['power']): ?><label class="compare-choice"><input type="checkbox" data-sampo-compare="<?= $model['id'] ?>"> Сравнить модель</label><?php endif ?></div>
     </article>
     <?php
 }

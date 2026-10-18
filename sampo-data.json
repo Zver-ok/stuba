@@ -427,5 +427,8 @@
       ]
     }
   ],
-  "banner": "assets/images/sampo/banner.svg"
+  "banner": "images/hero.webp",
+  "financeBanner": "images/banner1.webp",
+  "contactBanner": "images/banner2.webp",
+  "aboutImage": "images/service.webp"
 }
