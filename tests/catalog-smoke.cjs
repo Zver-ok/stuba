@@ -38,7 +38,7 @@ for(const model of models){assert.ok(fs.existsSync(model.image));assert.ok(Objec
   assert.ok((await page.locator('.model-pdf').getAttribute('href')).endsWith('#page='+model.pdfPage));
   assert.equal(await page.locator('#main-product-image').evaluate(image=>image.complete&&image.naturalWidth>0),true);
  }
- await page.goto('http://127.0.0.1:8010/product/?model=X1304');assert.ok((await page.locator('.model-notes').textContent()).includes('140'));
+ await page.goto('http://127.0.0.1:8010/product/?model=X1304');assert.equal(await page.locator('.product-summary [data-model-power]').textContent(),'140');
  await page.locator('.product-inquiry [name=name]').fill('Проверка');await page.locator('.product-inquiry [name=phone]').fill('+77770000000');await page.locator('.product-inquiry button').click();assert.ok(decodeURIComponent(await page.locator('.inquiry-status a').getAttribute('href')).includes('YTO-X1304'));
  await page.screenshot({path:'/tmp/yto-product-desktop.png',fullPage:true});
  await page.goto('http://127.0.0.1:8010/product/?model=UNKNOWN');assert.equal(await page.locator('.unknown-model').isVisible(),true);assert.equal(await page.locator('.product-summary').count(),0);

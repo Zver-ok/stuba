@@ -67,7 +67,7 @@ if (grid && ui) {
  document.querySelector('#compare-open').addEventListener('click', () => {
   const models=ui.catalog.models.filter(model => selected.has(model.id));
   const rows=[['Мощность, л.с.',model=>model.power],['Двигатель',model=>model.engine || 'Уточнить'],['Объём, см³',model=>model.displacement],['Передачи вперёд + назад',model=>model.gears],['Гидравлические выходы, пар',model=>model.hydraulicPairs],['Подъёмная сила на 610 мм, кН',model=>model.lift],['Бак, л',model=>model.tank],['Масса по каталогу, кг',model=>model.mass],['Кондиционер',model=>model.airConditioning?'Есть':'Нет']];
-  comparison.querySelector('.comparison-content').innerHTML=`<div class="comparison-scroll"><table><thead><tr><th>Параметр</th>${models.map(model=>`<th><a href="${ui.productUrl(model)}">${ui.escape(model.name)}</a></th>`).join('')}</tr></thead><tbody>${rows.map(([label,get])=>`<tr><th>${label}</th>${models.map(model=>`<td>${ui.escape(get(model))}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="source-caption">Данные каталога от ${ui.catalog.edition}. Для X1304 мощность указана как в таблице источника: 140 л.с.; уточните перед заказом.</p>`;
+  comparison.querySelector('.comparison-content').innerHTML=`<div class="comparison-scroll"><table><thead><tr><th>Параметр</th>${models.map(model=>`<th><a href="${ui.productUrl(model)}">${ui.escape(model.name)}</a></th>`).join('')}</tr></thead><tbody>${rows.map(([label,get])=>`<tr><th>${label}</th>${models.map(model=>`<td>${ui.escape(get(model))}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="source-caption">Данные каталога от ${ui.catalog.edition}. Комплектацию и наличие уточните у менеджера.</p>`;
   comparison.showModal();
  });
 }
@@ -101,7 +101,7 @@ if (productPage && ui) {
   document.querySelector('.related-grid').innerHTML=alternatives.map(other=>ui.card(other)).join('');
   const form=document.querySelector('.product-inquiry');
   form.addEventListener('submit', event => {
-   event.preventDefault(); const data=new FormData(form);
+   event.preventDefault(); const data=new FormData(form); window.ATMMarketing?.track('atm_form_prepared',{form_context:'product'});
    const message=`Здравствуйте! Интересует ${name}.\nИмя: ${data.get('name')}\nТелефон: ${data.get('phone')}\nЗадачи: ${data.get('task') || 'Хочу получить консультацию'}`;
    const status=form.querySelector('.inquiry-status'); status.textContent='Заявка подготовлена. Откройте WhatsApp и отправьте сообщение менеджеру.';
    const link=document.createElement('a');link.href=`https://wa.me/77775550665?text=${encodeURIComponent(message)}`;link.target='_blank';link.rel='noopener';link.textContent='Отправить в WhatsApp →';status.append(link);
