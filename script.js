@@ -49,3 +49,4 @@ const dialog = document.querySelector('.info-dialog');
 document.querySelector('.privacy-button').addEventListener('click', () => dialog.showModal());
 document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
 dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+if (window.lucide) window.lucide.createIcons();
