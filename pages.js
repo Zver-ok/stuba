@@ -96,8 +96,10 @@ if (productPage && ui) {
   document.querySelector('.model-notes').innerHTML=model.notes.map(note=>`<p>${ui.escape(note)}</p>`).join('');
   document.querySelector('.model-notes').hidden=model.notes.length===0;
   document.querySelector('.model-source').textContent=`Источник: каталог YTO от ${ui.catalog.edition}, стр. ${model.sourcePage}. Комплектацию подтвердите перед заказом.`;
-  document.querySelector('.model-pdf').href=ui.asset(ui.catalog.pdf)+`#page=${model.pdfPage}`;
-  const alternatives=ui.catalog.models.filter(other=>other.id!==model.id).sort((a,b)=>Math.abs(a.power-model.power)-Math.abs(b.power-model.power)).slice(0,3);
+const pdfLink = document.querySelector('.model-pdf');
+if (pdfLink && ui.catalog.pdf) {
+  pdfLink.href = ui.asset(ui.catalog.pdf) + `#page=${model.pdfPage}`;
+}  const alternatives=ui.catalog.models.filter(other=>other.id!==model.id).sort((a,b)=>Math.abs(a.power-model.power)-Math.abs(b.power-model.power)).slice(0,3);
   document.querySelector('.related-grid').innerHTML=alternatives.map(other=>ui.card(other)).join('');
   const form=document.querySelector('.product-inquiry');
   form.addEventListener('submit', event => {
