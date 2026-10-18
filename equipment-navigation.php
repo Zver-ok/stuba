@@ -5,7 +5,7 @@ function atm_equipment_navigation(string $active): void {
     $categories=[
         ['tractors','Тракторы','/','tractor.svg'],
         ['combines','Зерноуборочные комбайны','/sampo/','combine.svg'],
-        ['tillage','Почвообрабатывающая техника','/equipment/?type=tillage','tillage.svg'],
+        ['tillage','Почвообрабатывающая техника','/farmet/','tillage.svg'],
         ['wheels','Колеса','/equipment/?type=wheels','wheel.svg'],
     ];
     echo '<nav class="equipment-categories" aria-label="Категории техники"><div class="container equipment-category-grid">';

@@ -6,7 +6,7 @@ function wp_head(): void {}
 function wp_footer(): void {}
 $root=dirname(__DIR__);
 $path=parse_url($_SERVER['REQUEST_URI'],PHP_URL_PATH);
-$pages=['/sampo/'=>'sampo.php','/sampo-catalog/'=>'sampo-catalog.php','/sampo-product/'=>'sampo-product.php','/equipment/'=>'equipment.php','/branches/'=>'branches.php','/service/'=>'service.php','/privacy/'=>'privacy.php','/'=>'front-page.php','/index.html'=>'index.html','/catalog'=>'catalog.php','/catalog/'=>'catalog.php','/product'=>'product.php','/product/'=>'product.php'];
+$pages=['/farmet/'=>'farmet.php','/farmet-catalog/'=>'farmet-catalog.php','/farmet-product/'=>'farmet-product.php','/sampo/'=>'sampo.php','/sampo-catalog/'=>'sampo-catalog.php','/sampo-product/'=>'sampo-product.php','/equipment/'=>'equipment.php','/branches/'=>'branches.php','/service/'=>'service.php','/privacy/'=>'privacy.php','/'=>'front-page.php','/index.html'=>'index.html','/catalog'=>'catalog.php','/catalog/'=>'catalog.php','/product'=>'product.php','/product/'=>'product.php'];
 if (isset($pages[$path])) { require $root.'/'.$pages[$path]; return; }
 if (preg_match('/\.(?:js|css|svg|pdf|jpg|jpeg|webp|png|ico|docx)$/i',$path)) {
     $file=realpath($root.'/'.ltrim(rawurldecode($path),'/'));

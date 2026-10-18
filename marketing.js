@@ -12,7 +12,9 @@
     const model=window.YTO_UI?.catalog.models.find(model=>model.id===params.get('model'));
     const sampo=document.body.dataset.equipment==='combines';
     const modelCode=sampo&&/^C(?:2|12|20|24)$/.test(params.get('model')||'')?params.get('model'):null;
-    const payload={event,page_path:location.pathname,...(sampo?{brand:'sampo'}:{}),...(modelCode?{model:modelCode}:{}),...campaign,...(model?{model:model.id}:{}),...extra};
+    const farmet=document.body.dataset.equipment==='farmet' && window.ATMEquipmentContext?.brand==='farmet';
+    const farmetModel=farmet&&typeof window.ATMEquipmentContext.model==='string'?window.ATMEquipmentContext.model:null;
+    const payload={...(farmet?{brand:'farmet'}:{}),...(farmetModel?{model:farmetModel}:{}),event,page_path:location.pathname,...(sampo?{brand:'sampo'}:{}),...(modelCode?{model:modelCode}:{}),...campaign,...(model?{model:model.id}:{}),...extra};
     window.dataLayer.push(payload);
     window.dispatchEvent(new CustomEvent('atm:conversion',{detail:payload}));
   }
@@ -28,11 +30,11 @@
     else if(url.protocol==='mailto:')method='email';
     else if(url.hostname==='wa.me'){
       method='whatsapp';
-      const base=link.dataset.baseWaText??url.searchParams.get('text')??(document.body.dataset.equipment==='combines'?'Здравствуйте! Интересуют комбайны Sampo-Rosenlew.':'Здравствуйте! Хочу получить консультацию по технике.');
+      const base=link.dataset.baseWaText??url.searchParams.get('text')??(document.body.dataset.equipment==='farmet'?'Здравствуйте! Интересует техника Farmet.':document.body.dataset.equipment==='combines'?'Здравствуйте! Интересуют комбайны Sampo-Rosenlew.':'Здравствуйте! Хочу получить консультацию по технике.');
       link.dataset.baseWaText=base;url.searchParams.set('text',base+messageSuffix());link.href=url.href;
     } else if(/(^|\.)(2gis\.(kz|com)|go\.2gis\.com)$/.test(url.hostname))method='route';
     else if(url.pathname.endsWith('.pdf'))method='catalogue_download';
-    if(method)track('atm_contact_click',{contact_method:method,...(link.dataset.branch?{branch:link.dataset.branch}:{}),form_context:link.closest('form')?.classList.contains('product-inquiry')?'product':link.closest('form')?.classList.contains('quick-request')?(document.body.dataset.equipment==='combines'?'sampo':'service'):'site'});
+    if(method)track('atm_contact_click',{contact_method:method,...(link.dataset.branch?{branch:link.dataset.branch}:{}),form_context:link.closest('form')?.classList.contains('product-inquiry')?'product':link.closest('form')?.classList.contains('quick-request')?(document.body.dataset.equipment==='farmet'?'farmet':document.body.dataset.equipment==='combines'?'sampo':'service'):'site'});
   }
   document.addEventListener('click',contact);document.addEventListener('auxclick',contact);
   window.ATMMarketing={track,messageSuffix};
@@ -48,6 +50,6 @@
     const link=document.createElement('a');link.href='https://wa.me/77775550665?text='+encodeURIComponent(message);link.textContent='Открыть WhatsApp →';link.target='_blank';link.rel='noopener';status.append(link);
     // Mark the base text without attribution to avoid appending it twice on click.
     link.dataset.baseWaText=messageSuffix()?message.slice(0,-messageSuffix().length):message;
-    track('atm_form_prepared',{form_context:document.body.dataset.equipment==='combines'?'sampo':'service'});
+    track('atm_form_prepared',{form_context:document.body.dataset.equipment==='farmet'?'farmet':document.body.dataset.equipment==='combines'?'sampo':'service'});
   }));
 })();
