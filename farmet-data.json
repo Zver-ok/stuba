@@ -20,7 +20,7 @@
       ],
       "demo": false,
       "lead": "Двухрядный дисковый лущильник для поверхностной обработки почвы. Рабочая ширина 3 м, диски диаметром 510 мм.",
-      "image": "assets/images/farmet/disc.svg",
+      "image": "images/farmet/farm1.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -82,7 +82,7 @@
       ],
       "demo": false,
       "lead": "Двухрядный дисковый лущильник для поверхностной обработки почвы. Рабочая ширина 6 м, диски диаметром 510 мм.",
-      "image": "assets/images/farmet/disc.svg",
+      "image": "images/farmet/farm2.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -144,7 +144,7 @@
       ],
       "demo": false,
       "lead": "Двухрядный дисковый лущильник для поверхностной обработки почвы. Рабочая ширина 8 м, диски диаметром 510 мм.",
-      "image": "assets/images/farmet/disc.svg",
+      "image": "images/farmet/farm3.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -206,7 +206,7 @@
       ],
       "demo": false,
       "lead": "Навесной двухрядный чизельный стерневой культиватор-глубокорыхлитель с семью лапами.",
-      "image": "assets/images/farmet/tine.svg",
+      "image": "images/farmet/farm4.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -260,7 +260,7 @@
       ],
       "demo": false,
       "lead": "Прицепной двухрядный чизельный стерневой культиватор-глубокорыхлитель. Рабочая ширина 8 м, 19 лап.",
-      "image": "assets/images/farmet/tine.svg",
+      "image": "images/farmet/farm5.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -311,7 +311,7 @@
       "power": null,
       "demo": false,
       "lead": "Высевающий механизм для сидеральных культур с бункером 800 л. Возможность установки на Softer, Duolent и другие машины согласуйте при подборе.",
-      "image": "assets/images/farmet/drill.svg",
+      "image": "images/farmet/farm6.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -362,7 +362,7 @@
       "power": null,
       "demo": false,
       "lead": "Дисковый посевной комплекс с дисковой предпосевной обработкой и внесением удобрений между строк посева.",
-      "image": "assets/images/farmet/drill.svg",
+      "image": "images/farmet/farm7.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -424,7 +424,7 @@
       ],
       "demo": false,
       "lead": "Культиватор двойного применения: весенняя предпосевная подготовка и осеннее лущение. Двойной каток Ring.",
-      "image": "assets/images/farmet/tine.svg",
+      "image": "images/farmet/farm8.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -482,7 +482,7 @@
       ],
       "demo": false,
       "lead": "Культиватор двойного применения: весенняя предпосевная подготовка и осеннее лущение. Двойной каток Ring.",
-      "image": "assets/images/farmet/tine.svg",
+      "image": "images/farmet/farm9.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -540,7 +540,7 @@
       ],
       "demo": false,
       "lead": "Навесной чизельный глубокорыхлитель: 7 рабочих органов, рабочая глубина до 500 мм. Возможна комплектация внесением удобрений.",
-      "image": "assets/images/farmet/tine.svg",
+      "image": "images/farmet/farm10.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -594,7 +594,7 @@
       ],
       "demo": false,
       "lead": "Кольчато-шпоровые катки с универсальной рамой носителя. Рабочая ширина 9 м.",
-      "image": "assets/images/farmet/roller.svg",
+      "image": "images/farmet/farm11.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -646,7 +646,7 @@
       ],
       "demo": true,
       "lead": "Полуприцепной двухрядный дисковый лущильник шириной 4,5 м. Демо-позиция по списку АТМ.",
-      "image": "assets/images/farmet/disc.svg",
+      "image": "images/farmet/farm12.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -706,7 +706,7 @@
       ],
       "demo": true,
       "lead": "Прицепной двухрядный чизельный культиватор-глубокорыхлитель шириной 6 м, 15 лап. Демо-позиция.",
-      "image": "assets/images/farmet/tine.svg",
+      "image": "images/farmet/farm13.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
@@ -762,7 +762,7 @@
       ],
       "demo": true,
       "lead": "Полуприцепной дисковый лущильник с передним режущим катком-измельчителем и дисками 530 мм. Демо-позиция.",
-      "image": "assets/images/farmet/disc.svg",
+      "image": "images/farmet/farm14.webp",
       "gallery": [],
       "specs": {
         "Основные параметры": [
