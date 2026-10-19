@@ -32,5 +32,4 @@
    finally{clearTimeout(timer);delete form.dataset.sending;form.removeAttribute('aria-busy');if(button){button.disabled=false;button.textContent=oldText;}}
   });
  }
- document.querySelectorAll('[data-accessory-carousel]').forEach(section=>{const track=section.querySelector('.accessory-track');section.querySelectorAll('[data-slide]').forEach(button=>button.addEventListener('click',()=>track.scrollBy({left:(button.dataset.slide==='prev'?-1:1)*(track.firstElementChild?.getBoundingClientRect().width+20||300),behavior:'smooth'})));});
 })();

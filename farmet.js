@@ -1,7 +1,5 @@
 (() => {
  if(window.lucide)window.lucide.createIcons();
- const products=document.querySelector('.farmet-home-products');
- if(products){const dots=[...document.querySelectorAll('.dots button')];document.querySelectorAll('.carousel-arrow').forEach(button=>button.addEventListener('click',()=>products.scrollBy({left:(button.classList.contains('prev')?-1:1)*(products.querySelector('.product').offsetWidth+20),behavior:'smooth'})));dots.forEach((dot,index)=>dot.addEventListener('click',()=>products.scrollTo({left:(products.scrollWidth-products.clientWidth)*index/(dots.length-1),behavior:'smooth'})));products.addEventListener('scroll',()=>{const range=products.scrollWidth-products.clientWidth;const active=range?Math.round(products.scrollLeft/range*(dots.length-1)):0;dots.forEach((dot,index)=>dot.classList.toggle('active',index===active));});}
  const grid=document.querySelector('#farmet-grid');if(!grid)return;
  const cards=[...grid.children],search=document.querySelector('#farmet-search'),kind=document.querySelector('#farmet-kind'),width=document.querySelector('#farmet-width'),demo=document.querySelector('#farmet-demo'),sort=document.querySelector('#farmet-sort');
  const normalize=value=>value.toLocaleLowerCase('ru').replace(/[\s,.-]/g,'');

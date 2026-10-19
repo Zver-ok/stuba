@@ -1,13 +1,5 @@
 (() => {
  if(window.lucide)window.lucide.createIcons();
- const products=document.querySelector('.sampo-home-products');
- if(products){
-  const dots=[...document.querySelectorAll('.dots button')];
-  document.querySelectorAll('.carousel-arrow').forEach(button=>button.addEventListener('click',()=>products.scrollBy({left:(button.classList.contains('prev')?-1:1)*(products.querySelector('.product').offsetWidth+20),behavior:'smooth'})));
-  dots.forEach((dot,index)=>dot.addEventListener('click',()=>products.scrollTo({left:(products.scrollWidth-products.clientWidth)*index/(dots.length-1),behavior:'smooth'})));
-  products.addEventListener('scroll',()=>{const range=products.scrollWidth-products.clientWidth;const active=range?Math.round(products.scrollLeft/range*(dots.length-1)):0;dots.forEach((dot,index)=>dot.classList.toggle('active',index===active));});
- }
-
  const grid=document.querySelector('#sampo-grid');
  if(!grid)return;
  const cards=[...grid.querySelectorAll('.sampo-card')],search=document.querySelector('#sampo-search'),kind=document.querySelector('#sampo-kind'),sort=document.querySelector('#sampo-sort');

@@ -65,3 +65,9 @@
 @media(max-width:650px){.atm-lead-dialog{padding:25px 20px}.atm-lead-dialog h2{font-size:25px}.atm-lead-dialog form{gap:12px}.atm-lead-dialog input,.atm-lead-dialog textarea{font-size:16px}.accessory-track{grid-auto-columns:84%;gap:16px}.accessory-item>.product{flex:1 1 auto}.accessory-carousel h2{font-size:25px}.tyres-brands>.container{gap:35px}.tyres-brand{font-size:25px}.accessory-note{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.accessory-track{scroll-behavior:auto}}
 .tyres-selection{background-position:right center}
+
+/* Desktop carousel controls remain usable when all cards fit the viewport. */
+.carousel .products,.accessory-track{overflow-x:auto;overflow-y:hidden;cursor:grab;touch-action:auto}
+.carousel .products:active,.accessory-track:active{cursor:grabbing}
+.carousel .products:focus-visible,.accessory-track:focus-visible{outline:2px solid #ef0015;outline-offset:4px}
+.carousel-arrow[hidden],[data-slide][hidden]{display:none}
