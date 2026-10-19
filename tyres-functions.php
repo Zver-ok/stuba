@@ -1,0 +1,30 @@
+<?php
+require_once __DIR__.'/equipment-navigation.php';
+function atm_tyres_data(): array { static $data; return $data??=json_decode(file_get_contents(__DIR__.'/tyres-data.json'),true,512,JSON_THROW_ON_ERROR); }
+function atm_tyres_model(): ?array {
+    $id=$_GET['model']??atm_tyres_data()['models'][0]['id'];if(!is_string($id))return null;
+    foreach(atm_tyres_data()['models'] as $model)if($model['id']===strtoupper($id))return $model;
+    return null;
+}
+function atm_tyres_price(array $model): string { return number_format($model['price'],0,',',' ').' ₸'; }
+function atm_tyres_whatsapp(?array $model=null,string $purpose='цена, наличие и комплектность'): string {
+    return 'https://wa.me/77775550665?text='.rawurlencode('Здравствуйте! Интересует '.($model?'шина '.$model['name']:'подбор шин TRONMAX / ARMOUR').'. Подскажите: '.$purpose.'.');
+}
+function atm_tyres_values(string $key): array {
+    $values=[];foreach(atm_tyres_data()['models'] as $model)if($model[$key]!==null)$values[(string)$model[$key]]=(string)$model[$key];
+    $values=array_values($values);usort($values,in_array($key,['width','profile','diameter'],true)?fn($a,$b)=>(float)$a<=>(float)$b:fn($a,$b)=>strcmp($a,$b));return $values;
+}
+function atm_tyres_filter(string $key,string $label,string $id=''): void { ?>
+<label><?= atm_yto_escape($label) ?><select name="<?= $key ?>" <?= $id?'id="'.atm_yto_escape($id).'"':'' ?>><option value="">Любой вариант</option><?php foreach(atm_tyres_values($key) as $value):
+$display=$value;if($key==='width')$display=str_replace('.',',',$value).((float)$value>=100?' мм':'″');if($key==='profile')$display=$value.'%';if($key==='diameter')$display=$value.'″'; ?><option value="<?= atm_yto_escape($value) ?>"><?= atm_yto_escape($display) ?></option><?php endforeach ?><?php if($key==='profile'): ?><option value="unknown">Не указан</option><?php endif ?></select></label>
+<?php }
+function atm_tyres_card(array $model,bool $compact=false,bool $compare=false): void {
+    $url=atm_yto_url('/tyres-product/?model='.$model['id']); ?>
+<article class="product catalog-product tyre-card" data-id="<?= $model['id'] ?>"><a class="product-photo" href="<?= atm_yto_escape($url) ?>"><img src="<?= atm_yto_escape(atm_yto_asset($model['image'])) ?>" alt="Иллюстрация шины — <?= atm_yto_escape($model['name']) ?>" loading="lazy"></a><div class="product-body"><span class="tyre-card-brand"><?= $model['brand'] ?></span><h3><a href="<?= atm_yto_escape($url) ?>"><?= atm_yto_escape($model['name']) ?></a></h3><div class="tyre-card-specs"><span><i data-lucide="ruler"></i><?= atm_yto_escape($model['size']) ?></span><span><i data-lucide="circle-dot"></i><?= atm_yto_escape($model['technology']) ?></span><span><i data-lucide="tractor"></i><?= atm_yto_escape($model['application']) ?></span></div><p class="tyre-price"><?= atm_tyres_price($model) ?></p><div class="product-actions"><a class="button small" href="<?= atm_yto_escape($url) ?>">Подробнее →</a><?php if(!$compact): ?><a class="button outline small" href="<?= atm_yto_escape(atm_tyres_whatsapp($model)) ?>" target="_blank" rel="noopener">Уточнить наличие</a><?php endif ?></div><?php if($compare): ?><label class="compare-choice"><input type="checkbox" data-tyre-compare="<?= $model['id'] ?>"> Сравнить</label><?php endif ?></div></article>
+<?php }
+function atm_tyres_form(?array $model=null): void { ?>
+<section class="consultation photo-section tyres-consultation" id="tyres-request" style="--banner:url('<?= atm_yto_escape(atm_yto_asset(atm_tyres_data()['contactBanner'])) ?>'),url('<?= atm_yto_escape(atm_yto_asset(atm_tyres_data()['banner'])) ?>')"><div class="container consultation-inner"><div class="consultation-copy"><h2>Оставьте заявку на подбор шин</h2><p>Сверим размер, применение и комплектность.<br>Уточним цену и доступность нужных шин.</p><a href="tel:+77775550665"><span><i data-lucide="phone"></i></span> +7 777 555 06 65</a><a href="mailto:sales@agrotm.kz"><span><i data-lucide="mail"></i></span> sales@agrotm.kz</a><p class="address"><span><i data-lucide="map-pin"></i></span> г. Астана, ул. Александра Пушкина, 32Б</p><a class="text-link" href="/branches/">Филиалы и маршруты →</a></div><form class="contact-form quick-request" data-purpose="Интересуют шины TRONMAX / ARMOUR"><label><span class="sr-only">Ваше имя</span><input name="name" required autocomplete="name" maxlength="100" placeholder="Ваше имя"></label><label><span class="sr-only">Телефон</span><input name="phone" type="tel" required autocomplete="tel" maxlength="40" placeholder="+7 (___) ___-__-__"></label><label><span class="sr-only">Город</span><input name="city" maxlength="120" placeholder="Ваш город / регион"></label><label><span class="sr-only">Выберите шину</span><select name="model"><option value="">Помогите подобрать шину</option><?php foreach(atm_tyres_data()['models'] as $item): ?><option value="<?= atm_yto_escape($item['name']) ?>" <?= $model&&$model['id']===$item['id']?'selected':'' ?>><?= atm_yto_escape($item['name']) ?></option><?php endforeach ?></select></label><label class="tyres-quantity">Количество<input name="quantity" type="number" min="1" max="999" value="1" required></label><label><span class="sr-only">Техника и комментарий</span><textarea name="task" rows="2" maxlength="1500" placeholder="Техника / модель, размер, условия работы"></textarea></label><button class="button" type="submit" data-requires-js disabled>Подготовить заявку →</button><small>Нажимая кнопку, вы соглашаетесь на обработку данных для ответа. <a href="/privacy/">Политика конфиденциальности</a>. Подготовленное сообщение отправьте в WhatsApp.</small><p class="inquiry-status" role="status"></p><noscript>Позвоните по номеру выше или включите JavaScript для подготовки сообщения.</noscript></form></div></section>
+<?php }
+function atm_tyres_mobile_contact(?array $model=null): void { ?>
+<aside class="sampo-mobile-contact" aria-label="Связаться по шинам"><a href="tel:+77775550665">Позвонить</a><a href="<?= atm_yto_escape(atm_tyres_whatsapp($model)) ?>" target="_blank" rel="noopener">WhatsApp →</a></aside>
+<?php }
