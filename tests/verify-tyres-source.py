@@ -19,6 +19,6 @@ for model in models:
     while row <= sheet.max_row and sheet.cell(row, 2).value is not None:
         actual.append([str(sheet.cell(row, 1).value).strip(), str(sheet.cell(row, 2).value).strip()])
         row += 1
-    assert actual == model['specs']['Характеристики по прайс-листу']
+    assert actual == model['specs']['Характеристики']
 assert {model['brand'] for model in models} == {'TRONMAX', 'ARMOUR'}
 print('PASS: all 25 XLSX positions, exact names, prices and specification cells; no added products.')

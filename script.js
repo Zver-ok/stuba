@@ -33,20 +33,8 @@ document.querySelectorAll('[data-model]').forEach(button => button.addEventListe
   document.querySelector('#consultation').scrollIntoView({behavior: 'smooth'});
   form.elements.name.focus({preventScroll: true});
 }));
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  const data = new FormData(form); window.ATMMarketing?.track('atm_form_prepared',{form_context:'home'});
-  const message = `Заявка с сайта АТМ YTO\nИмя: ${data.get('name')}\nТелефон: ${data.get('phone')}\nРегион: ${data.get('region')}\nКомментарий: ${data.get('comment') || '—'}`;
-  const status = form.querySelector('.form-status');
-  status.textContent = 'Заявка подготовлена. Отправьте сообщение в WhatsApp.';
-  const link = document.createElement('a');
-  link.href = `https://wa.me/77775550665?text=${encodeURIComponent(message)}`;
-  link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Открыть WhatsApp →';
-  link.style.color = '#ed0014'; link.style.display = 'block'; link.style.marginTop = '8px';
-  status.append(link);
-});
 const dialog = document.querySelector('.info-dialog');
 document.querySelector('.privacy-button')?.addEventListener('click', () => dialog.showModal());
-document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
-dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+document.querySelector('.dialog-close')?.addEventListener('click', () => dialog.close());
+dialog?.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
 if (window.lucide) window.lucide.createIcons();

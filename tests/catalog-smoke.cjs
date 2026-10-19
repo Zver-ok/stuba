@@ -12,7 +12,7 @@ for(const model of models){assert.ok(typeof model.image==='string' && /\.(svg|we
 (async()=>{
  const browser=await chromium.launch({executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];
- page.on('pageerror',error=>errors.push(error.message));
+ page.on('pageerror',error=>errors.push(error.message));await require('./mock-lead-mail.cjs')(page);
  // Hosting photos are user-managed and absent from this checkout; supply a preview fixture only.
  const missingPhotos=new Set(models.filter(model=>!fs.existsSync(model.image)).map(model=>'/'+model.image));
  await page.route('**/images/*.webp',route=>missingPhotos.has(new URL(route.request().url()).pathname)?route.fulfill({contentType:'image/svg+xml',body:fs.readFileSync('assets/images/placeholder.svg')}):route.continue());
@@ -43,7 +43,7 @@ for(const model of models){assert.ok(typeof model.image==='string' && /\.(svg|we
   assert.equal(await page.locator('#main-product-image').evaluate(image=>image.complete&&image.naturalWidth>0),true);
  }
  await page.goto(previewBase+'/product/?model=X1304');assert.equal(await page.locator('.product-summary [data-model-power]').textContent(),'140');
- await page.locator('.product-inquiry [name=name]').fill('Проверка');await page.locator('.product-inquiry [name=phone]').fill('+77770000000');await page.locator('.product-inquiry button').click();assert.ok(decodeURIComponent(await page.locator('.inquiry-status a').getAttribute('href')).includes('YTO-X1304'));
+ await page.locator('.product-inquiry [name=name]').fill('Проверка');await page.locator('.product-inquiry [name=phone]').fill('+77770000000');await page.locator('.product-inquiry button').click();await page.waitForFunction(()=>document.querySelector('.inquiry-status').dataset.state==='success');assert.ok((await page.locator('.inquiry-status').innerText()).includes('принята'));
  await page.screenshot({path:'/tmp/yto-product-desktop.png',fullPage:true});
  await page.goto(previewBase+'/product/?model=UNKNOWN');assert.equal(await page.locator('.unknown-model').isVisible(),true);assert.equal(await page.locator('.product-summary').count(),0);
  for(const width of [390,320]){
@@ -57,6 +57,6 @@ for(const model of models){assert.ok(typeof model.image==='string' && /\.(svg|we
  }
  assert.deepEqual(errors,[]);
  const pdf=await page.request.get(previewBase+'/assets/docs/yto-catalog-2026-16-32.pdf');assert.equal(pdf.status(),200);
- console.log('PASS: 10 sourced models, homepage cards, model-specific specs/WhatsApp/PDF, filters/sorting/comparison, unknown model, forms, mobile menu and no 320/390 overflow; no browser JS errors.');
+ console.log('PASS: 10 sourced models, homepage cards, model-specific specs/email/PDF, filters/sorting/comparison, unknown model, forms, mobile menu and no 320/390 overflow; no browser JS errors.');
  await browser.close();
 })().catch(error=>{console.error(error);process.exit(1)});

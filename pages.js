@@ -66,8 +66,8 @@ if (grid && ui) {
  document.querySelector('#compare-close').addEventListener('click', () => comparison.close());
  document.querySelector('#compare-open').addEventListener('click', () => {
   const models=ui.catalog.models.filter(model => selected.has(model.id));
-  const rows=[['Мощность, л.с.',model=>model.power],['Двигатель',model=>model.engine || 'Уточнить'],['Объём, см³',model=>model.displacement],['Передачи вперёд + назад',model=>model.gears],['Гидравлические выходы, пар',model=>model.hydraulicPairs],['Подъёмная сила на 610 мм, кН',model=>model.lift],['Бак, л',model=>model.tank],['Масса по каталогу, кг',model=>model.mass],['Кондиционер',model=>model.airConditioning?'Есть':'Нет']];
-  comparison.querySelector('.comparison-content').innerHTML=`<div class="comparison-scroll"><table><thead><tr><th>Параметр</th>${models.map(model=>`<th><a href="${ui.productUrl(model)}">${ui.escape(model.name)}</a></th>`).join('')}</tr></thead><tbody>${rows.map(([label,get])=>`<tr><th>${label}</th>${models.map(model=>`<td>${ui.escape(get(model))}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="source-caption">Данные каталога от ${ui.catalog.edition}. Комплектацию и наличие уточните у менеджера.</p>`;
+  const rows=[['Мощность, л.с.',model=>model.power],['Двигатель',model=>model.engine || 'Уточнить'],['Объём, см³',model=>model.displacement],['Передачи вперёд + назад',model=>model.gears],['Гидравлические выходы, пар',model=>model.hydraulicPairs],['Подъёмная сила на 610 мм, кН',model=>model.lift],['Бак, л',model=>model.tank],['Масса, кг',model=>model.mass],['Кондиционер',model=>model.airConditioning?'Есть':'Нет']];
+  comparison.querySelector('.comparison-content').innerHTML=`<div class="comparison-scroll"><table><thead><tr><th>Параметр</th>${models.map(model=>`<th><a href="${ui.productUrl(model)}">${ui.escape(model.name)}</a></th>`).join('')}</tr></thead><tbody>${rows.map(([label,get])=>`<tr><th>${label}</th>${models.map(model=>`<td>${ui.escape(get(model))}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p class="source-caption">Сравните основные параметры и выберите подходящую модель.</p>`;
   comparison.showModal();
  });
 }
@@ -93,20 +93,14 @@ if (productPage && ui) {
   thumbs.innerHTML=pictures.map((path,index)=>`<button class="${index===0?'active':''}" aria-label="Фото ${index+1}" aria-pressed="${index===0}"><img src="${ui.asset(path)}" alt="${ui.escape(name)}: фото ${index+1}"></button>`).join('');
   thumbs.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>{image.src=button.querySelector('img').src;thumbs.querySelectorAll('button').forEach(item=>{item.classList.toggle('active',item===button);item.setAttribute('aria-pressed',String(item===button));});}));
   document.querySelector('.specification-groups').innerHTML=Object.entries(model.specs).map(([title,rows],index)=>`<details ${index===0?'open':''}><summary>${ui.escape(title)}</summary><dl class="specification-table">${rows.map(([key,value])=>`<div><dt>${ui.escape(key)}</dt><dd>${ui.escape(value)}</dd></div>`).join('')}</dl></details>`).join('');
-  document.querySelector('.model-notes').innerHTML=model.notes.map(note=>`<p>${ui.escape(note)}</p>`).join('');
+  document.querySelector('.model-notes').innerHTML=model.notes.filter(note=>!/источник|по каталогу|в таблице|в документе|не предоставлен/iu.test(note)).map(note=>`<p>${ui.escape(note)}</p>`).join('');
   document.querySelector('.model-notes').hidden=model.notes.length===0;
-  document.querySelector('.model-source').textContent=`Источник: каталог YTO от ${ui.catalog.edition}, стр. ${model.sourcePage}. Комплектацию подтвердите перед заказом.`;
 const pdfLink = document.querySelector('.model-pdf');
 if (pdfLink && ui.catalog.pdf) {
   pdfLink.href = ui.asset(ui.catalog.pdf) + `#page=${model.pdfPage}`;
 }  const alternatives=ui.catalog.models.filter(other=>other.id!==model.id).sort((a,b)=>Math.abs(a.power-model.power)-Math.abs(b.power-model.power)).slice(0,3);
   document.querySelector('.related-grid').innerHTML=alternatives.map(other=>ui.card(other)).join('');
   const form=document.querySelector('.product-inquiry');
-  form.addEventListener('submit', event => {
-   event.preventDefault(); const data=new FormData(form); window.ATMMarketing?.track('atm_form_prepared',{form_context:'product'});
-   const message=`Здравствуйте! Интересует ${name}.\nИмя: ${data.get('name')}\nТелефон: ${data.get('phone')}\nЗадачи: ${data.get('task') || 'Хочу получить консультацию'}`;
-   const status=form.querySelector('.inquiry-status'); status.textContent='Заявка подготовлена. Откройте WhatsApp и отправьте сообщение менеджеру.';
-   const link=document.createElement('a');link.href=`https://wa.me/77775550665?text=${encodeURIComponent(message)}`;link.target='_blank';link.rel='noopener';link.textContent='Отправить в WhatsApp →';status.append(link);
-  });
+
  }
 }

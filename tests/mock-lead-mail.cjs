@@ -1,0 +1,1 @@
+module.exports=async function mockLeadMail(page){const accepted=[];await page.route('**/send-mail.php',async route=>{accepted.push(route.request().postData()||'');await route.fulfill({status:200,contentType:'application/json',body:JSON.stringify({ok:true,message:'Заявка принята к отправке. Мы свяжемся с вами.'})});});return accepted;};
