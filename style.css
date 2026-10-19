@@ -71,3 +71,10 @@
 .carousel .products:active,.accessory-track:active{cursor:grabbing}
 .carousel .products:focus-visible,.accessory-track:focus-visible{outline:2px solid #ef0015;outline-offset:4px}
 .carousel-arrow[hidden],[data-slide][hidden]{display:none}
+
+/* Shared brand pairs in the header and footer. Original logo proportions are preserved. */
+.brand .brand-logo{display:block;width:92px;height:36px;object-fit:contain;flex-shrink:0}
+.brand .brand-logo-sampo,.brand .brand-logo-farmet,.brand .brand-logo-tronmax{width:110px}
+.footer .brand .brand-logo{width:110px;height:46px}
+.footer .brand .brand-logo-sampo,.footer .brand .brand-logo-farmet,.footer .brand .brand-logo-tronmax{width:132px}
+@media(max-width:650px){.header .brand{gap:10px}.header .brand .brand-logo{width:74px;height:30px}.header .brand .brand-logo-sampo,.header .brand .brand-logo-farmet,.header .brand .brand-logo-tronmax{width:90px}}
