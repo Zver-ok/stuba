@@ -22,9 +22,11 @@ booking.addEventListener('submit', event => {
   const name = booking.elements.name.value.trim();
   const phone = booking.elements.phone.value.trim();
   if (!name) { booking.elements.name.setCustomValidity('Введите ваше имя'); booking.elements.name.reportValidity(); return; }
+  const health = booking.elements.health.value.trim();
+  if (!health) { booking.elements.health.setCustomValidity('Заполните поле «Что беспокоит по здоровью?»'); booking.elements.health.reportValidity(); return; }
   const digits = phone.replace(/\D/g, '');
   if (digits.length < 10 || digits.length > 15) { booking.elements.phone.setCustomValidity('Введите телефон полностью'); booking.elements.phone.reportValidity(); return; }
-  const message = `Здравствуйте! Хочу записаться на пробный сеанс ЭКЗОмассажа за 4 500 ₸.\nИмя: ${name}\nТелефон: ${phone}\nПодскажите удобное время.`;
+  const message = `Здравствуйте! Хочу записаться на пробный сеанс ЭКЗОмассажа за 4 500 ₸.\nИмя: ${name}\nТелефон: ${phone}\nЧто беспокоит по здоровью: ${health}\nПодскажите удобное время.`;
   const url = 'https://wa.me/77079222080?text=' + encodeURIComponent(message);
   window.open(url, '_blank', 'noopener,noreferrer');
   const status = booking.querySelector('.form-status');
@@ -33,4 +35,4 @@ booking.addEventListener('submit', event => {
   link.href = url; link.target = '_blank'; link.rel = 'noopener'; link.textContent = 'Открыть WhatsApp ↗';
   status.append(link);
 });
-booking.querySelectorAll('input').forEach(input => input.addEventListener('input', () => input.setCustomValidity('')));
+booking.querySelectorAll('input, textarea').forEach(input => input.addEventListener('input', () => input.setCustomValidity('')));
